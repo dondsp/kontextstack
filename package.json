@@ -36,8 +36,11 @@
     "bin/",
     "src/",
     "schemas/",
+    "installation/",
     "registry/",
     "modules/handoff-core/",
+    "kontextstack.source.json",
+    "CITATION.cff",
     "LICENSE",
     "NOTICE",
     "README.md"

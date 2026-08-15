@@ -26,13 +26,20 @@ core instead of publishing every mature internal module at once.
 ```bash
 git clone https://github.com/dondsp/kontextstack.git
 cd kontextstack
-npm install
+npm ci --ignore-scripts
 npm test
+node bin/kontextstack.js install verify --mode simple
 node bin/kontextstack.js doctor
 ```
 
 No hosted KontextStack account is required. The alpha uses Node.js 20 or newer
 and only Node.js built-ins.
+
+Use `--mode simple` for a small or early-stage project. Use `--mode mature` for
+an established project with architecture, environment, deployment, data,
+authentication or operational context that needs deeper readiness checks. Both
+modes install the same handoff core and remain local-first. See
+[the installation guide](docs/guide/INSTALLATION.md).
 
 ## First handoff
 
@@ -67,6 +74,8 @@ Git commands for the user to review.
 | --- | --- | --- |
 | `about` | Show version, canonical source and local Git identity | No |
 | `doctor` | Check the local runtime and bundled artifacts | No |
+| `install contract --mode <simple\|mature>` | Print the official, version-matched installation contract | No |
+| `install verify --mode <simple\|mature>` | Verify clone integrity, attribution and canonical source trace | No |
 | `validate` | Validate a Handoff Pack without printing secret values | No |
 | `inspect` | Summarize a target project read-only | No |
 | `preview` | Render the exact proposed handoff plan and approval ID | No |
@@ -90,5 +99,11 @@ license permits use and modification while requiring preservation of applicable
 license, copyright and NOTICE attribution when redistributed. Generated
 project records also retain the core and module source/version.
 
+Direct clones retain the canonical repository as `origin`. Fork-based installs
+remain traceable when `upstream` points to the canonical repository. The
+read-only installation verifier detects both layouts and suggests a reviewed
+`git remote` command when canonical trace is missing; it never edits remotes.
+
 See [NOTICE](NOTICE), [LICENSE](LICENSE), [SECURITY.md](SECURITY.md), and
-[CONTRIBUTING.md](CONTRIBUTING.md).
+[CONTRIBUTING.md](CONTRIBUTING.md). Machine-readable ownership and provenance
+are recorded in [kontextstack.source.json](kontextstack.source.json).
