@@ -1,4 +1,10 @@
-# KontextStack
+<p align="center">
+  <a href="https://contextkraft.com">
+    <img src="docs/assets/contextkraft-wordmark-solid.png" alt="ContextKraft" width="640">
+  </a>
+</p>
+
+<h1 align="center">KontextStack</h1>
 
 KontextStack is a local-first, modular handoff toolkit that connects structured
 project context from [ContextKraft](https://contextkraft.com) to safe, continued
