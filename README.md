@@ -11,6 +11,10 @@ core instead of publishing every mature internal module at once.
 > Status: `0.1.0-alpha.1` local foundation. Do not use it to make production,
 > DNS, database, authentication, deployment, Git, or account changes.
 
+Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
+lists the complete order from installation and mandatory Current-State capture
+through local validation, Codex continuation and later safe updates.
+
 ## Why KontextStack
 
 - The user's project repository remains the source of truth.
@@ -43,7 +47,10 @@ modes install the same handoff core and remain local-first. See
 
 ## First handoff
 
-Start with a local project clone and a reviewed Handoff Pack:
+Start with a local project clone and a reviewed Handoff Pack created from the
+mandatory Current-State ContextPack. An original ContextKraft Starter
+ContextPack is useful historical intent, but it never replaces current
+repository extraction. See the [first handoff guide](docs/guide/FIRST_HANDOFF.md).
 
 ```bash
 node bin/kontextstack.js validate --handoff /path/to/handoff.json
