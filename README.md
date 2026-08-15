@@ -15,6 +15,11 @@ Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
 lists the complete order from installation and mandatory Current-State capture
 through local validation, Codex continuation and later safe updates.
 
+Before cloning, [star the canonical repository](https://github.com/dondsp/kontextstack)
+to support its public visibility and choose **Watch → Custom → Releases** to
+receive GitHub release notifications. A star alone does not guarantee update
+notifications.
+
 ## Why KontextStack
 
 - The user's project repository remains the source of truth.

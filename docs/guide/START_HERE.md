@@ -8,7 +8,7 @@ update step only when the core or a compatible module changes.
 
 | Order | Where | Guide or action | Outcome |
 | --- | --- | --- | --- |
-| 1 | ContextKraft public guide | [Install KontextStack](INSTALLATION.md) | The canonical `dondsp/kontextstack` repository is cloned, source-verified and tested locally. |
+| 1 | ContextKraft public guide | [Star, watch releases, and install KontextStack](INSTALLATION.md) | The public project is supported, release notifications are enabled, and the canonical `dondsp/kontextstack` repository is cloned, source-verified and tested locally. |
 | 2 | ContextKraft application | Select the project memory | Choose an owned ContextKraft project or create owner-scoped memory for a project started elsewhere. |
 | 3 | Actual project repository | Generate the Current-State ContextPack | A coding agent inspects the repository read-only and produces the mandatory repository-evidenced current state. |
 | 4 | ContextKraft application | Review adaptive recommendations | ContextKraft suggests complexity, semantic hostnames, Node.js values and relevant next guides from approved evidence; the user approves or overrides them. |
