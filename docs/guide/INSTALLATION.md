@@ -6,6 +6,19 @@ KontextStack uses one clone-first installation with two verification profiles.
 The selected profile changes the depth of readiness checks, not ownership of
 the user's project and not KontextStack's authority.
 
+## Before cloning: star and watch releases
+
+Open <https://github.com/dondsp/kontextstack> while signed in to GitHub:
+
+1. Select **Star** to support the public project and keep it easy to find.
+2. Select **Watch**, choose **Custom**, enable **Releases**, and apply the
+   selection.
+
+Starring helps discovery but does not guarantee update notifications. Watching
+releases is the GitHub notification path for published versions. Clone the
+repository for normal use. Fork it only when you intend to contribute or
+maintain an independent variant.
+
 ## Official installation
 
 Run these commands from the parent directory where you keep local tools:
