@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dondsp/kontextstack/schemas/module/lock-v1.json",
+  "title": "KontextStack Module Lock v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "core", "modules"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "core": {
+      "type": "object",
+      "required": ["version", "source", "commit"],
+      "properties": {
+        "version": { "type": "string" },
+        "source": { "const": "https://github.com/dondsp/kontextstack" },
+        "commit": { "type": ["string", "null"] }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "source", "integrity", "appliedFromPreview", "files"],
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "source": { "const": "https://github.com/dondsp/kontextstack" },
+          "integrity": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" },
+          "appliedFromPreview": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" },
+          "files": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "type": "string" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["path", "integrity"],
+                  "properties": {
+                    "path": { "type": "string" },
+                    "integrity": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

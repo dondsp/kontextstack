@@ -7,6 +7,17 @@ import { createPlan, publicPlan } from "../planning/create-plan.js";
 import { applyApprovedPlan } from "../planning/apply-plan.js";
 import { verifyProject } from "../verification/verify-project.js";
 import { listAvailableModules } from "../modules/registry.js";
+import { fingerprintPortableBundle } from "../modules/bundle.js";
+import { DEFAULT_MODULE_CACHE, importPortableModule } from "../modules/cache.js";
+import {
+  applyModulePlan,
+  createModulePlan,
+  inspectModule,
+  listInstalledModules,
+  publicModulePlan,
+  verifyProjectModules
+} from "../modules/lifecycle.js";
+import { coreUpdateGuide } from "../updates/core-update.js";
 import { loadInstallationContract } from "../installation/contract.js";
 import { verifyInstallation } from "../installation/verify.js";
 import { loadMetadata } from "../core/metadata.js";
@@ -31,7 +42,15 @@ Usage:
   kontextstack preview --project <directory> --handoff <file>
   kontextstack apply --project <directory> --handoff <file> --approve <preview-id>
   kontextstack verify --project <directory>
-  kontextstack modules available
+  kontextstack modules available [--cache <directory>]
+  kontextstack modules installed --project <directory>
+  kontextstack modules inspect --module <name> [--version <version>] [--project <directory>] [--cache <directory>]
+  kontextstack modules fingerprint --from <directory>
+  kontextstack modules import --from <directory> [--cache <directory>]
+  kontextstack modules preview --project <directory> --module <name> [--version <version>] [--cache <directory>]
+  kontextstack modules apply --project <directory> --module <name> --approve <preview-id> [--version <version>] [--cache <directory>]
+  kontextstack modules verify --project <directory>
+  kontextstack update guide --mode <simple|mature>
 
 Preview is read-only. Apply writes only the exact project-owned handoff files
 listed in the approved preview. KontextStack does not commit, push, or deploy.
@@ -84,7 +103,8 @@ async function doctor() {
     await pathCheck("module registry", REGISTRY_PATH),
     await pathCheck("handoff-core manifest", MODULE_MANIFEST_PATH),
     await pathCheck("handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json")),
-    await pathCheck("installation schema", path.join(ROOT_DIR, "schemas", "installation", "v1.json"))
+    await pathCheck("installation schema", path.join(ROOT_DIR, "schemas", "installation", "v1.json")),
+    await pathCheck("module lock schema", path.join(ROOT_DIR, "schemas", "module", "lock-v1.json"))
   ];
   const registry = await listAvailableModules();
   checks.push({
@@ -162,12 +182,73 @@ export async function main(argv = process.argv.slice(2)) {
   }
 
   if (command === "modules" && subcommand === "available") {
-    output(await listAvailableModules());
+    output(await listAvailableModules({ cacheDir: flags.cache ?? DEFAULT_MODULE_CACHE }));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "installed") {
+    output(await listInstalledModules(requireFlag(flags, "project")));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "inspect") {
+    output(await inspectModule({
+      name: requireFlag(flags, "module"),
+      version: flags.version ?? null,
+      projectPath: flags.project ?? null,
+      cacheDir: flags.cache ?? DEFAULT_MODULE_CACHE
+    }));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "fingerprint") {
+    output(await fingerprintPortableBundle(requireFlag(flags, "from")));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "import") {
+    output(await importPortableModule({
+      sourcePath: requireFlag(flags, "from"),
+      cacheDir: flags.cache ?? DEFAULT_MODULE_CACHE
+    }));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "preview") {
+    output(publicModulePlan(await createModulePlan({
+      projectPath: requireFlag(flags, "project"),
+      name: requireFlag(flags, "module"),
+      version: flags.version ?? null,
+      cacheDir: flags.cache ?? DEFAULT_MODULE_CACHE
+    })));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "apply") {
+    output(await applyModulePlan({
+      projectPath: requireFlag(flags, "project"),
+      name: requireFlag(flags, "module"),
+      approval: requireFlag(flags, "approve"),
+      version: flags.version ?? null,
+      cacheDir: flags.cache ?? DEFAULT_MODULE_CACHE
+    }));
+    return;
+  }
+
+  if (command === "modules" && subcommand === "verify") {
+    const result = await verifyProjectModules(requireFlag(flags, "project"));
+    output(result);
+    if (!result.valid) process.exitCode = 1;
     return;
   }
 
   if (command === "modules" && subcommand === "refresh") {
     throw new Error("Remote registry refresh is not available in 0.1.0-alpha.1; the bundled registry remains active.");
+  }
+
+  if (command === "update" && subcommand === "guide") {
+    output(coreUpdateGuide(flags.mode ?? "simple"));
+    return;
   }
 
   throw new Error(`Unknown command: ${positionals.join(" ")}. Run kontextstack help.`);

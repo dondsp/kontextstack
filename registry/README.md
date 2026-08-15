@@ -7,3 +7,8 @@ module integrity, and atomically replace a local cache.
 
 Network failure must retain the previous valid cache. Registry discovery must
 never execute module code or silently update KontextStack core.
+
+In v0.1, remote refresh remains unavailable. `modules import` accepts a reviewed
+local directory, validates its canonical metadata and fingerprint, and copies
+only its manifest and declared text files into the local filesystem cache.
+Invalid cache entries are ignored and cannot become executable.

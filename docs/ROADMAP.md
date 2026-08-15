@@ -12,6 +12,10 @@ not mean the capability is already available.
 - Apply only an exact approved preview.
 - Verify source/module provenance.
 - Expose a versioned bundled module registry.
+- Import exact portable module bundles from the local filesystem.
+- Preview, apply, upgrade and verify module-owned project records without
+  overwriting project customizations.
+- Generate a source-traced, fast-forward-only core update guide.
 
 ## v0.2 — Domain and static publication
 

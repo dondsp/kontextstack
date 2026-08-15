@@ -139,6 +139,7 @@ export async function verifyInstallation({ mode = "simple", rootDir = ROOT_DIR }
     path.relative(ROOT_DIR, MODULE_MANIFEST_PATH),
     "schemas/handoff/v1.json",
     "schemas/installation/v1.json",
+    "schemas/module/lock-v1.json",
     "bin/kontextstack.js",
     "package-lock.json"
   ];

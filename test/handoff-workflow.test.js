@@ -5,6 +5,7 @@ import path from "node:path";
 import { createPlan, publicPlan } from "../src/planning/create-plan.js";
 import { applyApprovedPlan } from "../src/planning/apply-plan.js";
 import { verifyProject } from "../src/verification/verify-project.js";
+import { verifyProjectModules } from "../src/modules/lifecycle.js";
 import { GENERATED_PATHS } from "../src/core/constants.js";
 import { buildHandoff, commitAll, makeCleanProject, projectCommit } from "./support/project.js";
 
@@ -65,6 +66,8 @@ test("apply requires the exact preview and writes only declared records", async 
 
   const verification = await verifyProject(projectRoot);
   assert.equal(verification.valid, true);
+  const moduleVerification = await verifyProjectModules(projectRoot);
+  assert.equal(moduleVerification.valid, true);
   const original = await readFile(path.join(projectRoot, "index.html"), "utf8");
   assert.equal(original, "<!doctype html><title>Fixture</title>\n");
 });
