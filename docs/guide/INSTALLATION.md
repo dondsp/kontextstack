@@ -1,5 +1,7 @@
 # KontextStack Installation
 
+This is step 1 in the pinned [Start Here sequence](START_HERE.md).
+
 KontextStack uses one clone-first installation with two verification profiles.
 The selected profile changes the depth of readiness checks, not ownership of
 the user's project and not KontextStack's authority.
