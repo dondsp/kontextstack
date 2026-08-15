@@ -1,0 +1,12 @@
+KontextStack
+Copyright 2026 Samuel Adeleke
+
+Canonical source: https://github.com/dondsp/kontextstack
+Project continuity: https://contextkraft.com
+
+KontextStack is the local-first, modular continuation layer for ContextKraft
+project handoffs. Redistributions and derivative works must preserve the
+attribution notices required by the Apache License, Version 2.0.
+
+ContextKraft and KontextStack names and product identities are not licensed as
+trademarks by the Apache License.

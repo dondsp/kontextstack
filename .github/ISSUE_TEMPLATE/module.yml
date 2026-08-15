@@ -1,0 +1,33 @@
+name: Module request
+description: Propose a reusable module without authorizing its implementation.
+title: "[Module]: "
+labels: ["module-request"]
+body:
+  - type: input
+    id: outcome
+    attributes:
+      label: User outcome
+      description: What should a user be able to accomplish?
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - handoff
+        - workflow
+        - hosting
+        - runtime
+        - storage
+        - identity
+        - delivery
+        - operations
+    validations:
+      required: true
+  - type: textarea
+    id: authority
+    attributes:
+      label: Required permissions and prohibited actions
+    validations:
+      required: true

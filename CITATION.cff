@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use or adapt KontextStack, cite the canonical repository."
+title: "KontextStack"
+type: software
+authors:
+  - family-names: "Adeleke"
+    given-names: "Samuel"
+repository-code: "https://github.com/dondsp/kontextstack"
+url: "https://contextkraft.com"
+license: "Apache-2.0"
+version: "0.1.0-alpha.1"
+date-released: "2026-08-15"

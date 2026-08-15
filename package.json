@@ -1,0 +1,45 @@
+{
+  "name": "@dondsp/kontextstack",
+  "version": "0.1.0-alpha.1",
+  "description": "Local-first, modular handoff toolkit connecting ContextKraft project context to safe Codex continuation.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "kontextstack": "./bin/kontextstack.js"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check bin/kontextstack.js && node --test test/*.test.js",
+    "audit:source": "node scripts/audit-source.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dondsp/kontextstack.git"
+  },
+  "homepage": "https://github.com/dondsp/kontextstack#readme",
+  "bugs": {
+    "url": "https://github.com/dondsp/kontextstack/issues"
+  },
+  "author": "Samuel Adeleke (https://github.com/dondsp)",
+  "keywords": [
+    "contextkraft",
+    "codex",
+    "handoff",
+    "local-first",
+    "scaffold"
+  ],
+  "files": [
+    "bin/",
+    "src/",
+    "schemas/",
+    "registry/",
+    "modules/handoff-core/",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ]
+}

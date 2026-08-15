@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dondsp/kontextstack/modules/handoff-core/variables.schema.json",
+  "title": "Handoff Core Variables",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {}
+}

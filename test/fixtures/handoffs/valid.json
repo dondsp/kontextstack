@@ -1,0 +1,59 @@
+{
+  "schema": "https://contextkraft.com/schemas/handoff/v1",
+  "schemaVersion": "1.0.0",
+  "artifactType": "handoff-pack",
+  "artifactId": "handoff-example-001",
+  "projectId": "project-example-001",
+  "createdAt": "2026-08-15T00:00:00.000Z",
+  "createdBy": {
+    "kind": "contextkraft",
+    "name": "ContextKraft export"
+  },
+  "sources": [
+    {
+      "kind": "intent-contextpack",
+      "reference": "contextpack-example-001"
+    }
+  ],
+  "freshness": {
+    "observedAt": "2026-08-15T00:00:00.000Z"
+  },
+  "contentHash": "sha256-a02ff5439a8d4db5d1e079f32c7dac2c1a0d73bce93020808d5733add790028a",
+  "project": {
+    "name": "Example Project",
+    "repository": "example/example-project",
+    "expectedBranch": "main",
+    "localPath": ""
+  },
+  "classification": {
+    "sourceTrack": "existing-repository",
+    "maturity": 1,
+    "capabilities": ["static-frontend"]
+  },
+  "goal": {
+    "statement": "Establish a reviewed local handoff foundation.",
+    "outcomes": ["Codex can continue from current repository evidence."],
+    "acceptance": ["The handoff receipt and module lock verify locally."]
+  },
+  "authority": {
+    "projectInstructions": ["AGENTS.md"],
+    "projectRecords": ["README.md"],
+    "decisions": ["Keep the first handoff local and documentation-only."]
+  },
+  "constraints": {
+    "prohibitedActions": ["deploy", "commit", "push", "change DNS"],
+    "secretPolicy": "never-print-or-copy-values",
+    "productionAuthority": "separate-explicit-approval"
+  },
+  "reconciliation": {
+    "confirmed": ["The project has a local Git clone."],
+    "drift": [],
+    "conflicts": [],
+    "unknowns": ["Production hosting is not part of this handoff."]
+  },
+  "modules": {
+    "allowedCategories": ["handoff"],
+    "recommended": ["handoff-core"],
+    "excluded": ["hosting", "runtime", "storage", "identity", "delivery"]
+  }
+}

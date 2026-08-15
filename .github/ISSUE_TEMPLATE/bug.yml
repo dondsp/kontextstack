@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a reproducible KontextStack problem without private data.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Never include credentials, `.env` contents, customer data, or private source.
+  - type: input
+    id: version
+    attributes:
+      label: KontextStack version
+      placeholder: 0.1.0-alpha.1
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Use a minimal, anonymized reproduction.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed secrets, private data, and project-identifying evidence.
+          required: true

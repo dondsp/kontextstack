@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0.0",
+  "core": ">=0.1.0-alpha.1 <0.2.0",
+  "handoffSchemas": ["1.0.0"],
+  "projectMaturity": [0, 1, 2, 3, "unconfirmed"],
+  "projectTypes": ["website", "web-app", "service", "unknown"]
+}

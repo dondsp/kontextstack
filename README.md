@@ -1,0 +1,94 @@
+# KontextStack
+
+KontextStack is a local-first, modular handoff toolkit that connects structured
+project context from [ContextKraft](https://contextkraft.com) to safe, continued
+work in Codex or another local coding agent.
+
+This repository is a clean-room successor to the private experimental
+`dondsp/contextstack` repository. It intentionally starts with a small handoff
+core instead of publishing every mature internal module at once.
+
+> Status: `0.1.0-alpha.1` local foundation. Do not use it to make production,
+> DNS, database, authentication, deployment, Git, or account changes.
+
+## Why KontextStack
+
+- The user's project repository remains the source of truth.
+- Inspection and preview are read-only.
+- Apply requires the exact preview ID and stays within the selected project.
+- Modules are independently versioned and source-traceable.
+- Existing installations can discover later compatible modules through an
+  explicit registry refresh; core is never silently upgraded.
+- Generated records point back to the canonical source and exact versions.
+
+## Clone-first installation
+
+```bash
+git clone https://github.com/dondsp/kontextstack.git
+cd kontextstack
+npm install
+npm test
+node bin/kontextstack.js doctor
+```
+
+No hosted KontextStack account is required. The alpha uses Node.js 20 or newer
+and only Node.js built-ins.
+
+## First handoff
+
+Start with a local project clone and a reviewed Handoff Pack:
+
+```bash
+node bin/kontextstack.js validate --handoff /path/to/handoff.json
+node bin/kontextstack.js inspect --project /path/to/project
+node bin/kontextstack.js preview \
+  --project /path/to/project \
+  --handoff /path/to/handoff.json
+```
+
+Preview prints an approval ID without writing target files. Apply only after
+reviewing the exact plan:
+
+```bash
+node bin/kontextstack.js apply \
+  --project /path/to/project \
+  --handoff /path/to/handoff.json \
+  --approve <preview-id>
+
+node bin/kontextstack.js verify --project /path/to/project
+```
+
+KontextStack never commits or pushes the target project. It prints suggested
+Git commands for the user to review.
+
+## Commands
+
+| Command | Purpose | Writes files |
+| --- | --- | --- |
+| `about` | Show version, canonical source and local Git identity | No |
+| `doctor` | Check the local runtime and bundled artifacts | No |
+| `validate` | Validate a Handoff Pack without printing secret values | No |
+| `inspect` | Summarize a target project read-only | No |
+| `preview` | Render the exact proposed handoff plan and approval ID | No |
+| `apply` | Apply only the approved, safe project-owned records | Yes |
+| `verify` | Check installed provenance and expected records | No |
+| `modules available` | List bundled/compatible modules | No |
+
+## Module roadmap
+
+The alpha bundles only `handoff-core`. Later releases can add domain, static
+hosting, Node.js/cPanel, MySQL, authentication, GitHub deployment, and operations
+modules after their individual safety and compatibility gates pass.
+
+Module discovery does not authorize module execution or installation. Every
+module follows inspect → preview → approval → apply → verify.
+
+## Source and ownership
+
+The canonical source is <https://github.com/dondsp/kontextstack>. The Apache-2.0
+license permits use and modification while requiring preservation of applicable
+license, copyright and NOTICE attribution when redistributed. Generated
+project records also retain the core and module source/version.
+
+See [NOTICE](NOTICE), [LICENSE](LICENSE), [SECURITY.md](SECURITY.md), and
+[CONTRIBUTING.md](CONTRIBUTING.md).

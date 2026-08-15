@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "handoff-core",
+  "displayName": "Handoff Core",
+  "version": "0.1.0-alpha.1",
+  "description": "Project-owned handoff, continuation and provenance records.",
+  "category": "handoff",
+  "maturity": [0, 1, 2, 3],
+  "projectTypes": ["website", "web-app", "service", "unknown"],
+  "coreCompatibility": ">=0.1.0-alpha.1 <0.2.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/handoff-core/v0.1.0-alpha.1",
+    "path": "modules/handoff-core",
+    "integrity": "sha256-7c3b43cb827881543b3c590d24133cbc603407406b0c85fbaf767e011b6e39e9"
+  },
+  "dependencies": [],
+  "optionalDependencies": [],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/project.json",
+      ".kontextstack/modules.lock.json",
+      "docs/kontextstack/HANDOFF_RECEIPT.md",
+      "docs/kontextstack/CONTINUE_IN_CODEX.md",
+      "KONTEXTSTACK-NOTICE.txt"
+    ]
+  },
+  "files": [
+    { "path": ".kontextstack/project.json", "template": "project-record" },
+    { "path": ".kontextstack/modules.lock.json", "template": "module-lock" },
+    { "path": "docs/kontextstack/HANDOFF_RECEIPT.md", "template": "handoff-receipt" },
+    { "path": "docs/kontextstack/CONTINUE_IN_CODEX.md", "template": "continue-in-codex" },
+    { "path": "KONTEXTSTACK-NOTICE.txt", "template": "source-notice" }
+  ],
+  "validations": [
+    { "id": "project-record-readable", "kind": "json-readable", "path": ".kontextstack/project.json" },
+    { "id": "module-lock-readable", "kind": "json-readable", "path": ".kontextstack/modules.lock.json" },
+    { "id": "canonical-source-present", "kind": "contains", "value": "https://github.com/dondsp/kontextstack" }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

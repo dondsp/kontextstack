@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contextkraft.com/schemas/handoff/v1",
+  "title": "KontextStack Handoff Pack v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schemaVersion",
+    "artifactType",
+    "artifactId",
+    "projectId",
+    "createdAt",
+    "createdBy",
+    "sources",
+    "freshness",
+    "contentHash",
+    "project",
+    "classification",
+    "goal",
+    "authority",
+    "constraints",
+    "reconciliation",
+    "modules"
+  ],
+  "properties": {
+    "schema": { "const": "https://contextkraft.com/schemas/handoff/v1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "artifactType": { "const": "handoff-pack" },
+    "artifactId": { "$ref": "#/$defs/nonEmptyString" },
+    "projectId": { "$ref": "#/$defs/nonEmptyString" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "createdBy": { "$ref": "#/$defs/creator" },
+    "sources": { "type": "array", "items": { "type": "object" } },
+    "freshness": { "type": "object" },
+    "contentHash": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "repository", "expectedBranch", "localPath"],
+      "properties": {
+        "name": { "$ref": "#/$defs/nonEmptyString" },
+        "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "expectedBranch": { "$ref": "#/$defs/nonEmptyString" },
+        "expectedCommit": { "type": "string", "pattern": "^[a-f0-9]{7,64}$" },
+        "localPath": { "type": "string" }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceTrack", "maturity", "capabilities"],
+      "properties": {
+        "sourceTrack": { "enum": ["ai-studio", "chatgpt-sites", "existing-repository", "static-export"] },
+        "maturity": { "enum": [0, 1, 2, 3, "unconfirmed"] },
+        "capabilities": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "outcomes", "acceptance"],
+      "properties": {
+        "statement": { "$ref": "#/$defs/nonEmptyString" },
+        "outcomes": { "type": "array", "items": { "type": "string" } },
+        "acceptance": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projectInstructions", "projectRecords", "decisions"],
+      "properties": {
+        "projectInstructions": { "$ref": "#/$defs/stringArray" },
+        "projectRecords": { "$ref": "#/$defs/stringArray" },
+        "decisions": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prohibitedActions", "secretPolicy", "productionAuthority"],
+      "properties": {
+        "prohibitedActions": { "$ref": "#/$defs/stringArray" },
+        "secretPolicy": { "const": "never-print-or-copy-values" },
+        "productionAuthority": { "const": "separate-explicit-approval" }
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confirmed", "drift", "conflicts", "unknowns"],
+      "properties": {
+        "confirmed": { "$ref": "#/$defs/stringArray" },
+        "drift": { "$ref": "#/$defs/stringArray" },
+        "conflicts": { "$ref": "#/$defs/stringArray" },
+        "unknowns": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "modules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedCategories", "recommended", "excluded"],
+      "properties": {
+        "allowedCategories": { "$ref": "#/$defs/stringArray" },
+        "recommended": { "$ref": "#/$defs/stringArray" },
+        "excluded": { "$ref": "#/$defs/stringArray" }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "stringArray": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "creator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name"],
+      "properties": {
+        "kind": { "enum": ["user", "contextkraft", "coding-agent", "kontextstack"] },
+        "name": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}
