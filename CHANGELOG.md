@@ -14,3 +14,9 @@ independent semantic versions.
   mature verification profiles.
 - Add read-only installation verification for canonical remotes, exact Git
   identity, attribution, bundled module provenance and operational records.
+- Add filesystem-only module fingerprint, import, discovery, inspection,
+  deterministic preview, exact approved apply and verification workflows.
+- Add module lock upgrades with per-file integrity and conflict protection for
+  project-customized files.
+- Add a read-only, source-traced, fast-forward-only KontextStack core update
+  guide.

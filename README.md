@@ -82,6 +82,14 @@ Git commands for the user to review.
 | `apply` | Apply only the approved, safe project-owned records | Yes |
 | `verify` | Check installed provenance and expected records | No |
 | `modules available` | List bundled/compatible modules | No |
+| `modules installed --project <directory>` | Read the selected project's module lock | No |
+| `modules inspect --module <name>` | Show compatibility, permissions and declared files | No |
+| `modules fingerprint --from <directory>` | Compute a portable local bundle identity | No |
+| `modules import --from <directory>` | Validate and cache one exact local module version | Local cache only |
+| `modules preview` | Classify an exact project module plan | No |
+| `modules apply` | Apply only an exact approved module plan | Yes |
+| `modules verify --project <directory>` | Verify installed module provenance and files | No |
+| `update guide --mode <simple\|mature>` | Print a source-traced, fast-forward-only core update guide | No |
 
 ## Module roadmap
 
@@ -91,6 +99,11 @@ modules after their individual safety and compatibility gates pass.
 
 Module discovery does not authorize module execution or installation. Every
 module follows inspect → preview → approval → apply → verify.
+
+The alpha can import reviewed portable modules from the local filesystem. It
+does not contact a remote registry. Portable modules cannot use the network or
+execute commands and may write only within their own project-owned documentation
+and metadata namespaces. See the [module lifecycle guide](docs/guide/MODULE_LIFECYCLE.md).
 
 ## Source and ownership
 
