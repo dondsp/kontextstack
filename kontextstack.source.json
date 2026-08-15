@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "KontextStack",
+  "package": "@dondsp/kontextstack",
+  "canonicalRepository": "https://github.com/dondsp/kontextstack",
+  "cloneUrl": "https://github.com/dondsp/kontextstack.git",
+  "maintainer": {
+    "name": "Samuel Adeleke",
+    "github": "dondsp"
+  },
+  "license": "Apache-2.0",
+  "attributionFiles": [
+    "LICENSE",
+    "NOTICE",
+    "CITATION.cff",
+    "kontextstack.source.json"
+  ],
+  "provenancePolicy": "Preserve the applicable license and attribution notices when redistributing KontextStack or derivative distributions.",
+  "projectOwnershipPolicy": "Projects that receive KontextStack records remain independently owned; generated records retain their exact KontextStack core and module source."
+}

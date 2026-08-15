@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "KontextStack clone-first installation contract",
+  "canonicalSource": "https://github.com/dondsp/kontextstack",
+  "cloneUrl": "https://github.com/dondsp/kontextstack.git",
+  "minimumNodeMajor": 20,
+  "packageManager": "npm",
+  "sharedCommands": [
+    "git clone https://github.com/dondsp/kontextstack.git",
+    "cd kontextstack",
+    "npm ci --ignore-scripts",
+    "npm test"
+  ],
+  "modes": {
+    "simple": {
+      "label": "Simple project",
+      "description": "For a small website or application that needs a direct, guided ContextPack-to-Codex handoff.",
+      "verificationProfile": "core",
+      "verifyCommand": "node bin/kontextstack.js install verify --mode simple",
+      "firstCommand": "node bin/kontextstack.js doctor",
+      "projectSignals": [
+        "small or early-stage repository",
+        "limited deployment surfaces",
+        "handoff-core is enough to begin"
+      ],
+      "safeguards": [
+        "read-only installation verification",
+        "canonical source trace required",
+        "inspect, preview, approval, apply and verify remain separate"
+      ]
+    },
+    "mature": {
+      "label": "Mature project",
+      "description": "For an established application with more architecture, environments, deployment, data or authentication context to preserve.",
+      "verificationProfile": "extended",
+      "verifyCommand": "node bin/kontextstack.js install verify --mode mature",
+      "firstCommand": "node bin/kontextstack.js doctor",
+      "projectSignals": [
+        "multiple runtime or deployment surfaces",
+        "database, authentication or environment contracts",
+        "existing CI/CD, operational records or production state"
+      ],
+      "safeguards": [
+        "all core installation checks",
+        "exact local Git identity and update-readiness checks",
+        "maintainer, security, CI and module-authoring records must be present",
+        "project complexity never authorizes production or account changes"
+      ]
+    }
+  }
+}

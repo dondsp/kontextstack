@@ -7,14 +7,25 @@ import { createPlan, publicPlan } from "../planning/create-plan.js";
 import { applyApprovedPlan } from "../planning/apply-plan.js";
 import { verifyProject } from "../verification/verify-project.js";
 import { listAvailableModules } from "../modules/registry.js";
+import { loadInstallationContract } from "../installation/contract.js";
+import { verifyInstallation } from "../installation/verify.js";
 import { loadMetadata } from "../core/metadata.js";
-import { MODULE_MANIFEST_PATH, PACKAGE_PATH, REGISTRY_PATH, ROOT_DIR } from "../core/constants.js";
+import {
+  INSTALLATION_CONTRACT_PATH,
+  MODULE_MANIFEST_PATH,
+  PACKAGE_PATH,
+  REGISTRY_PATH,
+  ROOT_DIR,
+  SOURCE_MANIFEST_PATH
+} from "../core/constants.js";
 
 const HELP = `KontextStack — local-first ContextKraft handoff toolkit
 
 Usage:
   kontextstack about
   kontextstack doctor
+  kontextstack install contract --mode <simple|mature>
+  kontextstack install verify --mode <simple|mature>
   kontextstack validate --handoff <file>
   kontextstack inspect --project <directory>
   kontextstack preview --project <directory> --handoff <file>
@@ -24,6 +35,7 @@ Usage:
 
 Preview is read-only. Apply writes only the exact project-owned handoff files
 listed in the approved preview. KontextStack does not commit, push, or deploy.
+Installation verification is also read-only and never changes Git remotes.
 `;
 
 function parseArgs(argv) {
@@ -67,9 +79,12 @@ async function doctor() {
   const checks = [
     { label: "Node.js 20 or newer", ok: major >= 20, actual: process.versions.node },
     await pathCheck("package metadata", PACKAGE_PATH),
+    await pathCheck("source manifest", SOURCE_MANIFEST_PATH),
+    await pathCheck("installation contract", INSTALLATION_CONTRACT_PATH),
     await pathCheck("module registry", REGISTRY_PATH),
     await pathCheck("handoff-core manifest", MODULE_MANIFEST_PATH),
-    await pathCheck("handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json"))
+    await pathCheck("handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json")),
+    await pathCheck("installation schema", path.join(ROOT_DIR, "schemas", "installation", "v1.json"))
   ];
   const registry = await listAvailableModules();
   checks.push({
@@ -97,6 +112,18 @@ export async function main(argv = process.argv.slice(2)) {
     const result = await doctor();
     output(result);
     if (!result.healthy) process.exitCode = 1;
+    return;
+  }
+
+  if (command === "install" && subcommand === "contract") {
+    output(await loadInstallationContract(flags.mode ?? "simple"));
+    return;
+  }
+
+  if (command === "install" && subcommand === "verify") {
+    const result = await verifyInstallation({ mode: flags.mode ?? "simple" });
+    output(result);
+    if (!result.valid) process.exitCode = 1;
     return;
   }
 

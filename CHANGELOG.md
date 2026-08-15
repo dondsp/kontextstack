@@ -10,3 +10,7 @@ independent semantic versions.
 - Add v1 ContextPack, Handoff Pack, module, registry and project-lock schemas.
 - Bundle only the `handoff-core` module.
 - Add deterministic preview/apply/verify safety tests.
+- Add a machine-readable clone-first installation contract with simple and
+  mature verification profiles.
+- Add read-only installation verification for canonical remotes, exact Git
+  identity, attribution, bundled module provenance and operational records.

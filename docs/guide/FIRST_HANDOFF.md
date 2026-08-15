@@ -10,15 +10,17 @@
 
 ## Sequence
 
-1. Run `doctor` in the KontextStack clone.
-2. Run `validate` against the Handoff Pack.
-3. Run `inspect` against the project clone.
-4. Run `preview` and review every proposed path.
-5. Run `apply` with the exact preview ID.
-6. Run `verify`.
-7. Move into the project folder and continue with the generated receipt and
+1. Run `install verify --mode simple` or `install verify --mode mature` in
+   the KontextStack clone.
+2. Run `doctor` in the KontextStack clone.
+3. Run `validate` against the Handoff Pack.
+4. Run `inspect` against the project clone.
+5. Run `preview` and review every proposed path.
+6. Run `apply` with the exact preview ID.
+7. Run `verify`.
+8. Move into the project folder and continue with the generated receipt and
    handoff context.
-8. Review and commit the project changes yourself.
+9. Review and commit the project changes yourself.
 
 If the project continued changing after its ContextPack was created, refresh
 the Current-State Snapshot before previewing the handoff.

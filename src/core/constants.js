@@ -10,6 +10,8 @@ export const MODULE_NAME = "handoff-core";
 export const MODULE_MANIFEST_PATH = path.join(ROOT_DIR, "modules", MODULE_NAME, "module.json");
 export const REGISTRY_PATH = path.join(ROOT_DIR, "registry", "index.json");
 export const PACKAGE_PATH = path.join(ROOT_DIR, "package.json");
+export const SOURCE_MANIFEST_PATH = path.join(ROOT_DIR, "kontextstack.source.json");
+export const INSTALLATION_CONTRACT_PATH = path.join(ROOT_DIR, "installation", "contract.json");
 
 export const GENERATED_PATHS = Object.freeze([
   ".kontextstack/project.json",
