@@ -14,7 +14,7 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.1.0-alpha.1` local foundation. Do not use it to make production,
+> Status: `0.1.0-alpha.2` local foundation. Do not use it to make production,
 > DNS, database, authentication, deployment, Git, or account changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
@@ -35,6 +35,9 @@ notifications.
 - Existing installations can discover later compatible modules through an
   explicit registry refresh; core is never silently upgraded.
 - Generated records point back to the canonical source and exact versions.
+- Builder origin and repository architecture remain separate decisions. Handoff
+  Pack v2 requires an approved repository/release boundary and reopening
+  triggers before preview.
 
 ## Clone-first installation
 
@@ -62,6 +65,12 @@ Start with a local project clone and a reviewed Handoff Pack created from the
 mandatory Current-State ContextPack. An original ContextKraft Starter
 ContextPack is useful historical intent, but it never replaces current
 repository extraction. See the [first handoff guide](docs/guide/FIRST_HANDOFF.md).
+
+For projects begun in ChatGPT Sites, AI Studio or another builder, decide the
+canonical implementation repository and release unit before creating or
+selecting a GitHub repository. A builder project does not itself authorize a
+new repository, database, runtime, domain or deployment path. KontextStack can
+still read legacy Handoff Pack v1 files; new ContextKraft exports use v2.
 
 ```bash
 node bin/kontextstack.js validate --handoff /path/to/handoff.json
