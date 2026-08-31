@@ -1,8 +1,14 @@
 import { readJson, handoffContentHash } from "../core/json.js";
 import { assertNoSecretValues } from "../core/safety.js";
-import { HANDOFF_SCHEMA, HANDOFF_SCHEMA_VERSION } from "../core/constants.js";
+import {
+  HANDOFF_SCHEMA,
+  HANDOFF_SCHEMA_VERSION,
+  LEGACY_HANDOFF_SCHEMA,
+  LEGACY_HANDOFF_SCHEMA_VERSION,
+  SUPPORTED_HANDOFF_SCHEMAS
+} from "../core/constants.js";
 
-const TOP_LEVEL_FIELDS = new Set([
+const V1_TOP_LEVEL_FIELDS = new Set([
   "schema",
   "schemaVersion",
   "artifactType",
@@ -21,9 +27,13 @@ const TOP_LEVEL_FIELDS = new Set([
   "reconciliation",
   "modules"
 ]);
+const V2_TOP_LEVEL_FIELDS = new Set([...V1_TOP_LEVEL_FIELDS, "architecture"]);
 
 const SOURCE_TRACKS = new Set(["ai-studio", "chatgpt-sites", "existing-repository", "static-export"]);
 const CREATOR_KINDS = new Set(["user", "contextkraft", "coding-agent", "kontextstack"]);
+const REPOSITORY_STRATEGIES = new Set(["reuse-existing", "new-standalone", "multiple-independent", "temporary-split"]);
+const RELEASE_UNITS = new Set(["unified", "independent", "temporary-split"]);
+const RELATED_REPOSITORY_STATUSES = new Set(["active", "candidate", "rollback-evidence", "retired"]);
 
 function isObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -49,21 +59,99 @@ function requireStringArray(errors, value, path) {
   }
 }
 
-function rejectUnknownFields(errors, value, allowed, path) {
+function rejectUnknownFields(errors, value, allowed, path, schemaLabel) {
   if (!isObject(value)) return;
   for (const key of Object.keys(value)) {
-    if (!allowed.has(key)) errors.push(`${path}.${key} is not supported by schema v1.`);
+    if (!allowed.has(key)) errors.push(`${path}.${key} is not supported by ${schemaLabel}.`);
   }
+}
+
+function validRepository(value) {
+  return typeof value === "string" && /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(value);
+}
+
+function validateArchitecture(errors, architecture, projectRepository, schemaLabel) {
+  if (!requireObject(errors, architecture, "architecture")) return;
+  rejectUnknownFields(errors, architecture, new Set([
+    "decisionStatus",
+    "repositoryStrategy",
+    "releaseUnit",
+    "canonicalRepository",
+    "relatedRepositories",
+    "sharedCapabilities",
+    "systemsOfRecord",
+    "separationJustification",
+    "temporaryBridges",
+    "reopenTriggers",
+    "decisionRecord"
+  ]), "architecture", schemaLabel);
+
+  if (architecture.decisionStatus !== "approved") {
+    errors.push("architecture.decisionStatus must be approved before handoff.");
+  }
+  if (!REPOSITORY_STRATEGIES.has(architecture.repositoryStrategy)) {
+    errors.push("architecture.repositoryStrategy is unsupported.");
+  }
+  if (!RELEASE_UNITS.has(architecture.releaseUnit)) {
+    errors.push("architecture.releaseUnit is unsupported.");
+  }
+  requireString(errors, architecture.canonicalRepository, "architecture.canonicalRepository");
+  if (!validRepository(architecture.canonicalRepository)) {
+    errors.push("architecture.canonicalRepository must use owner/repository form.");
+  } else if (
+    validRepository(projectRepository) &&
+    architecture.canonicalRepository.toLowerCase() !== projectRepository.toLowerCase()
+  ) {
+    errors.push("architecture.canonicalRepository must match project.repository.");
+  }
+
+  if (!Array.isArray(architecture.relatedRepositories)) {
+    errors.push("architecture.relatedRepositories must be an array.");
+  } else {
+    const seen = new Set();
+    for (const [index, related] of architecture.relatedRepositories.entries()) {
+      const path = `architecture.relatedRepositories[${index}]`;
+      if (!requireObject(errors, related, path)) continue;
+      rejectUnknownFields(errors, related, new Set(["repository", "status", "responsibility"]), path, schemaLabel);
+      requireString(errors, related.repository, `${path}.repository`);
+      if (!validRepository(related.repository)) errors.push(`${path}.repository must use owner/repository form.`);
+      if (!RELATED_REPOSITORY_STATUSES.has(related.status)) errors.push(`${path}.status is unsupported.`);
+      requireString(errors, related.responsibility, `${path}.responsibility`);
+      const normalized = typeof related.repository === "string" ? related.repository.toLowerCase() : "";
+      if (normalized && seen.has(normalized)) errors.push(`${path}.repository is duplicated.`);
+      if (normalized && validRepository(architecture.canonicalRepository) && normalized === architecture.canonicalRepository.toLowerCase()) {
+        errors.push(`${path}.repository must not duplicate architecture.canonicalRepository.`);
+      }
+      seen.add(normalized);
+    }
+  }
+
+  for (const field of ["sharedCapabilities", "systemsOfRecord", "temporaryBridges", "reopenTriggers"]) {
+    requireStringArray(errors, architecture[field], `architecture.${field}`);
+  }
+  if (Array.isArray(architecture.reopenTriggers) && architecture.reopenTriggers.length === 0) {
+    errors.push("architecture.reopenTriggers must contain at least one scope-change condition.");
+  }
+  requireString(errors, architecture.separationJustification, "architecture.separationJustification");
+  requireString(errors, architecture.decisionRecord, "architecture.decisionRecord");
 }
 
 export function validateHandoffObject(handoff) {
   const errors = [];
 
   if (!requireObject(errors, handoff, "handoff")) return { valid: false, errors };
-  rejectUnknownFields(errors, handoff, TOP_LEVEL_FIELDS, "handoff");
+  const expectedVersion = SUPPORTED_HANDOFF_SCHEMAS.get(handoff.schema);
+  const isV2 = handoff.schema === HANDOFF_SCHEMA && handoff.schemaVersion === HANDOFF_SCHEMA_VERSION;
+  const isV1 = handoff.schema === LEGACY_HANDOFF_SCHEMA && handoff.schemaVersion === LEGACY_HANDOFF_SCHEMA_VERSION;
+  const schemaLabel = isV2 ? "schema v2" : "schema v1";
+  rejectUnknownFields(errors, handoff, isV2 ? V2_TOP_LEVEL_FIELDS : V1_TOP_LEVEL_FIELDS, "handoff", schemaLabel);
 
-  if (handoff.schema !== HANDOFF_SCHEMA) errors.push(`schema must be ${HANDOFF_SCHEMA}.`);
-  if (handoff.schemaVersion !== HANDOFF_SCHEMA_VERSION) errors.push(`schemaVersion must be ${HANDOFF_SCHEMA_VERSION}.`);
+  if (!expectedVersion) {
+    errors.push(`schema must be ${LEGACY_HANDOFF_SCHEMA} or ${HANDOFF_SCHEMA}.`);
+  } else if (handoff.schemaVersion !== expectedVersion) {
+    errors.push(`schemaVersion must be ${expectedVersion} for ${handoff.schema}.`);
+  }
+  if (!isV1 && !isV2 && expectedVersion) errors.push("Handoff Pack schema and schemaVersion do not form a supported pair.");
   if (handoff.artifactType !== "handoff-pack") errors.push("artifactType must be handoff-pack.");
   requireString(errors, handoff.artifactId, "artifactId");
   requireString(errors, handoff.projectId, "projectId");
@@ -87,7 +175,7 @@ export function validateHandoffObject(handoff) {
   }
 
   if (requireObject(errors, handoff.project, "project")) {
-    rejectUnknownFields(errors, handoff.project, new Set(["name", "repository", "expectedBranch", "expectedCommit", "localPath"]), "project");
+    rejectUnknownFields(errors, handoff.project, new Set(["name", "repository", "expectedBranch", "expectedCommit", "localPath"]), "project", schemaLabel);
     requireString(errors, handoff.project.name, "project.name");
     requireString(errors, handoff.project.repository, "project.repository");
     if (typeof handoff.project.repository === "string" && !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(handoff.project.repository)) {
@@ -105,6 +193,8 @@ export function validateHandoffObject(handoff) {
     if (![0, 1, 2, 3, "unconfirmed"].includes(handoff.classification.maturity)) errors.push("classification.maturity must be 0, 1, 2, 3, or unconfirmed.");
     requireStringArray(errors, handoff.classification.capabilities, "classification.capabilities");
   }
+
+  if (isV2) validateArchitecture(errors, handoff.architecture, handoff.project?.repository, schemaLabel);
 
   if (requireObject(errors, handoff.goal, "goal")) {
     requireString(errors, handoff.goal.statement, "goal.statement");

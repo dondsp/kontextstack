@@ -5,7 +5,9 @@ not mean the capability is already available.
 
 ## v0.1 — Handoff core
 
-- Validate ContextPack/Handoff Pack v1.
+- Validate legacy Handoff Pack v1 and repository-boundary-aware Handoff Pack v2.
+- Preserve the approved canonical repository, release unit, related-repository
+  status, system-of-record summary and decision-reopening triggers.
 - Inspect local projects read-only.
 - Reconcile expected repository baseline.
 - Preview deterministic project-owned handoff records.
@@ -37,11 +39,19 @@ Planned modules include MySQL storage, local authentication, and optional Google
 authentication. Each will be opt-in and gated by security, migration, session,
 CSRF, RBAC, backup, and recovery acceptance criteria.
 
+The first schema must establish the intended operator interface: ordered and
+checksum-bound migrations, explicit target/readiness checks, backup and
+recovery evidence, and a production path separate from GitHub Actions. A
+temporary database or cross-application bridge must have an exit owner.
+
 ## v0.5 — GitHub deployment and operations
 
 Planned modules cover GitHub Actions artifact deployment, environment/secret
 name contracts, cPanel delivery, rollback, backups, monitoring, and production
 acceptance. KontextStack itself will not deploy automatically.
+
+Delivery guidance must distinguish committed, pushed, verified, deployed,
+migrated, released and accepted states. No one state implies the others.
 
 ## v0.6 — ContextKraft guided continuity
 

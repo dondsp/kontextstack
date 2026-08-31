@@ -102,7 +102,8 @@ async function doctor() {
     await pathCheck("installation contract", INSTALLATION_CONTRACT_PATH),
     await pathCheck("module registry", REGISTRY_PATH),
     await pathCheck("handoff-core manifest", MODULE_MANIFEST_PATH),
-    await pathCheck("handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json")),
+    await pathCheck("legacy handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json")),
+    await pathCheck("current handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v2.json")),
     await pathCheck("installation schema", path.join(ROOT_DIR, "schemas", "installation", "v1.json")),
     await pathCheck("module lock schema", path.join(ROOT_DIR, "schemas", "module", "lock-v1.json"))
   ];

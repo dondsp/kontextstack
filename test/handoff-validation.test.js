@@ -12,6 +12,10 @@ async function fixture() {
   return JSON.parse(await readFile(path.join(root, "test", "fixtures", "handoffs", "valid.json"), "utf8"));
 }
 
+async function chatgptSitesFixture() {
+  return JSON.parse(await readFile(path.join(root, "test", "fixtures", "handoffs", "chatgpt-sites-v2.json"), "utf8"));
+}
+
 test("the valid Handoff Pack fixture has a canonical matching hash", async () => {
   const handoff = await fixture();
   assert.equal(handoff.contentHash, handoffContentHash(handoff));
@@ -44,4 +48,34 @@ test("unsupported top-level fields fail closed", async () => {
   const result = validateHandoffObject(handoff);
   assert.equal(result.valid, false);
   assert.ok(result.errors.some((error) => error.includes("futureAuthority is not supported")));
+});
+
+test("a ChatGPT Sites v2 handoff requires an approved repository and release boundary", async () => {
+  const handoff = await chatgptSitesFixture();
+  assert.equal(handoff.contentHash, handoffContentHash(handoff));
+  assert.deepEqual(validateHandoffObject(handoff), { valid: true, errors: [] });
+
+  handoff.architecture.decisionStatus = "reopen-required";
+  handoff.contentHash = handoffContentHash(handoff);
+  const result = validateHandoffObject(handoff);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some((error) => error.includes("decisionStatus must be approved")));
+});
+
+test("v2 rejects a canonical repository that differs from the target repository", async () => {
+  const handoff = await chatgptSitesFixture();
+  handoff.architecture.canonicalRepository = "example/wrong-release-target";
+  handoff.contentHash = handoffContentHash(handoff);
+  const result = validateHandoffObject(handoff);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some((error) => error.includes("must match project.repository")));
+});
+
+test("v2 rejects a related repository duplicated as the canonical target", async () => {
+  const handoff = await chatgptSitesFixture();
+  handoff.architecture.relatedRepositories[0].repository = handoff.project.repository;
+  handoff.contentHash = handoffContentHash(handoff);
+  const result = validateHandoffObject(handoff);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some((error) => error.includes("must not duplicate")));
 });

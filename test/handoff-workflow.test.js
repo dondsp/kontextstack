@@ -7,7 +7,7 @@ import { applyApprovedPlan } from "../src/planning/apply-plan.js";
 import { verifyProject } from "../src/verification/verify-project.js";
 import { verifyProjectModules } from "../src/modules/lifecycle.js";
 import { GENERATED_PATHS } from "../src/core/constants.js";
-import { buildHandoff, commitAll, makeCleanProject, projectCommit } from "./support/project.js";
+import { buildChatgptSitesHandoff, buildHandoff, commitAll, makeCleanProject, projectCommit } from "./support/project.js";
 
 async function pathExists(filePath) {
   try {
@@ -94,4 +94,35 @@ test("dirty targets and existing differing output block apply", async (t) => {
   await writeFile(path.join(projectRoot, "uncommitted.txt"), "dirty\n", "utf8");
   const dirtyPlan = await createPlan({ projectPath: projectRoot, handoff });
   assert.ok(dirtyPlan.conflicts.some((conflict) => conflict.includes("working tree is dirty")));
+});
+
+test("ChatGPT Sites v2 decisions are preserved in project-owned handoff records", async (t) => {
+  const projectRoot = await makeCleanProject();
+  t.after(() => rm(projectRoot, { recursive: true, force: true }));
+  const handoff = await buildChatgptSitesHandoff({
+    project: {
+      name: "Academy Example",
+      repository: "example/example-project",
+      expectedBranch: "main",
+      expectedCommit: projectCommit(projectRoot),
+      localPath: ""
+    },
+    architecture: {
+      ...(await buildChatgptSitesHandoff()).architecture,
+      canonicalRepository: "example/example-project"
+    }
+  });
+  const plan = await createPlan({ projectPath: projectRoot, handoff });
+  assert.equal(plan.status, "ready");
+  await applyApprovedPlan({ projectPath: projectRoot, handoff, approval: plan.previewId });
+
+  const projectRecord = JSON.parse(await readFile(path.join(projectRoot, ".kontextstack", "project.json"), "utf8"));
+  assert.equal(projectRecord.handoff.sourceTrack, "chatgpt-sites");
+  assert.equal(projectRecord.handoff.architecture.releaseUnit, "unified");
+  assert.equal(projectRecord.handoff.architecture.canonicalRepository, "example/example-project");
+
+  const receipt = await readFile(path.join(projectRoot, "docs", "kontextstack", "HANDOFF_RECEIPT.md"), "utf8");
+  assert.match(receipt, /Repository and release boundary/);
+  assert.match(receipt, /rollback-evidence/);
+  assert.match(receipt, /Reopen this decision when/);
 });

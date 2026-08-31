@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 
 export function runGit(cwd, args) {
-  const result = spawnSync("git", args, {
+  const result = spawnSync("git", ["-c", "core.fsmonitor=false", ...args], {
     cwd,
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"]

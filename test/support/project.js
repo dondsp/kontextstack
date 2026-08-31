@@ -7,6 +7,7 @@ import { handoffContentHash } from "../../src/core/json.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const fixturePath = path.join(root, "test", "fixtures", "handoffs", "valid.json");
+const chatgptSitesFixturePath = path.join(root, "test", "fixtures", "handoffs", "chatgpt-sites-v2.json");
 
 function git(cwd, args) {
   const result = spawnSync("git", args, { cwd, encoding: "utf8" });
@@ -41,6 +42,13 @@ export function commitAll(projectRoot, message = "test: update fixture") {
 
 export async function buildHandoff(overrides = {}) {
   const value = JSON.parse(await readFile(fixturePath, "utf8"));
+  Object.assign(value, overrides);
+  value.contentHash = handoffContentHash(value);
+  return value;
+}
+
+export async function buildChatgptSitesHandoff(overrides = {}) {
+  const value = JSON.parse(await readFile(chatgptSitesFixturePath, "utf8"));
   Object.assign(value, overrides);
   value.contentHash = handoffContentHash(value);
   return value;

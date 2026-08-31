@@ -4,6 +4,11 @@
 smallest project-owned foundation needed to continue a ContextKraft handoff in
 Codex while keeping the target repository authoritative.
 
+With Handoff Pack v2, the generated records also preserve the approved builder
+origin, canonical repository, release unit, related-repository status,
+system-of-record summary and repository-decision reopening triggers. Legacy v1
+packs remain readable and are marked as lacking that structured decision.
+
 It may add:
 
 - `.kontextstack/project.json`;

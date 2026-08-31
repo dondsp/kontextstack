@@ -1,0 +1,66 @@
+{
+  "schema": "https://contextkraft.com/schemas/handoff/v2",
+  "schemaVersion": "2.0.0",
+  "artifactType": "handoff-pack",
+  "artifactId": "handoff-chatgpt-sites-example",
+  "projectId": "learning-platform-example",
+  "createdAt": "2026-08-31T00:00:00.000Z",
+  "createdBy": { "kind": "user", "name": "Example owner" },
+  "sources": [{ "kind": "chatgpt-sites", "reviewedByUser": true }],
+  "freshness": { "observedAt": "2026-08-31T00:00:00.000Z" },
+  "contentHash": "sha256-21917f39fdc05017011131bc89f6477ab707abcf74810959a41165ab66342edc",
+  "project": {
+    "name": "Learning Platform Example",
+    "repository": "example/learning-platform",
+    "expectedBranch": "main",
+    "localPath": ""
+  },
+  "classification": {
+    "sourceTrack": "chatgpt-sites",
+    "maturity": 2,
+    "capabilities": ["authentication", "email", "mysql", "public-registration"]
+  },
+  "architecture": {
+    "decisionStatus": "approved",
+    "repositoryStrategy": "reuse-existing",
+    "releaseUnit": "unified",
+    "canonicalRepository": "example/learning-platform",
+    "relatedRepositories": [{
+      "repository": "example/public-site-history",
+      "status": "rollback-evidence",
+      "responsibility": "Historical builder source; not an active release target."
+    }],
+    "sharedCapabilities": ["authentication", "customer-journey", "email", "mysql", "release-workflow"],
+    "systemsOfRecord": ["Registration and account records use the platform-owned MySQL service."],
+    "separationJustification": "Public and authenticated routes share data, email, administration and release behavior, so they remain one implementation and release unit.",
+    "temporaryBridges": [],
+    "reopenTriggers": ["A security, compliance, ownership, scaling or independent-release requirement justifies separation."],
+    "decisionRecord": "docs/decisions/0001-repository-and-release-boundary.md"
+  },
+  "goal": {
+    "statement": "Continue the builder-origin project from the canonical repository.",
+    "outcomes": ["Codex preserves the approved repository and release boundary."],
+    "acceptance": ["The handoff receipt records the canonical and rollback-only repositories."]
+  },
+  "authority": {
+    "projectInstructions": ["AGENTS.md"],
+    "projectRecords": ["README.md", "docs/decisions/0001-repository-and-release-boundary.md"],
+    "decisions": ["One repository owns the connected public and authenticated journey."]
+  },
+  "constraints": {
+    "prohibitedActions": ["deploy", "commit", "push", "change DNS", "run production migrations"],
+    "secretPolicy": "never-print-or-copy-values",
+    "productionAuthority": "separate-explicit-approval"
+  },
+  "reconciliation": {
+    "confirmed": ["The canonical repository owns the current release unit."],
+    "drift": [],
+    "conflicts": [],
+    "unknowns": []
+  },
+  "modules": {
+    "allowedCategories": ["handoff"],
+    "recommended": ["handoff-core"],
+    "excluded": ["hosting", "runtime", "storage", "identity", "delivery"]
+  }
+}
