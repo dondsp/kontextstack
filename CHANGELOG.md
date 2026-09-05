@@ -3,7 +3,10 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
-## 0.6.0-alpha.2 — unreleased candidate
+## 0.6.0-alpha.2 — 2026-09-05
+
+Published evaluation prerelease on npm `next`; stable `latest` remains 0.5.1.
+Matching ContextKraft capability guides are deployed and verified on cPanel.
 
 - Extend the implementation kits to all eight public modules: MySQL migrations
   and durable storage, local accounts and sessions, verified Google identity,
@@ -17,8 +20,8 @@ independent semantic versions.
   production, database, authentication or deployment action runs in the toolkit.
 - Add installed Node + MySQL + local auth + signed Google composition through
   one explicitly adapted HTTP listener, plus the supported selection matrix.
-- Prepare ContextKraft's versioned guide integration in its own reviewed branch.
-  This candidate has not been published to npm or activated in live guides.
+- Activate ContextKraft's versioned guide integration after exact npm integrity
+  verification, retaining explicit provider pauses and evidence-only progress.
 
 ## 0.6.0-alpha.1 — 2026-09-05
 
