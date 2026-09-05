@@ -1,0 +1,3 @@
+# Acceptance
+
+Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.

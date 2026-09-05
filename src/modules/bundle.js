@@ -6,6 +6,7 @@ import { assertNoSecretValues } from "../core/safety.js";
 import { validateRelativeTarget } from "../core/paths.js";
 import { satisfiesRange } from "../core/semver.js";
 import { assertContractPath, assertKitContent, validateModuleContracts } from "./contracts.js";
+import { validateSelectionDeclaration } from './selection.js';
 
 const NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
@@ -107,6 +108,7 @@ export async function loadPortableBundle(bundleRoot, { verifyIntegrity = true } 
   catch { throw new Error("Module manifest is unreadable, unsafe, or contains a protected value."); }
   assertNoSecretValues(manifest);
   assertManifestShape(manifest);
+  validateSelectionDeclaration(manifest);
 
   const seenTargets = new Set();
   const files = [];

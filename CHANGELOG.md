@@ -3,6 +3,21 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.6.0-alpha.2 — unreleased candidate
+
+- Extend the implementation kits to all eight public modules: MySQL migrations
+  and durable storage, local accounts and sessions, verified Google identity,
+  scoped cPanel delivery, and surface-specific operations/recovery procedures.
+- Add shared-storage authentication, signed OIDC, disposable MySQL, HTTP boundary,
+  deployment failure and recovery, and installed-kit verification tests.
+- Require owner-selected deployment targets and operations surfaces before
+  preview. Bind the selection to exact approval without granting external authority.
+- Preserve immutable previous bundles and refuse upgrades over customized files.
+- Keep templates inert until Codex adapts them in the project. No provider,
+  production, database, authentication or deployment action runs in the toolkit.
+- ContextKraft integration and the final composition/release gates remain in
+  progress. This candidate has not been published to npm.
+
 ## 0.6.0-alpha.1 — 2026-09-05
 
 Evaluation prerelease on npm's `next` channel; stable `latest` remains 0.5.1.

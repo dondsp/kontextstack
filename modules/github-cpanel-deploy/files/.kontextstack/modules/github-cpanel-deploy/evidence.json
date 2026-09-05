@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "policy": "non-secret-only",
+  "states": {
+    "installed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "implemented": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "locally-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "provider-configured": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "deployed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "migrated": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "production-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "owner-accepted": {
+      "status": "not-recorded",
+      "reference": null
+    }
+  },
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/09_GITHUB_ACTIONS_DEPLOYMENT.md",
+      "integrity": "sha256-c6c9130388a631a0963acfd914a63cc5eccbf449aba5e46be2272eb0a565568d",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/deployment-cpanel/files/.github/workflows/deploy.yml",
+      "integrity": "sha256-096fe049042fb73dadef23dbb6abb936a0d5c73781ffceb9671cd250dbae194d",
+      "state": "working-tree"
+    }
+  ]
+}

@@ -1,39 +1,151 @@
 {
   "schemaVersion": "1.0.0",
   "name": "github-cpanel-deploy",
-  "displayName": "GitHub to cPanel Deployment Plan",
-  "version": "0.5.0",
-  "description": "Approval-gated GitHub Actions artifact, environment-name, scoped cPanel delivery, smoke-check, and rollback planning.",
+  "displayName": "Prepare approval-gated cPanel delivery",
+  "version": "0.6.0",
+  "description": "Exact artifact and destination approval, separate FTPS identities, dependency gates, hosted smoke and file recovery.",
   "category": "delivery",
-  "maturity": [2, 3],
-  "projectTypes": ["website", "web-app", "service"],
-  "coreCompatibility": ">=0.5.0 <0.6.0",
+  "maturity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "projectTypes": [
+    "website",
+    "web-app",
+    "service"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/github-cpanel-deploy/v0.5.0",
+    "ref": "module/github-cpanel-deploy/v0.6.0",
     "path": "modules/github-cpanel-deploy",
-    "integrity": "sha256-b3e4b9bc208badf8ad9bde535bcc8edd2942e4f7c638c1d7c31c5fc026543ef6"
+    "integrity": "sha256-0530d9ee4e1b4f3f1220728388fe906c9f309aa41721dc2d8adc2692852cbc6a"
   },
   "dependencies": [],
-  "optionalDependencies": ["static-site-cpanel@>=0.2.0", "node-cpanel@>=0.3.0", "mysql-storage@>=0.4.0"],
+  "optionalDependencies": [
+    "static-site-cpanel@>=0.3.1",
+    "node-cpanel@>=0.4.1",
+    "mysql-storage@>=0.5.0"
+  ],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/github-cpanel-deploy/decision.json",
       ".kontextstack/modules/github-cpanel-deploy/delivery.json",
-      "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md"
+      ".kontextstack/modules/github-cpanel-deploy/evidence.json",
+      ".kontextstack/modules/github-cpanel-deploy/implementation.json",
+      ".kontextstack/modules/github-cpanel-deploy/kit/checks/acceptance.md",
+      ".kontextstack/modules/github-cpanel-deploy/kit/checks/smoke.mjs",
+      ".kontextstack/modules/github-cpanel-deploy/kit/fixtures/scenarios.json",
+      ".kontextstack/modules/github-cpanel-deploy/kit/snippets/selection.md",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/artifacts.mjs",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/deliver.mjs",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/deploy.yml.template",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-cli.mjs",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-policy.json",
+      ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-state.json",
+      "docs/kontextstack/modules/github-cpanel-deploy/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/ROLLBACK.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/START_HERE.md",
+      "docs/kontextstack/modules/github-cpanel-deploy/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/decision.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/decision.json"
+    },
     {
       "path": ".kontextstack/modules/github-cpanel-deploy/delivery.json",
       "source": "files/.kontextstack/modules/github-cpanel-deploy/delivery.json"
     },
     {
+      "path": ".kontextstack/modules/github-cpanel-deploy/evidence.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/implementation.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/checks/acceptance.md",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/checks/acceptance.md"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/checks/smoke.mjs",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/checks/smoke.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/fixtures/scenarios.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/fixtures/scenarios.json"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/snippets/selection.md",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/snippets/selection.md"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/artifacts.mjs",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/artifacts.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/deliver.mjs",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/deliver.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/deploy.yml.template",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/deploy.yml.template"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-cli.mjs",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/release-cli.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-policy.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/release-policy.json"
+    },
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-state.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/kit/templates/release-state.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +162,28 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.5.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/github-cpanel-deploy/implementation.json",
+    "guide": "guide.json"
+  },
+  "selection": {
+    "schemaVersion": "kontextstack-selection/v1",
+    "fields": [
+      {
+        "name": "target",
+        "multiple": false,
+        "options": [
+          "static",
+          "node",
+          "split"
+        ]
+      }
+    ]
   }
 }

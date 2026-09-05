@@ -180,10 +180,18 @@
         {
           "version": "0.5.0",
           "coreCompatibility": ">=0.5.0 <0.6.0",
-          "manifestPath": "modules/github-cpanel-deploy/module.json",
+          "manifestPath": "modules/github-cpanel-deploy/versions/0.5.0/module.json",
           "integrity": "sha256-b3e4b9bc208badf8ad9bde535bcc8edd2942e4f7c638c1d7c31c5fc026543ef6",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.6.0",
+          "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
+          "manifestPath": "modules/github-cpanel-deploy/module.json",
+          "integrity": "sha256-0530d9ee4e1b4f3f1220728388fe906c9f309aa41721dc2d8adc2692852cbc6a",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     },
@@ -193,10 +201,18 @@
         {
           "version": "0.5.0",
           "coreCompatibility": ">=0.5.0 <0.6.0",
-          "manifestPath": "modules/production-operations/module.json",
+          "manifestPath": "modules/production-operations/versions/0.5.0/module.json",
           "integrity": "sha256-ca12fd407bd5c8d0fa11f4af7766a3fafdf6b2be892e3973e091ae3ba7f30d1d",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.6.0",
+          "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
+          "manifestPath": "modules/production-operations/module.json",
+          "integrity": "sha256-24ad7d199fb6106e629c850e6de136cc0bdcec4d88b94bb7fb7db92880a0b7a2",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     }

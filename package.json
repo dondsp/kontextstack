@@ -50,6 +50,7 @@
   ],
   "devDependencies": {
     "jose": "6.2.12",
-    "mysql2": "3.24.3"
+    "mysql2": "3.24.3",
+    "yaml": "2.9.0"
   }
 }

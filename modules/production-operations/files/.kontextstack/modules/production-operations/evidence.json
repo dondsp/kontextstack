@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "policy": "non-secret-only",
+  "states": {
+    "installed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "implemented": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "locally-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "provider-configured": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "deployed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "migrated": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "production-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "owner-accepted": {
+      "status": "not-recorded",
+      "reference": null
+    }
+  },
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/10_PRODUCTION_READINESS_AND_GO_LIVE.md",
+      "integrity": "sha256-d69804e877e18c73e1fa0645da81503996930adced01d70ddf99d917efa6dffd",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/11_OPERATIONS_ROLLBACK_AND_RECOVERY.md",
+      "integrity": "sha256-e3d97bc7628f58d91f601bb032ea2bd0e20144b81f2d551dd70946d7d8f7a6dc",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/deployment-cpanel/files/docs/DB_BACKUP_RESTORE_RUNBOOK.md",
+      "integrity": "sha256-d3cc23b9ce0026fb8b8b773bc91b3e4507566e22e3c199858249d21639eb3be9",
+      "state": "working-tree"
+    }
+  ]
+}

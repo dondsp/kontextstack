@@ -28,7 +28,13 @@ try {
     modules: []
   });
   commitAll(project);
-  for (const name of ["domain-cpanel", "static-site-cpanel", "node-cpanel", "mysql-storage", "auth-local", "auth-google"]) {
+  for (const name of ["domain-cpanel", "static-site-cpanel", "node-cpanel", "mysql-storage", "auth-local", "auth-google", "github-cpanel-deploy", "production-operations"]) {
+    if (["github-cpanel-deploy", "production-operations"].includes(name)) {
+      const selected = path.join(project, '.kontextstack/modules', name);
+      await mkdir(selected, { recursive: true });
+      await writeJson(path.join(selected, 'selection.json'), name === 'github-cpanel-deploy' ? { target: 'static' } : { surfaces: ['static'] });
+      commitAll(project);
+    }
     const args = ["--module", name, "--project", project];
     const inspected = cli(["modules", "inspect", ...args]).module;
     assert.equal(inspected.coreCompatible, true);

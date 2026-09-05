@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "github-cpanel-deploy",
+    "version": "0.6.0"
+  },
+  "requires": [],
+  "optional": [
+    "static-site-cpanel@>=0.3.1",
+    "node-cpanel@>=0.4.1",
+    "mysql-storage@>=0.5.0"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/09_GITHUB_ACTIONS_DEPLOYMENT.md",
+      "integrity": "sha256-c6c9130388a631a0963acfd914a63cc5eccbf449aba5e46be2272eb0a565568d",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/deployment-cpanel/files/.github/workflows/deploy.yml",
+      "integrity": "sha256-096fe049042fb73dadef23dbb6abb936a0d5c73781ffceb9671cd250dbae194d",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "evidence-0",
+      "prompt": "Inspect canonical branch, exact source revision, build/check scripts and lockfile.",
+      "required": true
+    },
+    {
+      "id": "evidence-1",
+      "prompt": "Inspect exact static/application roots, separate scoped transport identities, runtime dependencies and restart behavior.",
+      "required": true
+    },
+    {
+      "id": "evidence-2",
+      "prompt": "Inspect environment reviewer/branch protections, previous artifact, backup/restore and representative smoke checks.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "target",
+      "question": "Which delivery target is supported by project evidence?",
+      "options": [
+        "static",
+        "node",
+        "split"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "mode",
+      "question": "Which initial deployment mode is approved?",
+      "options": [
+        "manual",
+        "protected-workflow-dispatch"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "adapt-0",
+      "projectPath": "checks/acceptance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/checks/acceptance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-1",
+      "projectPath": "checks/smoke.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/checks/smoke.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-2",
+      "projectPath": "fixtures/scenarios.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/fixtures/scenarios.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-3",
+      "projectPath": "snippets/selection.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/snippets/selection.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-4",
+      "projectPath": "templates/artifacts.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/artifacts.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-5",
+      "projectPath": "templates/deliver.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/deliver.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-6",
+      "projectPath": "templates/deploy.yml.template",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/deploy.yml.template"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-7",
+      "projectPath": "templates/release-cli.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-cli.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-8",
+      "projectPath": "templates/release-policy.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-policy.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-9",
+      "projectPath": "templates/release-state.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/github-cpanel-deploy/kit/templates/release-state.json"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "configure-protected-environment",
+      "target": "<APPROVED_ENVIRONMENT_AND_TARGET_ROOTS>",
+      "effect": "configure protected environment",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "configure-protected-environment",
+      "verification": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "rollback": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization."
+    },
+    {
+      "id": "scope-delivery-identities",
+      "target": "<APPROVED_ENVIRONMENT_AND_TARGET_ROOTS>",
+      "effect": "scope delivery identities",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "scope-delivery-identities",
+      "verification": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "rollback": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization."
+    },
+    {
+      "id": "install-runtime-dependencies",
+      "target": "<APPROVED_ENVIRONMENT_AND_TARGET_ROOTS>",
+      "effect": "install runtime dependencies",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "install-runtime-dependencies",
+      "verification": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "rollback": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization."
+    },
+    {
+      "id": "deliver-and-restart",
+      "target": "<APPROVED_ENVIRONMENT_AND_TARGET_ROOTS>",
+      "effect": "deliver and restart",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "deliver-and-restart",
+      "verification": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "rollback": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization."
+    },
+    {
+      "id": "recover-files",
+      "target": "<APPROVED_ENVIRONMENT_AND_TARGET_ROOTS>",
+      "effect": "recover files",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "recover-files",
+      "verification": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "rollback": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "configure-protected-environment",
+      "scope": "Exact configure-protected-environment target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "scope-delivery-identities",
+      "scope": "Exact scope-delivery-identities target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "install-runtime-dependencies",
+      "scope": "Exact install-runtime-dependencies target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "deliver-and-restart",
+      "scope": "Exact deliver-and-restart target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "recover-files",
+      "scope": "Exact recover-files target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "local",
+      "kind": "command",
+      "instruction": "Parse the emitted YAML, verify pinned actions, manual/protected triggers, read-only permissions and secret scoping. Stage a fresh fixture; reject existing stages, traversal, symlinks, unexpected staged files, missing lockfile/dependency evidence, changed hashes and changed destinations. Exercise static, Node and split targets. Simulate partial transfer and prove no restart marker uploads before all artifacts succeed. Verify exact prior file recovery with synthetic targets. Smoke checks must reject the wrong product/revision, status, route, auth boundary and asset hash; retry only bounded transient readiness. Inspect live routes and browser behavior after separate owner approval.",
+      "expected": "Synthetic local fixtures and static contract checks pass.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Inspect the actual GitHub environment and cPanel secure-transfer controls. Record the exact branch, environment, reviewer policy, allowed deployment branches and bypass settings; separately authorize their configuration. Required reviewer availability depends on repository visibility and plan. Configure two distinct identities for split delivery and test server-enforced root confinement privately: a directory string alone is insufficient. Use only FTPS with valid certificate verification; if the host cannot support it, stop for a separately reviewed transport adaptation. Store only delivery credentials in the protected environment, with names STATIC_USER/STATIC_PASSWORD and APP_USER/APP_PASSWORD adapted if needed. Database, session, OAuth and administrator secrets stay outside GitHub delivery. Prepare a prior artifact and rollback references, then show the exact revision, manifest hash, destination identities/roots, dependency evidence and any restart effect for release approval. Dispatch that approved revision only. Verify static bytes/markers and Node release identity plus signed-out protection, retrying boundedly for asynchronous restart. File upload, runtime restart, separate migrations, hosted checks and owner acceptance are distinct states. Do not repeat failed smoke or partial transfer blindly.",
+      "expected": "Approved surfaces match the exact artifact and owner acceptance is recorded separately.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "recovery",
+      "layer": "release",
+      "instruction": "Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization.",
+      "verification": "Repeat prior artifact and representative journey checks; preserve data and identity recovery decisions separately.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Local fixture evidence and exact workflow/artifact review pass.",
+      "evidence": [
+        "local"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts the exact hosted release and rehearsed recovery.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}
