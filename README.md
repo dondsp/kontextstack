@@ -14,7 +14,7 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.1.0-alpha.2` local foundation. Do not use it to make production,
+> Status: `0.1.0-alpha.3` local foundation. Do not use it to make production,
 > DNS, database, authentication, deployment, Git, or account changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
@@ -53,6 +53,16 @@ Users who need a fixed teaching or production-review baseline should check out
 an exact published tag instead of relying on a moving branch. KontextStack
 never updates itself or a target project silently.
 
+npm users can compare their installed version with the published version and
+then request the update explicitly:
+
+```bash
+npm list --global @dondsp/kontextstack --depth=0
+npm view @dondsp/kontextstack version
+npm install --global @dondsp/kontextstack@latest
+kontextstack doctor
+```
+
 ## Why KontextStack
 
 - The user's project repository remains the source of truth.
@@ -75,6 +85,22 @@ npm ci --ignore-scripts
 npm test
 node bin/kontextstack.js install verify --mode simple
 node bin/kontextstack.js doctor
+```
+
+## npm installation
+
+Install the public alpha globally:
+
+```bash
+npm install --global @dondsp/kontextstack@latest
+kontextstack doctor
+kontextstack install contract --mode simple
+```
+
+Run an exact version without keeping a global installation:
+
+```bash
+npx @dondsp/kontextstack@0.1.0-alpha.3 doctor
 ```
 
 No hosted KontextStack account is required. The alpha uses Node.js 20 or newer
