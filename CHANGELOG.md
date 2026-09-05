@@ -3,7 +3,7 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
-## 0.1.0-alpha.2 — Unreleased
+## 0.1.0-alpha.2 — 2026-09-05
 
 - Add Handoff Pack v2 while retaining v1 compatibility.
 - Require an approved repository/release-boundary decision for new handoffs.
