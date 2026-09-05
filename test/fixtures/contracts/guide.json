@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "kontextstack-guide/v1",
+  "module": {
+    "name": "fixture-kit",
+    "version": "1.1.0"
+  },
+  "package": {
+    "name": "kontextstack",
+    "version": "0.6.0-alpha.1"
+  },
+  "title": "Fixture routing kit",
+  "summary": "Synthetic contract fixture; no provider work performed.",
+  "durationMinutes": {
+    "min": 10,
+    "max": 30
+  },
+  "maturity": [
+    1,
+    2,
+    3
+  ],
+  "prerequisites": [],
+  "questions": [
+    {
+      "id": "routing",
+      "prompt": "What routing model is confirmed?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "multi-page",
+          "spa"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    }
+  ],
+  "stages": [
+    {
+      "id": "install",
+      "title": "Install kit",
+      "kind": "install",
+      "instructions": [
+        "Inspect, preview, approve the exact identifier, apply, verify."
+      ],
+      "approval": "exact-preview",
+      "completionEvidence": [
+        "Local module integrity result."
+      ]
+    },
+    {
+      "id": "provider",
+      "title": "Provider pause",
+      "kind": "provider",
+      "instructions": [
+        "Obtain explicit scoped owner authorization."
+      ],
+      "approval": "separate-explicit-approval",
+      "completionEvidence": [
+        "Non-secret provider verification or an explicit deferral."
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "inspect",
+      "stage": "install",
+      "text": "kontextstack modules inspect --module fixture-kit --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    }
+  ],
+  "documents": {
+    "start": "docs/kontextstack/modules/fixture-kit/START_HERE.md",
+    "implementation": "docs/kontextstack/modules/fixture-kit/IMPLEMENTATION.md",
+    "provider": "docs/kontextstack/modules/fixture-kit/PROVIDER_SETUP.md",
+    "verification": "docs/kontextstack/modules/fixture-kit/VERIFICATION.md",
+    "rollback": "docs/kontextstack/modules/fixture-kit/ROLLBACK.md",
+    "codex": "docs/kontextstack/modules/fixture-kit/CODEX_PROMPT.md"
+  },
+  "completion": {
+    "evidencePolicy": "non-secret-or-explicit-waiver",
+    "states": [
+      "installed",
+      "implemented",
+      "locally-verified",
+      "provider-configured",
+      "deployed",
+      "migrated",
+      "production-verified",
+      "owner-accepted"
+    ],
+    "progressGrantsAuthority": false
+  },
+  "redaction": {
+    "policy": "never-print-or-copy-values",
+    "prohibited": [
+      "tokens",
+      "passwords",
+      "env-values",
+      "private-keys",
+      "customer-data",
+      "production-rows",
+      "unreviewed-screenshots"
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "commit": "39430323984eb08f0e708873c5d4f43a065c2933",
+    "implementationIntegrity": "sha256-0000000000000000000000000000000000000000000000000000000000000000",
+    "integrity": "sha256-0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

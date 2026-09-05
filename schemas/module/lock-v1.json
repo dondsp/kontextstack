@@ -24,6 +24,8 @@
         "properties": {
           "name": { "type": "string" },
           "version": { "type": "string" },
+          "sourceCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+          "history": { "type": "array", "items": { "type": "object", "required": ["name", "version", "source", "integrity", "files"] } },
           "source": { "const": "https://github.com/dondsp/kontextstack" },
           "integrity": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" },
           "appliedFromPreview": { "type": "string", "pattern": "^sha256-[a-f0-9]{64}$" },

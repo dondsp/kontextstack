@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dondsp/kontextstack/schemas/module/guide-v1.json",
+  "title": "KontextStack guide v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "module",
+    "package",
+    "title",
+    "summary",
+    "durationMinutes",
+    "maturity",
+    "prerequisites",
+    "questions",
+    "stages",
+    "commands",
+    "documents",
+    "completion",
+    "redaction",
+    "source"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "kontextstack-guide/v1"
+    },
+    "module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "const": "kontextstack"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "durationMinutes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "maturity": {
+      "type": "array",
+      "items": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt",
+          "answer",
+          "evidencePolicy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "answer": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "options"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "text",
+                  "boolean",
+                  "choice",
+                  "multi-choice"
+                ]
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              }
+            }
+          },
+          "evidencePolicy": {
+            "const": "non-secret-only"
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "kind",
+          "instructions",
+          "approval",
+          "completionEvidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "inspect",
+              "decide",
+              "install",
+              "implement",
+              "verify-local",
+              "provider",
+              "accept"
+            ]
+          },
+          "instructions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "approval": {
+            "enum": [
+              "none",
+              "exact-preview",
+              "separate-explicit-approval"
+            ]
+          },
+          "completionEvidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "stage",
+          "text",
+          "execution",
+          "placeholders"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "stage": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "execution": {
+            "const": "copy-only"
+          },
+          "placeholders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^<[A-Z][A-Z0-9_]*>$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "implementation",
+        "provider",
+        "verification",
+        "rollback",
+        "codex"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "minLength": 1
+        },
+        "implementation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rollback": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codex": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidencePolicy",
+        "states",
+        "progressGrantsAuthority"
+      ],
+      "properties": {
+        "evidencePolicy": {
+          "const": "non-secret-or-explicit-waiver"
+        },
+        "states": {
+          "const": [
+            "installed",
+            "implemented",
+            "locally-verified",
+            "provider-configured",
+            "deployed",
+            "migrated",
+            "production-verified",
+            "owner-accepted"
+          ]
+        },
+        "progressGrantsAuthority": {
+          "const": false
+        }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "prohibited"
+      ],
+      "properties": {
+        "policy": {
+          "const": "never-print-or-copy-values"
+        },
+        "prohibited": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "tokens",
+              "passwords",
+              "env-values",
+              "private-keys",
+              "customer-data",
+              "production-rows",
+              "unreviewed-screenshots"
+            ]
+          },
+          "minItems": 7,
+          "uniqueItems": true
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "commit",
+        "implementationIntegrity",
+        "integrity"
+      ],
+      "properties": {
+        "repository": {
+          "const": "https://github.com/dondsp/kontextstack"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "implementationIntegrity": {
+          "type": "string",
+          "pattern": "^sha256-[a-f0-9]{64}$"
+        },
+        "integrity": {
+          "type": "string",
+          "pattern": "^sha256-[a-f0-9]{64}$"
+        }
+      }
+    }
+  },
+  "$defs": {}
+}

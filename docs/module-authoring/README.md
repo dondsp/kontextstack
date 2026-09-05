@@ -43,4 +43,7 @@ The bundle fingerprint is computed from the manifest with
 Module updates must list supported prior versions in `upgrade.from`. Files are
 eligible for update only while they still match the integrity stored by the
 previous apply. Do not use module files for credentials, `.env` values,
-production data, binary assets or executable code.
+production data or binary assets. Implementation kits may contain inert source
+templates, but core never executes them. See
+[Implementation kits](../architecture/IMPLEMENTATION_KITS.md) for the v0.6
+schemas, guide fingerprint, compatibility and upgrade rules.

@@ -68,6 +68,16 @@ function moduleSummary(bundle, coreVersion, projectType = null) {
     dependencies: manifest.dependencies,
     optionalDependencies: manifest.optionalDependencies,
     conflicts: manifest.conflicts,
+    implementationKit: bundle.contracts ? {
+      schemaVersion: bundle.contracts.implementation.schemaVersion,
+      path: manifest.contracts.implementation,
+      sources: bundle.contracts.implementation.sources,
+      projectChanges: bundle.contracts.implementation.projectChanges,
+      externalActions: bundle.contracts.implementation.externalActions,
+      approvalGates: bundle.contracts.implementation.approvalGates,
+      acceptance: bundle.contracts.implementation.acceptance
+    } : null,
+    guide: bundle.contracts?.guide ?? null,
     permissions: manifest.permissions,
     files: manifest.files.map((file) => ({ path: file.path, source: file.source ?? null, template: file.template ?? null }))
   };
@@ -131,6 +141,11 @@ export async function createModulePlan({ projectPath, name, version = null, cach
   const installedNames = new Set(installed.map((record) => record.name));
   for (const dependency of manifest.dependencies) {
     if (!installedNames.has(dependencyName(dependency))) conflicts.push(`Required module is not installed: ${dependency}.`);
+    else {
+      const range = dependency.slice(dependencyName(dependency).length + 1);
+      const record = installed.find((entry) => entry.name === dependencyName(dependency));
+      if (range && !satisfiesRange(record.version, range)) conflicts.push(`Required module version is incompatible: ${dependency}.`);
+    }
   }
   for (const conflictName of manifest.conflicts) {
     if (installedNames.has(dependencyName(conflictName))) conflicts.push(`Conflicting module is installed: ${conflictName}.`);
@@ -184,6 +199,12 @@ export async function createModulePlan({ projectPath, name, version = null, cach
     appliedFromPreview: previewId,
     files: bundle.files.map((file) => ({ path: file.target, integrity: file.integrity }))
   };
+  if (installedRecord?.history) desiredRecord.history = structuredClone(installedRecord.history);
+  if (installedRecord && (installedRecord.version !== manifest.version || installedRecord.integrity !== bundle.computedIntegrity)) {
+    const { history, ...previous } = installedRecord;
+    desiredRecord.history = [...(history ?? []), previous];
+  }
+  if (bundle.contracts) desiredRecord.sourceCommit = bundle.contracts.guide.source.commit;
   const recordAlreadyExact = installedRecord && stableStringify({
     ...installedRecord,
     appliedFromPreview: previewId
