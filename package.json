@@ -1,6 +1,6 @@
 {
   "name": "kontextstack",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Local-first, modular handoff toolkit connecting ContextKraft project context to safe Codex continuation.",
   "license": "Apache-2.0",
   "private": false,

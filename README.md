@@ -14,7 +14,7 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.5.0` stable local planning foundation. It generates reviewable
+> Status: `0.5.1` stable local planning foundation. It generates reviewable
 > hosting, runtime, storage, identity, deployment, and operations records; it
 > does not perform production, provider, database, deployment, Git, or account
 > changes.
@@ -102,7 +102,7 @@ kontextstack install contract --mode simple
 Run an exact version without keeping a global installation:
 
 ```bash
-npx kontextstack@0.5.0 doctor
+npx kontextstack@0.5.1 doctor
 ```
 
 No hosted KontextStack or npm account is required. KontextStack uses Node.js 20 or newer

@@ -13,6 +13,7 @@ test("installation contract exposes deterministic simple and mature paths", asyn
   const mature = await loadInstallationContract("mature");
 
   assert.equal(simple.mode, "simple");
+  assert.equal(simple.name, "KontextStack installation contract");
   assert.equal(simple.profile.verificationProfile, "core");
   assert.equal(mature.mode, "mature");
   assert.equal(mature.profile.verificationProfile, "extended");
