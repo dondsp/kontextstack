@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "kontextstack-runtime-artifact/v1",
+  "sourceCommit": "<SOURCE_COMMIT>",
+  "nodeMajor": "<TESTED_NODE_MAJOR>",
+  "lockfile": "<CANONICAL_LOCKFILE>",
+  "startupFile": "<ACTUAL_STARTUP_FILE>",
+  "serverEntrypoint": "<ACTUAL_SERVER_ENTRYPOINT>",
+  "publicRoot": "<STATIC_OUTPUT_ROOT>",
+  "privateApplicationRoot": "<APPROVED_PRIVATE_ROOT>",
+  "allowedFiles": [],
+  "protectedPaths": [],
+  "previousArtifact": "<ROLLBACK_ARTIFACT>",
+  "approved": false
+}

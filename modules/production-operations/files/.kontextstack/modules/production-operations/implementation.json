@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "production-operations",
+    "version": "0.6.0"
+  },
+  "requires": [],
+  "optional": [
+    "github-cpanel-deploy@>=0.6.0",
+    "mysql-storage@>=0.5.0",
+    "node-cpanel@>=0.4.1"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/10_PRODUCTION_READINESS_AND_GO_LIVE.md",
+      "integrity": "sha256-d69804e877e18c73e1fa0645da81503996930adced01d70ddf99d917efa6dffd",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/11_OPERATIONS_ROLLBACK_AND_RECOVERY.md",
+      "integrity": "sha256-e3d97bc7628f58d91f601bb032ea2bd0e20144b81f2d551dd70946d7d8f7a6dc",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/deployment-cpanel/files/docs/DB_BACKUP_RESTORE_RUNBOOK.md",
+      "integrity": "sha256-d3cc23b9ce0026fb8b8b773bc91b3e4507566e22e3c199858249d21639eb3be9",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "evidence-0",
+      "prompt": "Inventory release surfaces, exact revision, health and journey owners.",
+      "required": true
+    },
+    {
+      "id": "evidence-1",
+      "prompt": "Inspect backup coverage, restore rehearsal, expected data loss, recovery time and approval owners.",
+      "required": true
+    },
+    {
+      "id": "evidence-2",
+      "prompt": "Inspect redacted monitoring/log signals, retention/deletion, credential rotation, incident escalation and periodic review.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "acceptance",
+      "question": "What release audience is being assessed?",
+      "options": [
+        "private-acceptance",
+        "limited-beta",
+        "public"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "recovery",
+      "question": "Is the required recovery rehearsed?",
+      "options": [
+        "rehearsed",
+        "blocked-missing-evidence"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "adapt-0",
+      "projectPath": "checks/acceptance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/checks/acceptance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-1",
+      "projectPath": "checks/file-recovery.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/checks/file-recovery.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-2",
+      "projectPath": "checks/readiness.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/checks/readiness.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-3",
+      "projectPath": "fixtures/scenarios.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/fixtures/scenarios.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-4",
+      "projectPath": "snippets/recovery-tree.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/snippets/recovery-tree.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-5",
+      "projectPath": "snippets/selection.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/snippets/selection.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-6",
+      "projectPath": "templates/acceptance.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/acceptance.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-7",
+      "projectPath": "templates/backup-restore.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/backup-restore.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-8",
+      "projectPath": "templates/incident.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/incident.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-9",
+      "projectPath": "templates/monitoring.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/monitoring.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-10",
+      "projectPath": "templates/readiness.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/readiness.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-11",
+      "projectPath": "templates/rotation-maintenance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/production-operations/kit/templates/rotation-maintenance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "hosted-acceptance",
+      "target": "<APPROVED_RELEASE_SURFACE>",
+      "effect": "hosted acceptance",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "hosted-acceptance",
+      "verification": "Evaluate static-only and mature runtime/data/auth fixture records. Missing surfaces, stale revision evidence and absent restore rehearsal must block readiness. Completing all local record fields makes the release eligible for owner review but never accepted automatically. Simulate partial file delivery, generate the exact prior-artifact recovery differences and rehearse recovery in a synthetic target. Verify that file recovery does not claim database or identity recovery. Test stopping before provider approval and resuming with that state still unapproved. Review mobile/browser/keyboard journeys on the actual product when separately authorized.",
+      "rollback": "Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance."
+    },
+    {
+      "id": "backup-or-restore",
+      "target": "<APPROVED_RELEASE_SURFACE>",
+      "effect": "backup or restore",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "backup-or-restore",
+      "verification": "Evaluate static-only and mature runtime/data/auth fixture records. Missing surfaces, stale revision evidence and absent restore rehearsal must block readiness. Completing all local record fields makes the release eligible for owner review but never accepted automatically. Simulate partial file delivery, generate the exact prior-artifact recovery differences and rehearse recovery in a synthetic target. Verify that file recovery does not claim database or identity recovery. Test stopping before provider approval and resuming with that state still unapproved. Review mobile/browser/keyboard journeys on the actual product when separately authorized.",
+      "rollback": "Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance."
+    },
+    {
+      "id": "credential-rotation",
+      "target": "<APPROVED_RELEASE_SURFACE>",
+      "effect": "credential rotation",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "credential-rotation",
+      "verification": "Evaluate static-only and mature runtime/data/auth fixture records. Missing surfaces, stale revision evidence and absent restore rehearsal must block readiness. Completing all local record fields makes the release eligible for owner review but never accepted automatically. Simulate partial file delivery, generate the exact prior-artifact recovery differences and rehearse recovery in a synthetic target. Verify that file recovery does not claim database or identity recovery. Test stopping before provider approval and resuming with that state still unapproved. Review mobile/browser/keyboard journeys on the actual product when separately authorized.",
+      "rollback": "Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance."
+    },
+    {
+      "id": "incident-containment",
+      "target": "<APPROVED_RELEASE_SURFACE>",
+      "effect": "incident containment",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "incident-containment",
+      "verification": "Evaluate static-only and mature runtime/data/auth fixture records. Missing surfaces, stale revision evidence and absent restore rehearsal must block readiness. Completing all local record fields makes the release eligible for owner review but never accepted automatically. Simulate partial file delivery, generate the exact prior-artifact recovery differences and rehearse recovery in a synthetic target. Verify that file recovery does not claim database or identity recovery. Test stopping before provider approval and resuming with that state still unapproved. Review mobile/browser/keyboard journeys on the actual product when separately authorized.",
+      "rollback": "Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "hosted-acceptance",
+      "scope": "Exact hosted-acceptance target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "backup-or-restore",
+      "scope": "Exact backup-or-restore target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "credential-rotation",
+      "scope": "Exact credential-rotation target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "incident-containment",
+      "scope": "Exact incident-containment target, effect, owner and recovery.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "local",
+      "kind": "command",
+      "instruction": "Evaluate static-only and mature runtime/data/auth fixture records. Missing surfaces, stale revision evidence and absent restore rehearsal must block readiness. Completing all local record fields makes the release eligible for owner review but never accepted automatically. Simulate partial file delivery, generate the exact prior-artifact recovery differences and rehearse recovery in a synthetic target. Verify that file recovery does not claim database or identity recovery. Test stopping before provider approval and resuming with that state still unapproved. Review mobile/browser/keyboard journeys on the actual product when separately authorized.",
+      "expected": "Synthetic local fixtures and static contract checks pass.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Inspect the selected production surfaces and their existing owner procedures without collecting secrets or real customer records. Show the exact release revision, audience, evidence gaps and recovery references for owner review. Obtain separate approval before hosted acceptance mutations, backup/export, restore, credential rotation or incident containment. A read-only check is not approval to restart, alter DNS or change data. Scope one failing layer at a time and preserve non-secret observations. Confirm support window, incident severity, escalation/communication owner and observation period. After approved recovery repeat health, representative journey, persistence and authorization where selected; distinguish expected data loss, recovery point and recovery time. Ask the product owner to accept or reject the release only after the required evidence passes.",
+      "expected": "Approved surfaces match the exact artifact and owner acceptance is recorded separately.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "recovery",
+      "layer": "release",
+      "instruction": "Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance.",
+      "verification": "Repeat prior artifact and representative journey checks; preserve data and identity recovery decisions separately.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Local fixture evidence and exact workflow/artifact review pass.",
+      "evidence": [
+        "local"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts the exact hosted release and rehearsed recovery.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

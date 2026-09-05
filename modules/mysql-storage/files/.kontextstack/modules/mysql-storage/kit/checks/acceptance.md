@@ -1,0 +1,5 @@
+# Acceptance checks
+
+Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.
+
+Provider acceptance: Inspect the actual cPanel database controls; labels vary by host. Record the exact prefixed database and service-user names privately. Show target, scope and privileges and obtain approval before creating either. Use separate database-scoped runtime DML and migration DDL identities where supported. Store values only in the provider environment/password manager. Before a production migration record backup reference, successful restore rehearsal (or explicit empty-database waiver), exact manifest checksums, schema compatibility, operator and maintenance window. Obtain separate migration approval. Use the project-reviewed production procedure; do not weaken the local helper or run migrations in deployment CI. Verify schema and a synthetic persistence journey after migration. Restores require their own target and approval.

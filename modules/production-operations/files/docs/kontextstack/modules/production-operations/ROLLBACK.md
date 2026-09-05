@@ -1,0 +1,3 @@
+# Recovery
+
+Choose file, runtime, DNS, database or identity recovery based on the first failing boundary. Record exact target and previous baseline, compatibility, operator/window, expected effect and separate approval. Before data restore isolate writes, account for later valid records and approve expected loss. After restoring old data ensure revoked sessions do not become valid again. Disable a broken optional provider while retaining local authorization. Never reset bootstrap, bypass CSRF or delete migration history as recovery. Reconcile emergency changes back into source, verify the recovered journey and obtain explicit owner acceptance.

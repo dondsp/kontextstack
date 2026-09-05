@@ -1,0 +1,54 @@
+name: Reviewed cPanel artifact delivery
+on:
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: Exact reviewed commit SHA
+        required: true
+      artifact_approval:
+        description: SHA-256 from the reviewed local artifact manifest
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: cpanel-production
+  cancel-in-progress: false
+jobs:
+  deliver:
+    if: github.ref == format('refs/heads/{0}', vars.RELEASE_BRANCH)
+    runs-on: ubuntu-latest
+    environment: ${{ vars.RELEASE_ENVIRONMENT }}
+    timeout-minutes: 20
+    env:
+      EXPECTED_REVISION: ${{ inputs.revision }}
+      ARTIFACT_APPROVAL: ${{ inputs.artifact_approval }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Require configured owner gate and exact revision
+        env:
+          REVIEWERS_CONFIGURED: ${{ vars.REVIEWERS_CONFIGURED }}
+        run: |
+          test "$REVIEWERS_CONFIGURED" = 'true'
+          test "$(git rev-parse HEAD)" = "$EXPECTED_REVISION"
+          test -f package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm run build
+      - run: npm audit --omit=dev --audit-level=high
+      - name: Validate and stage exact target artifacts
+        run: node scripts/release/release-cli.mjs stage
+      - name: Deliver through separate scoped identities
+        env:
+          STATIC_USER: ${{ secrets.STATIC_USER }}
+          STATIC_PASSWORD: ${{ secrets.STATIC_PASSWORD }}
+          APP_USER: ${{ secrets.APP_USER }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+        run: node scripts/release/release-cli.mjs deliver
+      - name: Verify hosted artifact and access boundaries
+        run: node scripts/release/release-cli.mjs smoke

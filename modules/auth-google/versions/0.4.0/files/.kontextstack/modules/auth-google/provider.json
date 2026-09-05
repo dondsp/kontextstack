@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "auth-google",
+  "moduleVersion": "0.4.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "identity": {
+    "enabledByDefault": false,
+    "verifiedEmailRequired": true,
+    "automaticAccountLinking": false,
+    "automaticRoleGrant": false,
+    "callbackOrigins": [],
+    "configurationValuesStoredHere": false
+  },
+  "consent": {
+    "identityScopes": ["openid", "email", "profile"],
+    "workspaceScopesSeparated": true,
+    "offlineAccessRequiresSeparateApproval": true,
+    "incrementalConsentPreferred": true
+  },
+  "storage": {
+    "providerIdentifiersMappedLocally": true,
+    "workspaceGrantsEncryptedWhenStored": true,
+    "revocationProcedureRequired": true
+  },
+  "gates": [
+    "local-auth-module-installed",
+    "provider-project-owned",
+    "callback-origins-approved",
+    "scope-review-complete",
+    "linking-policy-approved",
+    "security-tests-pass",
+    "human-enables-provider"
+  ]
+}

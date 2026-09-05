@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "policy": "non-secret-only",
+  "states": {
+    "installed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "implemented": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "locally-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "provider-configured": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "deployed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "migrated": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "production-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "owner-accepted": {
+      "status": "not-recorded",
+      "reference": null
+    }
+  },
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/08_AUTHENTICATION_AND_AUTHORIZATION.md",
+      "integrity": "sha256-81a3de75e48a7e05d8675d41d74aefba030629f43d6f652608983f63ce028726",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-provider-google/files/src/server/auth-provider-google/index.js",
+      "integrity": "sha256-5d7fa1245cf854d18bdee3cdaaac403ed48746f20a1f5af9b9fa6b5be5daaf91",
+      "state": "working-tree"
+    }
+  ]
+}

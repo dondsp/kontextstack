@@ -1,0 +1,14 @@
+{
+  "synthetic": true,
+  "cases": [
+    "static-only",
+    "node-only",
+    "split-roots",
+    "missing-target",
+    "changed-artifact",
+    "dependency-gate",
+    "partial-delivery",
+    "file-rollback",
+    "wrong-product-smoke"
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "auth-google",
+    "version": "0.5.0"
+  },
+  "requires": [
+    "auth-local@>=0.5.0"
+  ],
+  "optional": [],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/08_AUTHENTICATION_AND_AUTHORIZATION.md",
+      "integrity": "sha256-81a3de75e48a7e05d8675d41d74aefba030629f43d6f652608983f63ce028726",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-provider-google/files/src/server/auth-provider-google/index.js",
+      "integrity": "sha256-5d7fa1245cf854d18bdee3cdaaac403ed48746f20a1f5af9b9fa6b5be5daaf91",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "evidence-0",
+      "prompt": "Inspect exact local/production origins and callbacks. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-1",
+      "prompt": "Inspect local authorization and explicit existing-account linking policy. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-2",
+      "prompt": "Inspect identity scopes, provider disable/disconnect and privacy/consent owners. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "signup",
+      "question": "May a verified provider identity create a new user?",
+      "options": [
+        "closed",
+        "open-user-role-only"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "linking",
+      "question": "How are existing accounts linked?",
+      "options": [
+        "explicit-recent-local-session-only",
+        "disabled"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "domain",
+      "question": "Is a hosted-domain restriction required?",
+      "options": [
+        "none",
+        "exact-verified-hd-claim"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "adapt-0",
+      "projectPath": "checks/acceptance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-google/kit/checks/acceptance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-1",
+      "projectPath": "fixtures/scenarios.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-google/kit/fixtures/scenarios.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-2",
+      "projectPath": "snippets/adaptation.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-google/kit/snippets/adaptation.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-3",
+      "projectPath": "templates/environment-names.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-google/kit/templates/environment-names.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-4",
+      "projectPath": "templates/google-auth.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-google/kit/templates/google-auth.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "configure-oauth-client",
+      "target": "<APPROVED_OAUTH_CLIENT>",
+      "effect": "configure oauth client",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "configure-oauth-client",
+      "verification": "Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.",
+      "rollback": "Disable Google sign-in and reject new starts and callbacks, including in-flight exchanges. Keep existing local accounts/permissions and stable provider-subject mappings. Disconnect only after authenticated CSRF-protected approval and proof of another sign-in method; revoke affected sessions. Client-secret rotation, consent changes and identity-data removal are separate approved actions. Do not delete users to undo provider configuration."
+    },
+    {
+      "id": "enable-provider",
+      "target": "<APPROVED_OAUTH_CLIENT>",
+      "effect": "enable provider",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "enable-provider",
+      "verification": "Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.",
+      "rollback": "Disable Google sign-in and reject new starts and callbacks, including in-flight exchanges. Keep existing local accounts/permissions and stable provider-subject mappings. Disconnect only after authenticated CSRF-protected approval and proof of another sign-in method; revoke affected sessions. Client-secret rotation, consent changes and identity-data removal are separate approved actions. Do not delete users to undo provider configuration."
+    },
+    {
+      "id": "disable-provider",
+      "target": "<APPROVED_OAUTH_CLIENT>",
+      "effect": "disable provider",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "disable-provider",
+      "verification": "Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.",
+      "rollback": "Disable Google sign-in and reject new starts and callbacks, including in-flight exchanges. Keep existing local accounts/permissions and stable provider-subject mappings. Disconnect only after authenticated CSRF-protected approval and proof of another sign-in method; revoke affected sessions. Client-secret rotation, consent changes and identity-data removal are separate approved actions. Do not delete users to undo provider configuration."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "configure-oauth-client",
+      "scope": "Exact configure-oauth-client target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "enable-provider",
+      "scope": "Exact enable-provider target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "disable-provider",
+      "scope": "Exact disable-provider target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "local",
+      "kind": "command",
+      "instruction": "Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.",
+      "expected": "Positive and adversarial local cases pass with synthetic data.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Inspect the actual Google Cloud/Auth Platform interface; labels change. Confirm project ownership, consent audience/test users, identity-only scopes, privacy notice and exact authorized redirects for each environment. Show the complete intended configuration and obtain owner approval before creating/editing a client or consent settings. Save values privately in the approved application environment. Verify a synthetic permitted account, wrong callback, collision refusal and local fallback before separately approving production enablement. A hosted-domain UI hint is insufficient: the verified hd claim must match. Disable the feature flag first on provider incidents; local authorization and data remain owned by the application.",
+      "expected": "Approved target and representative hosted journey verified; owner separately accepts.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "recovery",
+      "layer": "identity",
+      "instruction": "Disable Google sign-in and reject new starts and callbacks, including in-flight exchanges. Keep existing local accounts/permissions and stable provider-subject mappings. Disconnect only after authenticated CSRF-protected approval and proof of another sign-in method; revoke affected sessions. Client-secret rotation, consent changes and identity-data removal are separate approved actions. Do not delete users to undo provider configuration.",
+      "verification": "Repeat the pre-change baseline and authorization checks; retain a non-secret recovery reference.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.",
+      "evidence": [
+        "local"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts hosted verification, data/identity safety and recovery readiness.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

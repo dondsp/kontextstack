@@ -2,11 +2,11 @@
   "schemaVersion": "kontextstack-guide/v1",
   "module": {
     "name": "static-site-cpanel",
-    "version": "0.3.0"
+    "version": "0.3.1"
   },
   "package": {
     "name": "kontextstack",
-    "version": "0.6.0-alpha.1"
+    "version": "0.6.0-alpha.2"
   },
   "title": "Publish a static site to cPanel",
   "summary": "Source-traced static artifact, routing, provider publication and rollback implementation kit.",
@@ -175,7 +175,7 @@
     {
       "id": "inspect",
       "stage": "install",
-      "text": "kontextstack modules inspect --module static-site-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules inspect --module static-site-cpanel --version 0.3.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -184,7 +184,7 @@
     {
       "id": "preview",
       "stage": "install",
-      "text": "kontextstack modules preview --module static-site-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules preview --module static-site-cpanel --version 0.3.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -193,7 +193,7 @@
     {
       "id": "apply",
       "stage": "install",
-      "text": "kontextstack modules apply --module static-site-cpanel --version 0.3.0 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
+      "text": "kontextstack modules apply --module static-site-cpanel --version 0.3.1 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>",
@@ -246,8 +246,8 @@
   },
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "commit": "9146d8ee01153754eb7aa4eff8180e10bcd48425",
-    "implementationIntegrity": "sha256-87a6efa2b70726325252e674bd61ac2e7d4ecc625d0ba1d23844c5137af3bf4f",
-    "integrity": "sha256-e970c81def8da3fd6d19ae9bb7f76b1071ff0a7fba469f857a1b37cfb1e6e57d"
+    "commit": "0a62317c176de98193f67a4c1df5267db020525b",
+    "implementationIntegrity": "sha256-4dd42156e9036c43d87f5a6fea21fa83d7f13efcbab6b702235f82ba044a72ee",
+    "integrity": "sha256-2107145255e59a5353ee935b5f83ab1e8cd3c248bfee4f82dec8e593a51500fa"
   }
 }

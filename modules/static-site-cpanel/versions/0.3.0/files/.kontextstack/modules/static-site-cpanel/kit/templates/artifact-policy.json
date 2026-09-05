@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "kontextstack-static-artifact/v1",
+  "sourceCommit": "<SOURCE_COMMIT>",
+  "allowedFiles": [
+    "index.html",
+    "assets/site.css"
+  ],
+  "requiredFiles": [
+    "index.html"
+  ],
+  "formModel": "none",
+  "canonicalOrigin": "https://<CANONICAL_HOST>",
+  "preserveProviderPaths": [
+    ".well-known"
+  ],
+  "approvedBy": null
+}

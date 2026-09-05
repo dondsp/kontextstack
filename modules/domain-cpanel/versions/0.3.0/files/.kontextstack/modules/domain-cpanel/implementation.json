@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "domain-cpanel",
+    "version": "0.3.0"
+  },
+  "requires": [],
+  "optional": [],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/03_DOMAIN_DNS_AND_CPANEL.md",
+      "integrity": "sha256-574509104bc43c5febb8aa8036836ef6eb75a357a8ac8643f631028d6c025fe2",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/04_REDIRECTS_HTTPS_AND_ROUTING.md",
+      "integrity": "sha256-43eb9ab5ee5e8dbf02713ae8fdb3c3d59b620780f255807caf7387c43cf92550",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "hostnames",
+      "prompt": "Inspect intended apex, aliases, application/API and reserved hosts.",
+      "required": true
+    },
+    {
+      "id": "dns",
+      "prompt": "Inspect authoritative DNS ownership, current non-secret records and TTL.",
+      "required": true
+    },
+    {
+      "id": "roots",
+      "prompt": "Inspect exact public/private roots and unrelated hosted projects.",
+      "required": true
+    },
+    {
+      "id": "tls-routing",
+      "prompt": "Inspect certificate coverage, redirect owners and prior rollback values.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "canonical-host",
+      "question": "Which hostname is canonical?",
+      "options": [
+        "apex",
+        "www",
+        "application-subdomain"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "dns-owner",
+      "question": "Where will authoritative DNS remain?",
+      "options": [
+        "existing-zone",
+        "explicitly-approved-zone-move"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "routing-owner",
+      "question": "Which layer owns canonical redirects?",
+      "options": [
+        "provider",
+        "apache",
+        "runtime",
+        "cdn"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "topology",
+      "projectPath": "docs/hosting/HOSTNAME_MATRIX.md",
+      "description": "Adapt the hostname and public/private root worksheets.",
+      "templates": [
+        ".kontextstack/modules/domain-cpanel/kit/templates/hostname-matrix.json",
+        ".kontextstack/modules/domain-cpanel/kit/templates/certificate-and-roots.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "dns-record",
+      "projectPath": "docs/hosting/DNS_CHANGE.json",
+      "description": "Record scoped DNS and rollback values.",
+      "templates": [
+        ".kontextstack/modules/domain-cpanel/kit/templates/dns-change.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "redirect",
+      "projectPath": "public/.htaccess",
+      "description": "Adapt only the approved alias redirect after TLS verification.",
+      "templates": [
+        ".kontextstack/modules/domain-cpanel/kit/snippets/canonical.htaccess"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "dns",
+      "target": "<HOSTNAME> in <AUTHORITATIVE_ZONE>",
+      "effect": "Change only the approved DNS records.",
+      "verification": "Query authoritative and recursive resolvers.",
+      "rollback": "Restore prior record values and observe TTL.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "dns"
+    },
+    {
+      "id": "mapping",
+      "target": "<HOSTNAME> at <DOCUMENT_ROOT>",
+      "effect": "Create or edit the approved hosting mapping.",
+      "verification": "Confirm scoped root and unrelated-site baselines.",
+      "rollback": "Restore prior approved root mapping.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "mapping"
+    },
+    {
+      "id": "tls-routing",
+      "target": "<HOSTNAME>",
+      "effect": "Request/verify certificate coverage and enable the approved redirect owner.",
+      "verification": "Valid TLS and finite canonical path/query redirects.",
+      "rollback": "Restore prior routing and known-good TLS destination.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "tls-routing"
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "dns",
+      "scope": "Change only the approved DNS records. Target: <HOSTNAME> in <AUTHORITATIVE_ZONE>",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "mapping",
+      "scope": "Create or edit the approved hosting mapping. Target: <HOSTNAME> at <DOCUMENT_ROOT>",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "tls-routing",
+      "scope": "Request/verify certificate coverage and enable the approved redirect owner. Target: <HOSTNAME>",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "dns",
+      "kind": "provider",
+      "instruction": "Compare authoritative and recursive DNS against the approved target.",
+      "expected": "Every selected hostname resolves correctly.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "tls",
+      "kind": "provider",
+      "instruction": "Inspect TLS coverage for canonical and alias hostnames without bypass.",
+      "expected": "No certificate mismatch.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "routing",
+      "kind": "command",
+      "instruction": "Adapt kit/checks/dns-tls-routing.md and compare first responses plus finite chains.",
+      "expected": "Path/query preservation and unchanged unrelated projects.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "dns",
+      "layer": "dns",
+      "instruction": "Restore selected prior DNS records after explicit recovery approval.",
+      "verification": "Observe authoritative/recursive results through recorded TTL.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "roots",
+      "layer": "files",
+      "instruction": "Restore scoped domain mapping and prior redirect rules with approval.",
+      "verification": "Recheck all selected and unrelated hosted surfaces.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "hosts",
+      "criterion": "All approved hostname targets and certificate coverage verified.",
+      "evidence": [
+        "dns",
+        "tls"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "routing",
+      "criterion": "Owner accepts finite routing and recoverable prior mappings.",
+      "evidence": [
+        "routing"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

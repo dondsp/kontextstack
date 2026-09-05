@@ -1,39 +1,161 @@
 {
   "schemaVersion": "1.0.0",
   "name": "production-operations",
-  "displayName": "Production Operations Plan",
-  "version": "0.5.0",
-  "description": "Health, monitoring, backup, recovery, incident, rollback, evidence, and production acceptance planning.",
+  "displayName": "Verify production readiness and recovery",
+  "version": "0.6.0",
+  "description": "Surface-specific readiness, monitoring, incidents, backup/restore rehearsal, credential rotation and explicit owner acceptance.",
   "category": "operations",
-  "maturity": [2, 3],
-  "projectTypes": ["website", "web-app", "service"],
-  "coreCompatibility": ">=0.5.0 <0.6.0",
+  "maturity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "projectTypes": [
+    "website",
+    "web-app",
+    "service"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/production-operations/v0.5.0",
+    "ref": "module/production-operations/v0.6.0",
     "path": "modules/production-operations",
-    "integrity": "sha256-ca12fd407bd5c8d0fa11f4af7766a3fafdf6b2be892e3973e091ae3ba7f30d1d"
+    "integrity": "sha256-24ad7d199fb6106e629c850e6de136cc0bdcec4d88b94bb7fb7db92880a0b7a2"
   },
   "dependencies": [],
-  "optionalDependencies": ["github-cpanel-deploy@>=0.5.0", "mysql-storage@>=0.4.0", "node-cpanel@>=0.3.0"],
+  "optionalDependencies": [
+    "github-cpanel-deploy@>=0.6.0",
+    "mysql-storage@>=0.5.0",
+    "node-cpanel@>=0.4.1"
+  ],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/production-operations/decision.json",
+      ".kontextstack/modules/production-operations/evidence.json",
+      ".kontextstack/modules/production-operations/implementation.json",
+      ".kontextstack/modules/production-operations/kit/checks/acceptance.md",
+      ".kontextstack/modules/production-operations/kit/checks/file-recovery.mjs",
+      ".kontextstack/modules/production-operations/kit/checks/readiness.mjs",
+      ".kontextstack/modules/production-operations/kit/fixtures/scenarios.json",
+      ".kontextstack/modules/production-operations/kit/snippets/recovery-tree.md",
+      ".kontextstack/modules/production-operations/kit/snippets/selection.md",
+      ".kontextstack/modules/production-operations/kit/templates/acceptance.json",
+      ".kontextstack/modules/production-operations/kit/templates/backup-restore.md",
+      ".kontextstack/modules/production-operations/kit/templates/incident.md",
+      ".kontextstack/modules/production-operations/kit/templates/monitoring.json",
+      ".kontextstack/modules/production-operations/kit/templates/readiness.json",
+      ".kontextstack/modules/production-operations/kit/templates/rotation-maintenance.md",
       ".kontextstack/modules/production-operations/operations.json",
-      "docs/kontextstack/modules/production-operations/RUNBOOK.md"
+      "docs/kontextstack/modules/production-operations/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/production-operations/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/production-operations/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/production-operations/ROLLBACK.md",
+      "docs/kontextstack/modules/production-operations/RUNBOOK.md",
+      "docs/kontextstack/modules/production-operations/START_HERE.md",
+      "docs/kontextstack/modules/production-operations/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/production-operations/decision.json",
+      "source": "files/.kontextstack/modules/production-operations/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/evidence.json",
+      "source": "files/.kontextstack/modules/production-operations/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/implementation.json",
+      "source": "files/.kontextstack/modules/production-operations/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/checks/acceptance.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/checks/acceptance.md"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/checks/file-recovery.mjs",
+      "source": "files/.kontextstack/modules/production-operations/kit/checks/file-recovery.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/checks/readiness.mjs",
+      "source": "files/.kontextstack/modules/production-operations/kit/checks/readiness.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/fixtures/scenarios.json",
+      "source": "files/.kontextstack/modules/production-operations/kit/fixtures/scenarios.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/snippets/recovery-tree.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/snippets/recovery-tree.md"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/snippets/selection.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/snippets/selection.md"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/acceptance.json",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/acceptance.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/backup-restore.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/backup-restore.md"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/incident.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/incident.md"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/monitoring.json",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/monitoring.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/readiness.json",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/readiness.json"
+    },
+    {
+      "path": ".kontextstack/modules/production-operations/kit/templates/rotation-maintenance.md",
+      "source": "files/.kontextstack/modules/production-operations/kit/templates/rotation-maintenance.md"
+    },
     {
       "path": ".kontextstack/modules/production-operations/operations.json",
       "source": "files/.kontextstack/modules/production-operations/operations.json"
     },
     {
+      "path": "docs/kontextstack/modules/production-operations/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/production-operations/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/production-operations/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/production-operations/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/production-operations/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/production-operations/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/production-operations/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/production-operations/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/production-operations/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +172,29 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.5.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/production-operations/implementation.json",
+    "guide": "guide.json"
+  },
+  "selection": {
+    "schemaVersion": "kontextstack-selection/v1",
+    "fields": [
+      {
+        "name": "surfaces",
+        "multiple": true,
+        "options": [
+          "static",
+          "runtime",
+          "data",
+          "identity"
+        ]
+      }
+    ]
   }
 }

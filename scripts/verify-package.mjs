@@ -1,7 +1,7 @@
 // Maintainer-only smoke harness for an already installed local candidate.
 // This script is not shipped in the npm artifact and never contacts a provider.
 import assert from "node:assert/strict";
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, readFile } from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { makeCleanProject, commitAll } from "../test/support/project.js";
@@ -15,7 +15,7 @@ function cli(args) {
   return JSON.parse(result.stdout);
 }
 const about = cli(["about"]);
-assert.equal(about.version, "0.6.0-alpha.1");
+assert.equal(about.version, JSON.parse(await readFile(new URL('../package.json', import.meta.url))).version);
 assert.equal(cli(["doctor"]).healthy, true);
 assert.ok(cli(["modules", "available"]).modules.length >= 9);
 const project = await makeCleanProject();
@@ -28,9 +28,17 @@ try {
     modules: []
   });
   commitAll(project);
-  for (const name of ["domain-cpanel", "static-site-cpanel", "node-cpanel"]) {
+  for (const name of ["domain-cpanel", "static-site-cpanel", "node-cpanel", "mysql-storage", "auth-local", "auth-google", "github-cpanel-deploy", "production-operations"]) {
+    if (["github-cpanel-deploy", "production-operations"].includes(name)) {
+      const selected = path.join(project, '.kontextstack/modules', name);
+      await mkdir(selected, { recursive: true });
+      await writeJson(path.join(selected, 'selection.json'), name === 'github-cpanel-deploy' ? { target: 'static' } : { surfaces: ['static'] });
+      commitAll(project);
+    }
     const args = ["--module", name, "--project", project];
-    assert.equal(cli(["modules", "inspect", ...args]).module.guide.package.version, about.version);
+    const inspected = cli(["modules", "inspect", ...args]).module;
+    assert.equal(inspected.coreCompatible, true);
+    assert.equal(inspected.guide.module.version, inspected.version);
     const preview = cli(["modules", "preview", ...args]);
     assert.equal(preview.status, "ready");
     cli(["modules", "apply", ...args, "--approve", preview.previewId]);

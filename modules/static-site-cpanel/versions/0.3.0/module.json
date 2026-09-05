@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "static-site-cpanel",
+  "displayName": "Publish a static site to cPanel",
+  "version": "0.3.0",
+  "description": "Source-traced static artifact, routing, provider publication and rollback implementation kit.",
+  "category": "delivery",
+  "maturity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "projectTypes": [
+    "website",
+    "web-app"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/static-site-cpanel/v0.3.0",
+    "path": "modules/static-site-cpanel",
+    "integrity": "sha256-77bba80ad4ea0bce1be60d70519a07f704cfa0973d75b73f87fa3770e77deb04"
+  },
+  "dependencies": [],
+  "optionalDependencies": [
+    "domain-cpanel@>=0.2.0"
+  ],
+  "conflicts": [],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/static-site-cpanel/decision.json",
+      ".kontextstack/modules/static-site-cpanel/evidence.json",
+      ".kontextstack/modules/static-site-cpanel/implementation.json",
+      ".kontextstack/modules/static-site-cpanel/kit/checks/artifact.mjs",
+      ".kontextstack/modules/static-site-cpanel/kit/fixtures/site/assets/site.css",
+      ".kontextstack/modules/static-site-cpanel/kit/fixtures/site/index.html",
+      ".kontextstack/modules/static-site-cpanel/kit/snippets/https.htaccess",
+      ".kontextstack/modules/static-site-cpanel/kit/snippets/spa.htaccess",
+      ".kontextstack/modules/static-site-cpanel/kit/templates/artifact-policy.json",
+      ".kontextstack/modules/static-site-cpanel/kit/templates/release-record.json",
+      ".kontextstack/modules/static-site-cpanel/release.json",
+      "docs/kontextstack/modules/static-site-cpanel/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/static-site-cpanel/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/static-site-cpanel/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/static-site-cpanel/ROLLBACK.md",
+      "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md",
+      "docs/kontextstack/modules/static-site-cpanel/START_HERE.md",
+      "docs/kontextstack/modules/static-site-cpanel/VERIFICATION.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/decision.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/evidence.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/implementation.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/checks/artifact.mjs",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/checks/artifact.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/fixtures/site/assets/site.css",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/fixtures/site/assets/site.css"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/fixtures/site/index.html",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/fixtures/site/index.html"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/snippets/https.htaccess",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/snippets/https.htaccess"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/snippets/spa.htaccess",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/snippets/spa.htaccess"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/templates/artifact-policy.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/templates/artifact-policy.json"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/kit/templates/release-record.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/kit/templates/release-record.json"
+    },
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/release.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/release.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/ROLLBACK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/VERIFICATION.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "static-release-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/static-site-cpanel/release.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [
+      "0.2.0"
+    ],
+    "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/static-site-cpanel/implementation.json",
+    "guide": "guide.json"
+  }
+}

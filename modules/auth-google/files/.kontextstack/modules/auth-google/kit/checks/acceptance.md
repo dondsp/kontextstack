@@ -1,0 +1,5 @@
+# Acceptance checks
+
+Use signed synthetic ID tokens to test signature/issuer/audience/azp/expiry/nonce/email/hd, exact callback, single-use state and browser binding, concurrent replay, account collisions, explicit linking, disconnect and provider disable during exchange.
+
+Provider acceptance: Inspect the actual Google Cloud/Auth Platform interface; labels change. Confirm project ownership, consent audience/test users, identity-only scopes, privacy notice and exact authorized redirects for each environment. Show the complete intended configuration and obtain owner approval before creating/editing a client or consent settings. Save values privately in the approved application environment. Verify a synthetic permitted account, wrong callback, collision refusal and local fallback before separately approving production enablement. A hosted-domain UI hint is insufficient: the verified hd claim must match. Disable the feature flag first on provider incidents; local authorization and data remain owned by the application.

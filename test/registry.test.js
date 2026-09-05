@@ -39,7 +39,7 @@ test("every bundled portable module matches its registry fingerprint and filesys
   for (const entry of portable) {
     const bundle = await loadPortableBundle(path.dirname(entry.manifestPath));
     assert.equal(bundle.computedIntegrity, entry.integrity);
-    if (bundle.contracts) assert.equal(bundle.contracts.guide.package.version, packageVersion, "Guide snapshot must match the selected package release");
+    if (bundle.contracts && !entry.manifestPath.includes('/versions/')) assert.equal(bundle.contracts.guide.package.version, packageVersion, "Current guide snapshot must match the selected package release");
     assert.equal(bundle.manifest.permissions.network, false);
     assert.deepEqual(bundle.manifest.permissions.commands, []);
     assert.ok(bundle.files.every((file) => (
@@ -50,6 +50,7 @@ test("every bundled portable module matches its registry fingerprint and filesys
 
   const localAuth = await loadPortableBundle(path.join(root, "modules", "auth-local"));
   const googleAuth = await loadPortableBundle(path.join(root, "modules", "auth-google"));
-  assert.deepEqual(localAuth.manifest.dependencies, ["mysql-storage@>=0.4.0"]);
-  assert.deepEqual(googleAuth.manifest.dependencies, ["auth-local@>=0.4.0"]);
+  assert.deepEqual(localAuth.manifest.dependencies, []);
+  assert.ok(localAuth.manifest.optionalDependencies.includes("mysql-storage@>=0.5.0"));
+  assert.deepEqual(googleAuth.manifest.dependencies, ["auth-local@>=0.5.0"]);
 });

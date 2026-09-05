@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "revision": null,
+  "target": "static",
+  "dependencies": "reviewed-lockfile",
+  "targets": [
+    {
+      "kind": "static",
+      "source": "dist",
+      "origin": "https://<PUBLIC_HOST>",
+      "files": [
+        "index.html"
+      ],
+      "destination": {
+        "host": "<FTPS_HOST>",
+        "directory": "<SCOPED_DIRECTORY>",
+        "identity": "<SCOPED_USER>"
+      }
+    }
+  ],
+  "smoke": [
+    {
+      "url": "https://<PUBLIC_HOST>/",
+      "kind": "body-marker",
+      "expected": "<EXPECTED_TITLE>",
+      "status": 200
+    }
+  ]
+}

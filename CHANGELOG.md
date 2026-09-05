@@ -3,6 +3,23 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.6.0-alpha.2 — unreleased candidate
+
+- Extend the implementation kits to all eight public modules: MySQL migrations
+  and durable storage, local accounts and sessions, verified Google identity,
+  scoped cPanel delivery, and surface-specific operations/recovery procedures.
+- Add shared-storage authentication, signed OIDC, disposable MySQL, HTTP boundary,
+  deployment failure and recovery, and installed-kit verification tests.
+- Require owner-selected deployment targets and operations surfaces before
+  preview. Bind the selection to exact approval without granting external authority.
+- Preserve immutable previous bundles and refuse upgrades over customized files.
+- Keep templates inert until Codex adapts them in the project. No provider,
+  production, database, authentication or deployment action runs in the toolkit.
+- Add installed Node + MySQL + local auth + signed Google composition through
+  one explicitly adapted HTTP listener, plus the supported selection matrix.
+- Prepare ContextKraft's versioned guide integration in its own reviewed branch.
+  This candidate has not been published to npm or activated in live guides.
+
 ## 0.6.0-alpha.1 — 2026-09-05
 
 Evaluation prerelease on npm's `next` channel; stable `latest` remains 0.5.1.
@@ -112,3 +129,14 @@ This is the Phase 0–3 slice of the v0.6 initiative, not its final release.
   project-customized files.
 - Add a read-only, source-traced, fast-forward-only KontextStack core update
   guide.
+# Unreleased — 0.6.0-alpha.2 candidate
+
+- Add source-traced MySQL migration/storage, local authentication and optional
+  Google identity implementation kits with installed checks and provider recovery
+  procedures. Preserve immutable prior planning bundles and require preview.
+- Verify durable identity with a disposable MySQL server and signed synthetic
+  OIDC tokens; add HTTP, concurrency, failure, replay and upgrade checks.
+- Validate installed optional dependency versions and publish new guide patch
+  versions for the candidate, retaining alpha.1 module fingerprints.
+- No npm publication, ContextKraft activation or production operation occurs
+  from these changes. Later implementation phases remain open.

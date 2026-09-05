@@ -1,0 +1,9 @@
+{
+  "names": [
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_CALLBACK",
+    "GOOGLE_ENABLED"
+  ],
+  "valuesStored": false
+}

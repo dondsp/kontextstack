@@ -74,7 +74,7 @@ test("install, Codex handoff, fixture adaptation and Apache verification compose
     assert.match(prompt, /AGENTS.md/);
     assert.match(prompt, /separate explicit approval/);
     const inspection = await inspectModule(args);
-    assert.equal(inspection.module.guide.package.version, "0.6.0-alpha.1");
+    assert.equal(inspection.module.guide.package.version, "0.6.0-alpha.2");
     commitAll(project);
   }
   // Simulated Codex adaptation: copy only the explicitly selected fixture,

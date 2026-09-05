@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "kontextstack-hostnames/v1",
+  "canonical": "<CANONICAL_HOST>",
+  "owner": "<OWNER_ROLE>",
+  "hostnames": [
+    {
+      "hostname": "<CANONICAL_HOST>",
+      "purpose": "canonical-public",
+      "dnsOwner": "<DNS_OWNER>",
+      "expectedTarget": "<HOSTING_TARGET>",
+      "publicRoot": "<DOCUMENT_ROOT>",
+      "privateRuntimeRoot": null,
+      "redirectOwner": "<REDIRECT_OWNER>",
+      "certificateNames": [
+        "<CANONICAL_HOST>"
+      ],
+      "status": "unverified"
+    },
+    {
+      "hostname": "<ALIAS_HOST>",
+      "purpose": "redirect-only",
+      "dnsOwner": "<DNS_OWNER>",
+      "expectedTarget": "<HOSTING_TARGET>",
+      "publicRoot": "<DOCUMENT_ROOT>",
+      "privateRuntimeRoot": null,
+      "redirectOwner": "<REDIRECT_OWNER>",
+      "certificateNames": [
+        "<ALIAS_HOST>"
+      ],
+      "status": "unverified"
+    }
+  ],
+  "reservedHostnames": [],
+  "unrelatedRootsToPreserve": [
+    "<OTHER_DOCUMENT_ROOT>"
+  ]
+}

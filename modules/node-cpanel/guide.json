@@ -2,11 +2,11 @@
   "schemaVersion": "kontextstack-guide/v1",
   "module": {
     "name": "node-cpanel",
-    "version": "0.4.0"
+    "version": "0.4.1"
   },
   "package": {
     "name": "kontextstack",
-    "version": "0.6.0-alpha.1"
+    "version": "0.6.0-alpha.2"
   },
   "title": "Add or adapt a cPanel Node runtime",
   "summary": "Source-traced Node startup, routing, environment, provider and recovery implementation kit.",
@@ -185,7 +185,7 @@
     {
       "id": "inspect",
       "stage": "install",
-      "text": "kontextstack modules inspect --module node-cpanel --version 0.4.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules inspect --module node-cpanel --version 0.4.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -194,7 +194,7 @@
     {
       "id": "preview",
       "stage": "install",
-      "text": "kontextstack modules preview --module node-cpanel --version 0.4.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules preview --module node-cpanel --version 0.4.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -203,7 +203,7 @@
     {
       "id": "apply",
       "stage": "install",
-      "text": "kontextstack modules apply --module node-cpanel --version 0.4.0 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
+      "text": "kontextstack modules apply --module node-cpanel --version 0.4.1 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>",
@@ -256,8 +256,8 @@
   },
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "commit": "7f4e7e8869bbe79d2b0d7e43240e0eda411764b4",
-    "implementationIntegrity": "sha256-e02582acfca841307f3dfa3be76a805ebd4c93852ca7bd65cda4b3367f3b2a42",
-    "integrity": "sha256-84bd9ea791f02f5b68fdda7edf0dc37f9b1f371725aff9cb96b22fa949a361f9"
+    "commit": "0a62317c176de98193f67a4c1df5267db020525b",
+    "implementationIntegrity": "sha256-8647c76a078ed2dad1361a3e8b637cafad45fec57a27c2f8e8b4d0ee96afb220",
+    "integrity": "sha256-84610c9aefe247bec8cdd0bad59d9b58053f58a52257ae6e40c57084d57287e4"
   }
 }

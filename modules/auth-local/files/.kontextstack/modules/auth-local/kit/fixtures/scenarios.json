@@ -1,0 +1,10 @@
+{
+  "data": "synthetic-only",
+  "cases": [
+    "csrf",
+    "idle-expiry",
+    "role-revoke",
+    "one-time-bootstrap",
+    "cross-user"
+  ]
+}

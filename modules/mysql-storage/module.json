@@ -2,38 +2,150 @@
   "schemaVersion": "1.0.0",
   "name": "mysql-storage",
   "displayName": "MySQL Storage Foundation",
-  "version": "0.4.0",
-  "description": "Ordered migration, target-readiness, ownership, backup, recovery, and temporary-bridge planning for MySQL storage.",
+  "version": "0.5.0",
+  "description": "Add MySQL storage and immutable migrations with source-traced implementation, verification and recovery.",
   "category": "storage",
-  "maturity": [2, 3],
-  "projectTypes": ["web-app", "service"],
-  "coreCompatibility": ">=0.4.0 <0.6.0",
+  "maturity": [
+    2,
+    3
+  ],
+  "projectTypes": [
+    "web-app",
+    "service"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/mysql-storage/v0.4.0",
+    "ref": "module/mysql-storage/v0.5.0",
     "path": "modules/mysql-storage",
-    "integrity": "sha256-6cd6890cd7c217ce9094d99131589e1157b16fc7a2f1dedfd2b3d7e79356ed37"
+    "integrity": "sha256-6118521db7494b4d81b94b7d840350bee177229f53ce7ef14c2d9a438d8a2ffe"
   },
   "dependencies": [],
-  "optionalDependencies": ["node-cpanel@>=0.3.0"],
+  "optionalDependencies": [
+    "node-cpanel@>=0.4.0"
+  ],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/mysql-storage/decision.json",
+      ".kontextstack/modules/mysql-storage/evidence.json",
+      ".kontextstack/modules/mysql-storage/implementation.json",
+      ".kontextstack/modules/mysql-storage/kit/checks/acceptance.md",
+      ".kontextstack/modules/mysql-storage/kit/checks/migrations.test.mjs",
+      ".kontextstack/modules/mysql-storage/kit/fixtures/scenarios.json",
+      ".kontextstack/modules/mysql-storage/kit/snippets/adaptation.md",
+      ".kontextstack/modules/mysql-storage/kit/templates/environment-names.json",
+      ".kontextstack/modules/mysql-storage/kit/templates/migrate-local.mjs",
+      ".kontextstack/modules/mysql-storage/kit/templates/migrations.mjs",
+      ".kontextstack/modules/mysql-storage/kit/templates/migrations/0001_auth_guard.sql.template",
+      ".kontextstack/modules/mysql-storage/kit/templates/migrations/0002_auth_records.sql.template",
+      ".kontextstack/modules/mysql-storage/kit/templates/migrations/manifest.json",
+      ".kontextstack/modules/mysql-storage/kit/templates/mysql-store.mjs",
       ".kontextstack/modules/mysql-storage/storage.json",
-      "docs/kontextstack/modules/mysql-storage/RUNBOOK.md"
+      "docs/kontextstack/modules/mysql-storage/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/mysql-storage/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/mysql-storage/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/mysql-storage/ROLLBACK.md",
+      "docs/kontextstack/modules/mysql-storage/RUNBOOK.md",
+      "docs/kontextstack/modules/mysql-storage/START_HERE.md",
+      "docs/kontextstack/modules/mysql-storage/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/mysql-storage/decision.json",
+      "source": "files/.kontextstack/modules/mysql-storage/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/evidence.json",
+      "source": "files/.kontextstack/modules/mysql-storage/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/implementation.json",
+      "source": "files/.kontextstack/modules/mysql-storage/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/checks/acceptance.md",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/checks/acceptance.md"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/checks/migrations.test.mjs",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/checks/migrations.test.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/fixtures/scenarios.json",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/fixtures/scenarios.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/snippets/adaptation.md",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/snippets/adaptation.md"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/environment-names.json",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/environment-names.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/migrate-local.mjs",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/migrate-local.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/migrations.mjs",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/migrations.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/migrations/0001_auth_guard.sql.template",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/migrations/0001_auth_guard.sql.template"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/migrations/0002_auth_records.sql.template",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/migrations/0002_auth_records.sql.template"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/migrations/manifest.json",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/migrations/manifest.json"
+    },
+    {
+      "path": ".kontextstack/modules/mysql-storage/kit/templates/mysql-store.mjs",
+      "source": "files/.kontextstack/modules/mysql-storage/kit/templates/mysql-store.mjs"
+    },
     {
       "path": ".kontextstack/modules/mysql-storage/storage.json",
       "source": "files/.kontextstack/modules/mysql-storage/storage.json"
     },
     {
+      "path": "docs/kontextstack/modules/mysql-storage/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/mysql-storage/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/mysql-storage/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +162,14 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.4.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/mysql-storage/implementation.json",
+    "guide": "guide.json"
   }
 }

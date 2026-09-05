@@ -1,0 +1,11 @@
+{
+  "data": "synthetic-only",
+  "cases": [
+    "ordered-apply",
+    "repeat",
+    "changed-history",
+    "failed-ddl",
+    "recovery",
+    "pool-restart"
+  ]
+}

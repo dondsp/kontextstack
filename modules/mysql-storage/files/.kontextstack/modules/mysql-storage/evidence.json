@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "policy": "non-secret-only",
+  "states": {
+    "installed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "implemented": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "locally-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "provider-configured": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "deployed": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "migrated": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "production-verified": {
+      "status": "not-recorded",
+      "reference": null
+    },
+    "owner-accepted": {
+      "status": "not-recorded",
+      "reference": null
+    }
+  },
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/07_MYSQL_AND_MIGRATIONS.md",
+      "integrity": "sha256-5375f09df0adb745bcce71bee9053726fe302907914603371549a242ad621e75",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/src/server/auth-storage-mysql/index.js",
+      "integrity": "sha256-e28840369c99b0408cd7c02fa11d63b4543bb555e65bbb0a4c5fce02d526cbc8",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/scripts/auth-storage-mysql-migrate-local.cjs",
+      "integrity": "sha256-caec86891ede45e4fbf95565746e5b3f40e380c2099da893883fce3f2e3f73f0",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/docs/database/auth-storage-mysql-migration.sql.template",
+      "integrity": "sha256-5d3ff6c4857465b572c88b879dbf3e5f8328baf0834af8a2bd97f105d919df3e",
+      "state": "working-tree"
+    }
+  ]
+}

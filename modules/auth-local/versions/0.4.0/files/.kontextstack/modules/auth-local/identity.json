@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "auth-local",
+  "moduleVersion": "0.4.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "accounts": {
+    "registrationDefault": "closed",
+    "emailVerificationRequired": true,
+    "firstUserBecomesAdmin": false,
+    "credentialValuesStoredHere": false,
+    "modernPasswordHashRequired": true
+  },
+  "sessions": {
+    "serverSide": true,
+    "secureCookieInProduction": true,
+    "httpOnlyCookie": true,
+    "sameSitePolicy": "record-reviewed-policy",
+    "rotationRequired": true,
+    "revocationRequired": true
+  },
+  "authorization": {
+    "denyByDefault": true,
+    "roles": [],
+    "privilegedActionsAudited": true,
+    "csrfProtectionRequired": true
+  },
+  "recovery": {
+    "supportOwnerNamed": false,
+    "enumerationSafe": true,
+    "replaySafe": true,
+    "emergencyRevocationDocumented": false
+  },
+  "gates": [
+    "threat-boundaries-reviewed",
+    "storage-module-installed",
+    "authorization-matrix-approved",
+    "security-tests-pass",
+    "recovery-procedure-tested",
+    "human-enables-production-auth"
+  ]
+}

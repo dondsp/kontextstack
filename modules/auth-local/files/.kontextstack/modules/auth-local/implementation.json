@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "auth-local",
+    "version": "0.5.0"
+  },
+  "requires": [],
+  "optional": [
+    "mysql-storage@>=0.5.0",
+    "node-cpanel@>=0.4.0"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/08_AUTHENTICATION_AND_AUTHORIZATION.md",
+      "integrity": "sha256-81a3de75e48a7e05d8675d41d74aefba030629f43d6f652608983f63ce028726",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-provider-local/files/src/server/auth-provider-local/index.js",
+      "integrity": "sha256-f36eeb24b06ed444086ff3d9dffd43c2aa58e5c3dfc04a49f8bbf8571d564d7b",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "evidence-0",
+      "prompt": "Inspect protected actions, account lifecycle and registration policy. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-1",
+      "prompt": "Inspect durable session store, idle/absolute expiry and revocation. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-2",
+      "prompt": "Inspect origin/proxy boundary, abuse limits and first-admin/recovery owners. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "storage",
+      "question": "Which storage mode is approved?",
+      "options": [
+        "mysql-production",
+        "memory-local-test-only"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "registration",
+      "question": "May unauthenticated visitors register?",
+      "options": [
+        "closed",
+        "open"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "authorization",
+      "question": "Which server authorization rules apply?",
+      "options": [
+        "deny-by-default-self-and-admin",
+        "review-existing-policy"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "adapt-0",
+      "projectPath": "checks/acceptance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/checks/acceptance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-1",
+      "projectPath": "checks/security.test.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/checks/security.test.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-2",
+      "projectPath": "fixtures/memory-store.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/fixtures/memory-store.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-3",
+      "projectPath": "fixtures/scenarios.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/fixtures/scenarios.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-4",
+      "projectPath": "snippets/adaptation.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/snippets/adaptation.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-5",
+      "projectPath": "templates/bootstrap.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/templates/bootstrap.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-6",
+      "projectPath": "templates/environment-names.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/templates/environment-names.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-7",
+      "projectPath": "templates/http-auth.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/templates/http-auth.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-8",
+      "projectPath": "templates/local-auth.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/auth-local/kit/templates/local-auth.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "configure-runtime",
+      "target": "<APPROVED_APPLICATION>",
+      "effect": "configure runtime",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "configure-runtime",
+      "verification": "Test closed/open registration, generic failed login, throttling, cookie flags, origin/CSRF, session rotation/idle/absolute expiry/logout replay, role/status/password revocation, cross-user denial and concurrent one-time bootstrap. Run the same service with a real disposable MySQL adapter.",
+      "rollback": "Keep the durable store and audit history during code rollback. Verify old code remains compatible with current hashes/schema. Revoke affected sessions via user version changes after approved identity recovery; restore does not prove logout tokens remain invalid. Rehearse session invalidation after restoring an older database. Never reopen bootstrap or convert the store to memory to make production start."
+    },
+    {
+      "id": "bootstrap-administrator",
+      "target": "<APPROVED_APPLICATION>",
+      "effect": "bootstrap administrator",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "bootstrap-administrator",
+      "verification": "Test closed/open registration, generic failed login, throttling, cookie flags, origin/CSRF, session rotation/idle/absolute expiry/logout replay, role/status/password revocation, cross-user denial and concurrent one-time bootstrap. Run the same service with a real disposable MySQL adapter.",
+      "rollback": "Keep the durable store and audit history during code rollback. Verify old code remains compatible with current hashes/schema. Revoke affected sessions via user version changes after approved identity recovery; restore does not prove logout tokens remain invalid. Rehearse session invalidation after restoring an older database. Never reopen bootstrap or convert the store to memory to make production start."
+    },
+    {
+      "id": "revoke-sessions",
+      "target": "<APPROVED_APPLICATION>",
+      "effect": "revoke sessions",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "revoke-sessions",
+      "verification": "Test closed/open registration, generic failed login, throttling, cookie flags, origin/CSRF, session rotation/idle/absolute expiry/logout replay, role/status/password revocation, cross-user denial and concurrent one-time bootstrap. Run the same service with a real disposable MySQL adapter.",
+      "rollback": "Keep the durable store and audit history during code rollback. Verify old code remains compatible with current hashes/schema. Revoke affected sessions via user version changes after approved identity recovery; restore does not prove logout tokens remain invalid. Rehearse session invalidation after restoring an older database. Never reopen bootstrap or convert the store to memory to make production start."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "configure-runtime",
+      "scope": "Exact configure-runtime target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "bootstrap-administrator",
+      "scope": "Exact bootstrap-administrator target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "revoke-sessions",
+      "scope": "Exact revoke-sessions target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "local",
+      "kind": "command",
+      "instruction": "Test closed/open registration, generic failed login, throttling, cookie flags, origin/CSRF, session rotation/idle/absolute expiry/logout replay, role/status/password revocation, cross-user denial and concurrent one-time bootstrap. Run the same service with a real disposable MySQL adapter.",
+      "expected": "Positive and adversarial local cases pass with synthetic data.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Inspect the application environment and proxy topology without reading secret values. Record exact application, HTTPS origin, durable storage and session/cookie policy. Obtain approval before configuration/restart. The private bootstrap runs only after approved schema verification, accepts identity/password through hidden interactive prompts, and requires the exact create-first-administrator confirmation. No password in arguments, environment variables, chat, Git or CI. Verify normal-user and administrator journeys privately. Revocation and recovery require explicit target/account scope; retain only synthetic or redacted evidence.",
+      "expected": "Approved target and representative hosted journey verified; owner separately accepts.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "recovery",
+      "layer": "identity",
+      "instruction": "Keep the durable store and audit history during code rollback. Verify old code remains compatible with current hashes/schema. Revoke affected sessions via user version changes after approved identity recovery; restore does not prove logout tokens remain invalid. Rehearse session invalidation after restoring an older database. Never reopen bootstrap or convert the store to memory to make production start.",
+      "verification": "Repeat the pre-change baseline and authorization checks; retain a non-secret recovery reference.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Test closed/open registration, generic failed login, throttling, cookie flags, origin/CSRF, session rotation/idle/absolute expiry/logout replay, role/status/password revocation, cross-user denial and concurrent one-time bootstrap. Run the same service with a real disposable MySQL adapter.",
+      "evidence": [
+        "local"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts hosted verification, data/identity safety and recovery readiness.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

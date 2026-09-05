@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "static-site-cpanel",
+  "moduleVersion": "0.2.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "artifact": {
+    "buildCommand": "record-project-command",
+    "outputDirectory": "record-relative-directory",
+    "contentDigest": "record-after-build",
+    "sourceRevision": "record-before-upload"
+  },
+  "delivery": {
+    "targetHostname": "record-approved-hostname",
+    "scopedRemoteDirectory": "record-approved-directory",
+    "deleteExtraneousFiles": false,
+    "routingFileReviewed": false
+  },
+  "gates": [
+    "tests-pass",
+    "artifact-inspected",
+    "target-directory-confirmed",
+    "backup-confirmed",
+    "human-approves-upload",
+    "production-smoke-pass",
+    "owner-accepts-release"
+  ],
+  "rollback": {
+    "previousArtifactRecorded": false,
+    "restoreProcedureReviewed": false,
+    "operatorNamed": false
+  }
+}

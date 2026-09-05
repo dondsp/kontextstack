@@ -14,10 +14,11 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.6.0-alpha.1` evaluation prerelease, available through npm's `next`
-> channel. It adds validated implementation kits for domain, static hosting and
-> Node runtime work. MySQL, authentication, deployment and operations modules
-> still provide planning records. Stable npm `latest` remains `0.5.1`.
+> Status: this branch prepares the unpublished `0.6.0-alpha.2` candidate with
+> implementation kits for all eight modules. Local composition checks and the
+> ContextKraft guide candidate are implemented; publication and live guide
+> activation still require owner approval. The published evaluation version
+> is `0.6.0-alpha.1` on npm's `next` channel; stable `latest` remains `0.5.1`.
 > KontextStack does not perform production, provider, database, deployment, Git,
 > or account changes.
 

@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "name": "domain-cpanel",
   "displayName": "Connect a domain or subdomain",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Source-traced hostname, DNS, certificate, routing and recovery implementation kit.",
   "category": "hosting",
   "maturity": [
@@ -16,12 +16,12 @@
     "service",
     "unknown"
   ],
-  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/domain-cpanel/v0.3.0",
+    "ref": "module/domain-cpanel/v0.3.1",
     "path": "modules/domain-cpanel",
-    "integrity": "sha256-a853be515102e76a4a43ad01c39eecf4853a3fd60b405040dceae841f2edf2d2"
+    "integrity": "sha256-41c2327930344c9a635b4b4b56f8ec59b349a99eb8a3084df0b765898d1534ca"
   },
   "dependencies": [],
   "optionalDependencies": [],
@@ -139,7 +139,8 @@
   ],
   "upgrade": {
     "from": [
-      "0.2.0"
+      "0.2.0",
+      "0.3.0"
     ],
     "strategy": "preview-required"
   },

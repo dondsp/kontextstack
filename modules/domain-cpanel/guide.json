@@ -2,11 +2,11 @@
   "schemaVersion": "kontextstack-guide/v1",
   "module": {
     "name": "domain-cpanel",
-    "version": "0.3.0"
+    "version": "0.3.1"
   },
   "package": {
     "name": "kontextstack",
-    "version": "0.6.0-alpha.1"
+    "version": "0.6.0-alpha.2"
   },
   "title": "Connect a domain or subdomain",
   "summary": "Source-traced hostname, DNS, certificate, routing and recovery implementation kit.",
@@ -187,7 +187,7 @@
     {
       "id": "inspect",
       "stage": "install",
-      "text": "kontextstack modules inspect --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules inspect --module domain-cpanel --version 0.3.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -196,7 +196,7 @@
     {
       "id": "preview",
       "stage": "install",
-      "text": "kontextstack modules preview --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "text": "kontextstack modules preview --module domain-cpanel --version 0.3.1 --project <PROJECT_PATH>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>"
@@ -205,7 +205,7 @@
     {
       "id": "apply",
       "stage": "install",
-      "text": "kontextstack modules apply --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
+      "text": "kontextstack modules apply --module domain-cpanel --version 0.3.1 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
       "execution": "copy-only",
       "placeholders": [
         "<PROJECT_PATH>",
@@ -258,8 +258,8 @@
   },
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "commit": "9146d8ee01153754eb7aa4eff8180e10bcd48425",
-    "implementationIntegrity": "sha256-8534aaaad4df93ed614304d1cf191056266f2c0fd9f5595496d4436df283928e",
-    "integrity": "sha256-183772c5aa25c76e153c42a7a0a6deb08a42dde3ae0358d4d723fbe76cc19c08"
+    "commit": "0a62317c176de98193f67a4c1df5267db020525b",
+    "implementationIntegrity": "sha256-06ddf36e199c871bc59991e0f90ff1d39ff5ff671ccd43672ab7c2911d248c7a",
+    "integrity": "sha256-c1c57de8e289489c1323d1e6b8bd2d080b5676a5710644260aaae38448384648"
   }
 }

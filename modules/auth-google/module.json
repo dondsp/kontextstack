@@ -2,38 +2,119 @@
   "schemaVersion": "1.0.0",
   "name": "auth-google",
   "displayName": "Google Authentication Adapter Plan",
-  "version": "0.4.0",
-  "description": "Optional Google identity, consent, account-linking, callback, scope, storage, and revocation planning.",
+  "version": "0.5.0",
+  "description": "Add optional Google identity with source-traced implementation, verification and recovery.",
   "category": "identity",
-  "maturity": [2, 3],
-  "projectTypes": ["web-app"],
-  "coreCompatibility": ">=0.4.0 <0.6.0",
+  "maturity": [
+    2,
+    3
+  ],
+  "projectTypes": [
+    "web-app"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/auth-google/v0.4.0",
+    "ref": "module/auth-google/v0.5.0",
     "path": "modules/auth-google",
-    "integrity": "sha256-4566b6567fe98d1235efcd4b1324ee9ed4db65b3ebec8fbae71b2a01d02767ed"
+    "integrity": "sha256-5a7904f13a230996d193f66ca86e5f7ee49342f0d43d0031b65c7b2c676464a7"
   },
-  "dependencies": ["auth-local@>=0.4.0"],
+  "dependencies": [
+    "auth-local@>=0.5.0"
+  ],
   "optionalDependencies": [],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/auth-google/decision.json",
+      ".kontextstack/modules/auth-google/evidence.json",
+      ".kontextstack/modules/auth-google/implementation.json",
+      ".kontextstack/modules/auth-google/kit/checks/acceptance.md",
+      ".kontextstack/modules/auth-google/kit/fixtures/scenarios.json",
+      ".kontextstack/modules/auth-google/kit/snippets/adaptation.md",
+      ".kontextstack/modules/auth-google/kit/templates/environment-names.json",
+      ".kontextstack/modules/auth-google/kit/templates/google-auth.mjs",
       ".kontextstack/modules/auth-google/provider.json",
-      "docs/kontextstack/modules/auth-google/RUNBOOK.md"
+      "docs/kontextstack/modules/auth-google/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/auth-google/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/auth-google/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/auth-google/ROLLBACK.md",
+      "docs/kontextstack/modules/auth-google/RUNBOOK.md",
+      "docs/kontextstack/modules/auth-google/START_HERE.md",
+      "docs/kontextstack/modules/auth-google/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/auth-google/decision.json",
+      "source": "files/.kontextstack/modules/auth-google/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/evidence.json",
+      "source": "files/.kontextstack/modules/auth-google/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/implementation.json",
+      "source": "files/.kontextstack/modules/auth-google/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/kit/checks/acceptance.md",
+      "source": "files/.kontextstack/modules/auth-google/kit/checks/acceptance.md"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/kit/fixtures/scenarios.json",
+      "source": "files/.kontextstack/modules/auth-google/kit/fixtures/scenarios.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/kit/snippets/adaptation.md",
+      "source": "files/.kontextstack/modules/auth-google/kit/snippets/adaptation.md"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/kit/templates/environment-names.json",
+      "source": "files/.kontextstack/modules/auth-google/kit/templates/environment-names.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-google/kit/templates/google-auth.mjs",
+      "source": "files/.kontextstack/modules/auth-google/kit/templates/google-auth.mjs"
+    },
     {
       "path": ".kontextstack/modules/auth-google/provider.json",
       "source": "files/.kontextstack/modules/auth-google/provider.json"
     },
     {
+      "path": "docs/kontextstack/modules/auth-google/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/auth-google/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-google/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/auth-google/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-google/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/auth-google/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-google/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/auth-google/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/auth-google/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/auth-google/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-google/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/auth-google/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-google/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/auth-google/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +131,14 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.4.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/auth-google/implementation.json",
+    "guide": "guide.json"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "surfaces": [],
+  "fields": [
+    "surface",
+    "owner",
+    "signal",
+    "threshold",
+    "observation-window",
+    "redacted-log-reference",
+    "retention",
+    "deletion-owner",
+    "review-date"
+  ],
+  "logPayloadsStored": false
+}

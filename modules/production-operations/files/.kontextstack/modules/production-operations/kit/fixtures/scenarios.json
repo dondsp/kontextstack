@@ -1,0 +1,13 @@
+{
+  "synthetic": true,
+  "cases": [
+    "static-readiness",
+    "runtime-readiness",
+    "mature-data-auth",
+    "missing-restore",
+    "stale-evidence",
+    "partial-file-recovery",
+    "provider-pause",
+    "resume-without-invented-approval"
+  ]
+}

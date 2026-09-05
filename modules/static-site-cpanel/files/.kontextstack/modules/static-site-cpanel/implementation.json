@@ -2,7 +2,7 @@
   "schemaVersion": "kontextstack-implementation/v1",
   "module": {
     "name": "static-site-cpanel",
-    "version": "0.3.0"
+    "version": "0.3.1"
   },
   "requires": [],
   "optional": [

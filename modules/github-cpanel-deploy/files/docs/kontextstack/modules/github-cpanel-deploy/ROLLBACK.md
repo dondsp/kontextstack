@@ -1,0 +1,3 @@
+# Recovery
+
+Stop after a partial upload and inspect both targets. The transfer never deletes remote files or provider-managed paths. Restore the reviewed previous artifact through the same exact approval and scoped identities, then inspect additional files left by a newer release; any removal requires a separate exact file list and approval. Prefer a reviewed revert or forward fix compatible with the current schema and provider contract. Verify restart, expected live revision and a representative journey. File rollback does not restore data, undo migrations or recover identities. Credential changes affect one scoped identity at a time and require separate authorization.

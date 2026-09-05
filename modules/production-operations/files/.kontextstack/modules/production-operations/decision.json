@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "status": "unreviewed",
+  "choices": {
+    "acceptance": null,
+    "recovery": null
+  },
+  "authority": "none"
+}

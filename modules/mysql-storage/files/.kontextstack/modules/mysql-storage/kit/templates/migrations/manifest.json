@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "migrations": [
+    {
+      "id": "0001_auth_guard",
+      "file": "0001_auth_guard.sql.template",
+      "checksum": "4e35597dbd46471255406528b7b80412e80d5a2acefa07182e47efc475b92398"
+    },
+    {
+      "id": "0002_auth_records",
+      "file": "0002_auth_records.sql.template",
+      "checksum": "49f1a3400869afab89cf7e97a275ad631949d40358e855c23fd734ede59b1445"
+    }
+  ]
+}

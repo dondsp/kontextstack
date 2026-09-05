@@ -8,6 +8,7 @@ import { inspectProject } from "../inspection/inspect-project.js";
 import { loadMetadata } from "../core/metadata.js";
 import { DEFAULT_MODULE_CACHE } from "./cache.js";
 import { resolveModule } from "./registry.js";
+import { readModuleSelection } from './selection.js';
 import {
   MODULE_LOCK_PATH,
   fileOwnership,
@@ -68,6 +69,7 @@ function moduleSummary(bundle, coreVersion, projectType = null) {
     dependencies: manifest.dependencies,
     optionalDependencies: manifest.optionalDependencies,
     conflicts: manifest.conflicts,
+    selection: manifest.selection ?? null,
     implementationKit: bundle.contracts ? {
       schemaVersion: bundle.contracts.implementation.schemaVersion,
       path: manifest.contracts.implementation,
@@ -128,6 +130,8 @@ export async function createModulePlan({ projectPath, name, version = null, cach
   const lock = await loadModuleLock(snapshot.root);
   const manifest = bundle.manifest;
   const conflicts = [];
+  const selection = await readModuleSelection(snapshot.root, manifest);
+  if (selection && !selection.valid) conflicts.push(`Missing or invalid owner selection: ${selection.path}. Inspect the module's selection choices.`);
 
   if (!bundle.portable) conflicts.push("This bundled module uses a specialized flow; use the handoff preview/apply commands.");
   if (!snapshot.git.repository) conflicts.push("Target is not a Git repository.");
@@ -145,6 +149,15 @@ export async function createModulePlan({ projectPath, name, version = null, cach
       const range = dependency.slice(dependencyName(dependency).length + 1);
       const record = installed.find((entry) => entry.name === dependencyName(dependency));
       if (range && !satisfiesRange(record.version, range)) conflicts.push(`Required module version is incompatible: ${dependency}.`);
+    }
+  }
+  // An optional capability may be absent. If selected, its installed version
+  // must still satisfy the kit's adapter contract.
+  for (const dependency of manifest.optionalDependencies) {
+    const record = installed.find((entry) => entry.name === dependencyName(dependency));
+    const range = dependency.slice(dependencyName(dependency).length + 1);
+    if (record && range && !satisfiesRange(record.version, range)) {
+      conflicts.push(`Optional module version is incompatible: ${dependency}.`);
     }
   }
   for (const conflictName of manifest.conflicts) {
@@ -183,6 +196,7 @@ export async function createModulePlan({ projectPath, name, version = null, cach
     },
     core: { version: metadata.version, commit: metadata.commit },
     currentLock: lock.integrity,
+    ...(selection ? { selectionIntegrity: selection.integrity } : {}),
     module: {
       name: manifest.name,
       version: manifest.version,
@@ -231,6 +245,7 @@ export async function createModulePlan({ projectPath, name, version = null, cach
     previewId,
     writePerformed: false,
     status: conflicts.length ? "blocked" : "ready",
+    selection,
     project: {
       root: snapshot.root,
       repository: snapshot.git.remoteRepository,
