@@ -26,6 +26,33 @@ to support its public visibility and choose **Watch → Custom → Releases** to
 receive GitHub release notifications. A star alone does not guarantee update
 notifications.
 
+## Updates and releases
+
+Git tags identify immutable KontextStack versions and GitHub releases announce
+the approved changes. Clone-first users can inspect their current identity and
+the safe update sequence without changing files:
+
+```bash
+node bin/kontextstack.js about
+node bin/kontextstack.js update guide --mode simple
+git fetch origin --tags
+git log HEAD..origin/main --oneline
+```
+
+After reviewing the changes and confirming the worktree is clean, update only
+with a fast-forward and rerun verification:
+
+```bash
+git pull --ff-only origin main
+npm ci --ignore-scripts
+npm test
+node bin/kontextstack.js doctor
+```
+
+Users who need a fixed teaching or production-review baseline should check out
+an exact published tag instead of relying on a moving branch. KontextStack
+never updates itself or a target project silently.
+
 ## Why KontextStack
 
 - The user's project repository remains the source of truth.
