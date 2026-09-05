@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "domain-cpanel",
+  "displayName": "Connect a domain or subdomain",
+  "version": "0.3.0",
+  "description": "Source-traced hostname, DNS, certificate, routing and recovery implementation kit.",
+  "category": "hosting",
+  "maturity": [
+    1,
+    2,
+    3
+  ],
+  "projectTypes": [
+    "website",
+    "web-app",
+    "service",
+    "unknown"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/domain-cpanel/v0.3.0",
+    "path": "modules/domain-cpanel",
+    "integrity": "sha256-a853be515102e76a4a43ad01c39eecf4853a3fd60b405040dceae841f2edf2d2"
+  },
+  "dependencies": [],
+  "optionalDependencies": [],
+  "conflicts": [],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/domain-cpanel/decision.json",
+      ".kontextstack/modules/domain-cpanel/evidence.json",
+      ".kontextstack/modules/domain-cpanel/implementation.json",
+      ".kontextstack/modules/domain-cpanel/kit/checks/dns-tls-routing.md",
+      ".kontextstack/modules/domain-cpanel/kit/fixtures/request-matrix.json",
+      ".kontextstack/modules/domain-cpanel/kit/snippets/canonical.htaccess",
+      ".kontextstack/modules/domain-cpanel/kit/templates/certificate-and-roots.md",
+      ".kontextstack/modules/domain-cpanel/kit/templates/dns-change.json",
+      ".kontextstack/modules/domain-cpanel/kit/templates/hostname-matrix.json",
+      ".kontextstack/modules/domain-cpanel/plan.json",
+      "docs/kontextstack/modules/domain-cpanel/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/domain-cpanel/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/domain-cpanel/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/domain-cpanel/ROLLBACK.md",
+      "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md",
+      "docs/kontextstack/modules/domain-cpanel/START_HERE.md",
+      "docs/kontextstack/modules/domain-cpanel/VERIFICATION.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/domain-cpanel/decision.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/evidence.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/implementation.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/checks/dns-tls-routing.md",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/checks/dns-tls-routing.md"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/fixtures/request-matrix.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/fixtures/request-matrix.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/snippets/canonical.htaccess",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/snippets/canonical.htaccess"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/templates/certificate-and-roots.md",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/templates/certificate-and-roots.md"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/templates/dns-change.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/templates/dns-change.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/kit/templates/hostname-matrix.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/kit/templates/hostname-matrix.json"
+    },
+    {
+      "path": ".kontextstack/modules/domain-cpanel/plan.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/plan.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/ROLLBACK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/VERIFICATION.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "domain-plan-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/domain-cpanel/plan.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [
+      "0.2.0"
+    ],
+    "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/domain-cpanel/implementation.json",
+    "guide": "guide.json"
+  }
+}

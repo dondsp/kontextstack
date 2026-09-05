@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "mysql-storage",
+    "version": "0.5.0"
+  },
+  "requires": [],
+  "optional": [
+    "node-cpanel@>=0.4.0"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/07_MYSQL_AND_MIGRATIONS.md",
+      "integrity": "sha256-5375f09df0adb745bcce71bee9053726fe302907914603371549a242ad621e75",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/src/server/auth-storage-mysql/index.js",
+      "integrity": "sha256-e28840369c99b0408cd7c02fa11d63b4543bb555e65bbb0a4c5fce02d526cbc8",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/scripts/auth-storage-mysql-migrate-local.cjs",
+      "integrity": "sha256-caec86891ede45e4fbf95565746e5b3f40e380c2099da893883fce3f2e3f73f0",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/foundations/auth-storage-mysql/files/docs/database/auth-storage-mysql-migration.sql.template",
+      "integrity": "sha256-5d3ff6c4857465b572c88b879dbf3e5f8328baf0834af8a2bd97f105d919df3e",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "evidence-0",
+      "prompt": "Inspect durable data ownership and sensitivity/retention/deletion. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-1",
+      "prompt": "Inspect engine version, schema and immutable migration history. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    },
+    {
+      "id": "evidence-2",
+      "prompt": "Inspect runtime versus migration privileges, backup and restore ownership. Record confirmed facts, gaps and invalidation conditions without values.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "storage",
+      "question": "What durable data selection is approved?",
+      "options": [
+        "mysql",
+        "not-required"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "recovery",
+      "question": "Which recovery has been rehearsed?",
+      "options": [
+        "restore",
+        "forward-fix",
+        "unverified-block-production"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "adapt-0",
+      "projectPath": "checks/acceptance.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/checks/acceptance.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-1",
+      "projectPath": "checks/migrations.test.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/checks/migrations.test.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-2",
+      "projectPath": "fixtures/scenarios.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/fixtures/scenarios.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-3",
+      "projectPath": "snippets/adaptation.md",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/snippets/adaptation.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-4",
+      "projectPath": "templates/environment-names.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/environment-names.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-5",
+      "projectPath": "templates/migrate-local.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/migrate-local.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-6",
+      "projectPath": "templates/migrations.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/migrations.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-7",
+      "projectPath": "templates/migrations/0001_auth_guard.sql.template",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/migrations/0001_auth_guard.sql.template"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-8",
+      "projectPath": "templates/migrations/0002_auth_records.sql.template",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/migrations/0002_auth_records.sql.template"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-9",
+      "projectPath": "templates/migrations/manifest.json",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/migrations/manifest.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "adapt-10",
+      "projectPath": "templates/mysql-store.mjs",
+      "description": "Inspect and adapt this reference within the actual project.",
+      "templates": [
+        ".kontextstack/modules/mysql-storage/kit/templates/mysql-store.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "provision-database",
+      "target": "<APPROVED_DATABASE>",
+      "effect": "provision database",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "provision-database",
+      "verification": "Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.",
+      "rollback": "DDL may commit before a later failure. A running or failed ledger blocks retry. Stop, inspect the actual schema privately, and record restore or forward-fix with the exact failed ID/checksum. Do not delete ledger rows or mark them applied to bypass the block. For disposable fixtures recreate the isolated database. For production approve and rehearse restore, or independently verify completed DDL before a reviewed ledger repair; preserve a non-secret recovery record. File rollback does not roll back the database."
+    },
+    {
+      "id": "production-migration",
+      "target": "<APPROVED_DATABASE>",
+      "effect": "production migration",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "production-migration",
+      "verification": "Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.",
+      "rollback": "DDL may commit before a later failure. A running or failed ledger blocks retry. Stop, inspect the actual schema privately, and record restore or forward-fix with the exact failed ID/checksum. Do not delete ledger rows or mark them applied to bypass the block. For disposable fixtures recreate the isolated database. For production approve and rehearse restore, or independently verify completed DDL before a reviewed ledger repair; preserve a non-secret recovery record. File rollback does not roll back the database."
+    },
+    {
+      "id": "restore",
+      "target": "<APPROVED_DATABASE>",
+      "effect": "restore",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "restore",
+      "verification": "Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.",
+      "rollback": "DDL may commit before a later failure. A running or failed ledger blocks retry. Stop, inspect the actual schema privately, and record restore or forward-fix with the exact failed ID/checksum. Do not delete ledger rows or mark them applied to bypass the block. For disposable fixtures recreate the isolated database. For production approve and rehearse restore, or independently verify completed DDL before a reviewed ledger repair; preserve a non-secret recovery record. File rollback does not roll back the database."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "provision-database",
+      "scope": "Exact provision-database target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "production-migration",
+      "scope": "Exact production-migration target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "restore",
+      "scope": "Exact restore target, operator, intended effect and recovery.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "local",
+      "kind": "command",
+      "instruction": "Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.",
+      "expected": "Positive and adversarial local cases pass with synthetic data.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Inspect the actual cPanel database controls; labels vary by host. Record the exact prefixed database and service-user names privately. Show target, scope and privileges and obtain approval before creating either. Use separate database-scoped runtime DML and migration DDL identities where supported. Store values only in the provider environment/password manager. Before a production migration record backup reference, successful restore rehearsal (or explicit empty-database waiver), exact manifest checksums, schema compatibility, operator and maintenance window. Obtain separate migration approval. Use the project-reviewed production procedure; do not weaken the local helper or run migrations in deployment CI. Verify schema and a synthetic persistence journey after migration. Restores require their own target and approval.",
+      "expected": "Approved target and representative hosted journey verified; owner separately accepts.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "recovery",
+      "layer": "database",
+      "instruction": "DDL may commit before a later failure. A running or failed ledger blocks retry. Stop, inspect the actual schema privately, and record restore or forward-fix with the exact failed ID/checksum. Do not delete ledger rows or mark them applied to bypass the block. For disposable fixtures recreate the isolated database. For production approve and rehearse restore, or independently verify completed DDL before a reviewed ledger repair; preserve a non-secret recovery record. File rollback does not roll back the database.",
+      "verification": "Repeat the pre-change baseline and authorization checks; retain a non-secret recovery reference.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Run the no-connection manifest check, migrate a disposable local database twice, reject changed/failed history, and prove persistence across pool restart. Rehearse restore before production.",
+      "evidence": [
+        "local"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts hosted verification, data/identity safety and recovery readiness.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

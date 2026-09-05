@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "static-site-cpanel",
+    "version": "0.3.0"
+  },
+  "requires": [],
+  "optional": [
+    "domain-cpanel@>=0.2.0"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/04_REDIRECTS_HTTPS_AND_ROUTING.md",
+      "integrity": "sha256-43eb9ab5ee5e8dbf02713ae8fdb3c3d59b620780f255807caf7387c43cf92550",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/05_STATIC_SITE_DEPLOYMENT.md",
+      "integrity": "sha256-60aae87620f9d6a8f95741a3087899d9a7b94cda65391294e86f4bfb95b0d233",
+      "state": "working-tree"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "build",
+      "prompt": "Inspect canonical build command, lockfile, output and source revision.",
+      "required": true
+    },
+    {
+      "id": "routes",
+      "prompt": "Inspect SPA/multi-page routes, base path, metadata and assets.",
+      "required": true
+    },
+    {
+      "id": "forms",
+      "prompt": "Identify features requiring a separately approved backend.",
+      "required": true
+    },
+    {
+      "id": "target",
+      "prompt": "Inspect document root, preserved paths, current artifact and recovery owner.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "route-model",
+      "question": "Which route model is proven?",
+      "options": [
+        "multi-page",
+        "domain-root-spa"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "form-model",
+      "question": "Which form model is approved?",
+      "options": [
+        "none",
+        "mailto",
+        "approved-provider",
+        "approved-backend"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "policy",
+      "projectPath": "docs/releases/STATIC_ARTIFACT_POLICY.json",
+      "description": "Review exact public-file allowlist.",
+      "templates": [
+        ".kontextstack/modules/static-site-cpanel/kit/templates/artifact-policy.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "release",
+      "projectPath": "docs/releases/STATIC_RELEASE.json",
+      "description": "Record source/content approval and recovery evidence.",
+      "templates": [
+        ".kontextstack/modules/static-site-cpanel/kit/templates/release-record.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "routing",
+      "projectPath": "public/.htaccess",
+      "description": "Adapt routing for observed static application.",
+      "templates": [
+        ".kontextstack/modules/static-site-cpanel/kit/snippets/spa.htaccess",
+        ".kontextstack/modules/static-site-cpanel/kit/snippets/https.htaccess"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "artifact-check",
+      "projectPath": "scripts/check-static-artifact.mjs",
+      "description": "Adapt reviewed read-only artifact checker.",
+      "templates": [
+        ".kontextstack/modules/static-site-cpanel/kit/checks/artifact.mjs"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "publication",
+      "target": "<APPROVED_DOCUMENT_ROOT>",
+      "effect": "Upload/extract approved public artifact and scoped cleanup.",
+      "verification": "Hosted routes, assets and hashes match the release.",
+      "rollback": "Restore prior public artifact and remove only authorized new files.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "publication"
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "publication",
+      "scope": "Upload/extract only the approved artifact at the approved document root.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "artifact",
+      "kind": "integrity",
+      "instruction": "Run reviewed artifact.mjs against local output and exact policy.",
+      "expected": "Only approved paths/hashes and no detected unsafe content.",
+      "authority": "local-review"
+    },
+    {
+      "id": "routes",
+      "kind": "browser",
+      "instruction": "Check routes, assets/MIME, missing asset, API refusal, metadata, keyboard and forms.",
+      "expected": "Static behavior matches approved model.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Repeat HTTPS/redirect, hashes and representative journey after approved upload.",
+      "expected": "Intended product and protected paths unchanged.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "artifact",
+      "layer": "files",
+      "instruction": "Restore previous approved public file set after explicit recovery approval.",
+      "verification": "Repeat prior route, asset/hash, TLS and form baseline.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Reviewed source and artifact pass local gates.",
+      "evidence": [
+        "artifact",
+        "routes"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "release",
+      "criterion": "Owner accepts hosted evidence and recoverable previous artifact.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

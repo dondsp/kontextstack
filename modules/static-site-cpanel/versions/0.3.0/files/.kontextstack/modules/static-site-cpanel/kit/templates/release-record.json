@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "kontextstack-static-release/v1",
+  "sourceCommit": "<SOURCE_COMMIT>",
+  "contentApproval": "<APPROVAL_REFERENCE>",
+  "buildCommand": "<REVIEWED_BUILD_COMMAND>",
+  "outputDirectory": "<BUILD_OUTPUT>",
+  "documentRoot": "<APPROVED_DOCUMENT_ROOT>",
+  "archiveIntegrity": null,
+  "artifactEvidence": [],
+  "backupOutsidePublicRoot": "<BACKUP_REFERENCE>",
+  "rollbackOwner": "<OWNER_ROLE>",
+  "states": {
+    "built": false,
+    "locallyVerified": false,
+    "providerApproved": false,
+    "uploaded": false,
+    "productionVerified": false,
+    "ownerAccepted": false
+  },
+  "deferredFeatures": []
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "status": "unreviewed",
+  "choices": {
+    "storage": null,
+    "registration": null,
+    "authorization": null
+  },
+  "authority": "none"
+}

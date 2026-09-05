@@ -1,0 +1,10 @@
+{
+  "data": "synthetic-only",
+  "cases": [
+    "signed-token",
+    "wrong-issuer",
+    "replay",
+    "explicit-link",
+    "provider-disable"
+  ]
+}

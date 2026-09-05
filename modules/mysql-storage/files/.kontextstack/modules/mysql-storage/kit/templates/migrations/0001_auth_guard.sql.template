@@ -1,0 +1,1 @@
+CREATE TABLE kit_auth_guard (id INT PRIMARY KEY) ENGINE=InnoDB AS SELECT 1 AS id;

@@ -1,0 +1,5 @@
+# Provider procedure and approval
+
+Inspect the actual Google Cloud/Auth Platform interface; labels change. Confirm project ownership, consent audience/test users, identity-only scopes, privacy notice and exact authorized redirects for each environment. Show the complete intended configuration and obtain owner approval before creating/editing a client or consent settings. Save values privately in the approved application environment. Verify a synthetic permitted account, wrong callback, collision refusal and local fallback before separately approving production enablement. A hosted-domain UI hint is insufficient: the verified hd claim must match. Disable the feature flag first on provider incidents; local authorization and data remain owned by the application.
+
+Stop before the external action. Record target, owner, effect, expected result, verification and rollback. Provider labels require inspection against current official documentation. Paste non-secret results only; remove tokens, passwords, environment values, private keys, customer data and production rows. Review screenshots before retaining them.

@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "name": "node-cpanel",
   "displayName": "Add or adapt a cPanel Node runtime",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Source-traced Node startup, routing, environment, provider and recovery implementation kit.",
   "category": "runtime",
   "maturity": [
@@ -14,12 +14,12 @@
     "web-app",
     "service"
   ],
-  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/node-cpanel/v0.4.0",
+    "ref": "module/node-cpanel/v0.4.1",
     "path": "modules/node-cpanel",
-    "integrity": "sha256-d9ce255b20e461f4d79886dfe859c2e4e0396168a6f35a1fc373cf2f1cbdf840"
+    "integrity": "sha256-894fb85300b0eb244d9ae0b5384394c1fe62d88748d811322178046b3828dc17"
   },
   "dependencies": [],
   "optionalDependencies": [
@@ -155,7 +155,8 @@
   ],
   "upgrade": {
     "from": [
-      "0.3.0"
+      "0.3.0",
+      "0.4.0"
     ],
     "strategy": "preview-required"
   },

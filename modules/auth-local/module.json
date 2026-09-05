@@ -2,38 +2,140 @@
   "schemaVersion": "1.0.0",
   "name": "auth-local",
   "displayName": "Local Authentication Foundation",
-  "version": "0.4.0",
-  "description": "Local account, session, CSRF, RBAC, registration, recovery, audit, and acceptance planning.",
+  "version": "0.5.0",
+  "description": "Add durable local authentication with source-traced implementation, verification and recovery.",
   "category": "identity",
-  "maturity": [2, 3],
-  "projectTypes": ["web-app"],
-  "coreCompatibility": ">=0.4.0 <0.6.0",
+  "maturity": [
+    2,
+    3
+  ],
+  "projectTypes": [
+    "web-app"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/auth-local/v0.4.0",
+    "ref": "module/auth-local/v0.5.0",
     "path": "modules/auth-local",
-    "integrity": "sha256-09b56e3686b7f2f48821ac9c3b54900d32858d52a3e51fea364aabdfeb81ddd8"
+    "integrity": "sha256-e6c8df03ac9c2b5efe919b21f0b5e3cda8a112360335894001e7734d84d2e717"
   },
-  "dependencies": ["mysql-storage@>=0.4.0"],
-  "optionalDependencies": ["node-cpanel@>=0.3.0"],
+  "dependencies": [],
+  "optionalDependencies": [
+    "mysql-storage@>=0.5.0",
+    "node-cpanel@>=0.4.0"
+  ],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/auth-local/decision.json",
+      ".kontextstack/modules/auth-local/evidence.json",
       ".kontextstack/modules/auth-local/identity.json",
-      "docs/kontextstack/modules/auth-local/RUNBOOK.md"
+      ".kontextstack/modules/auth-local/implementation.json",
+      ".kontextstack/modules/auth-local/kit/checks/acceptance.md",
+      ".kontextstack/modules/auth-local/kit/checks/security.test.mjs",
+      ".kontextstack/modules/auth-local/kit/fixtures/memory-store.mjs",
+      ".kontextstack/modules/auth-local/kit/fixtures/scenarios.json",
+      ".kontextstack/modules/auth-local/kit/snippets/adaptation.md",
+      ".kontextstack/modules/auth-local/kit/templates/bootstrap.mjs",
+      ".kontextstack/modules/auth-local/kit/templates/environment-names.json",
+      ".kontextstack/modules/auth-local/kit/templates/http-auth.mjs",
+      ".kontextstack/modules/auth-local/kit/templates/local-auth.mjs",
+      "docs/kontextstack/modules/auth-local/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/auth-local/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/auth-local/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/auth-local/ROLLBACK.md",
+      "docs/kontextstack/modules/auth-local/RUNBOOK.md",
+      "docs/kontextstack/modules/auth-local/START_HERE.md",
+      "docs/kontextstack/modules/auth-local/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/auth-local/decision.json",
+      "source": "files/.kontextstack/modules/auth-local/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/evidence.json",
+      "source": "files/.kontextstack/modules/auth-local/evidence.json"
+    },
     {
       "path": ".kontextstack/modules/auth-local/identity.json",
       "source": "files/.kontextstack/modules/auth-local/identity.json"
     },
     {
+      "path": ".kontextstack/modules/auth-local/implementation.json",
+      "source": "files/.kontextstack/modules/auth-local/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/checks/acceptance.md",
+      "source": "files/.kontextstack/modules/auth-local/kit/checks/acceptance.md"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/checks/security.test.mjs",
+      "source": "files/.kontextstack/modules/auth-local/kit/checks/security.test.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/fixtures/memory-store.mjs",
+      "source": "files/.kontextstack/modules/auth-local/kit/fixtures/memory-store.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/fixtures/scenarios.json",
+      "source": "files/.kontextstack/modules/auth-local/kit/fixtures/scenarios.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/snippets/adaptation.md",
+      "source": "files/.kontextstack/modules/auth-local/kit/snippets/adaptation.md"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/templates/bootstrap.mjs",
+      "source": "files/.kontextstack/modules/auth-local/kit/templates/bootstrap.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/templates/environment-names.json",
+      "source": "files/.kontextstack/modules/auth-local/kit/templates/environment-names.json"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/templates/http-auth.mjs",
+      "source": "files/.kontextstack/modules/auth-local/kit/templates/http-auth.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/auth-local/kit/templates/local-auth.mjs",
+      "source": "files/.kontextstack/modules/auth-local/kit/templates/local-auth.mjs"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/auth-local/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/auth-local/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/auth-local/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/auth-local/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/auth-local/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/auth-local/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/auth-local/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/auth-local/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/auth-local/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +152,14 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.4.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/auth-local/implementation.json",
+    "guide": "guide.json"
   }
 }

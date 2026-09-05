@@ -112,3 +112,14 @@ This is the Phase 0–3 slice of the v0.6 initiative, not its final release.
   project-customized files.
 - Add a read-only, source-traced, fast-forward-only KontextStack core update
   guide.
+# Unreleased — 0.6.0-alpha.2 candidate
+
+- Add source-traced MySQL migration/storage, local authentication and optional
+  Google identity implementation kits with installed checks and provider recovery
+  procedures. Preserve immutable prior planning bundles and require preview.
+- Verify durable identity with a disposable MySQL server and signed synthetic
+  OIDC tokens; add HTTP, concurrency, failure, replay and upgrade checks.
+- Validate installed optional dependency versions and publish new guide patch
+  versions for the candidate, retaining alpha.1 module fingerprints.
+- No npm publication, ContextKraft activation or production operation occurs
+  from these changes. Later implementation phases remain open.

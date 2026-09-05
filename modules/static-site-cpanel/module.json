@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "name": "static-site-cpanel",
   "displayName": "Publish a static site to cPanel",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Source-traced static artifact, routing, provider publication and rollback implementation kit.",
   "category": "delivery",
   "maturity": [
@@ -15,12 +15,12 @@
     "website",
     "web-app"
   ],
-  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+  "coreCompatibility": ">=0.6.0-alpha.2 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/static-site-cpanel/v0.3.0",
+    "ref": "module/static-site-cpanel/v0.3.1",
     "path": "modules/static-site-cpanel",
-    "integrity": "sha256-77bba80ad4ea0bce1be60d70519a07f704cfa0973d75b73f87fa3770e77deb04"
+    "integrity": "sha256-eded61185bff80092c2856e660239dcd6a220057d0eed8e4daafb4285b79b47a"
   },
   "dependencies": [],
   "optionalDependencies": [
@@ -145,7 +145,8 @@
   ],
   "upgrade": {
     "from": [
-      "0.2.0"
+      "0.2.0",
+      "0.3.0"
     ],
     "strategy": "preview-required"
   },

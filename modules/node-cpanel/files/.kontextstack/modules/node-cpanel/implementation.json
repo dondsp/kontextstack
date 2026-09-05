@@ -2,7 +2,7 @@
   "schemaVersion": "kontextstack-implementation/v1",
   "module": {
     "name": "node-cpanel",
-    "version": "0.4.0"
+    "version": "0.4.1"
   },
   "requires": [],
   "optional": [

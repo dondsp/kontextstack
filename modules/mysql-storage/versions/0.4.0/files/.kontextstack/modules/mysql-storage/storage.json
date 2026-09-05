@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "mysql-storage",
+  "moduleVersion": "0.4.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "ownership": {
+    "dataOwner": "record-before-design",
+    "schemaOwner": "record-before-design",
+    "migrationOperator": "record-before-apply",
+    "recoveryOperator": "record-before-apply"
+  },
+  "target": {
+    "environmentClass": "local-test-staging-or-production",
+    "remoteApplyAllowedByThisModule": false,
+    "connectionValuesStoredHere": false,
+    "readinessChecked": false
+  },
+  "migrations": {
+    "directory": "record-project-owned-directory",
+    "ordered": true,
+    "checksumBound": true,
+    "destructiveStepsSeparated": true,
+    "productionPathSeparatedFromDeployment": true
+  },
+  "evidence": {
+    "backupConfirmed": false,
+    "restoreTestRecorded": false,
+    "dryRunRecorded": false,
+    "postMigrationChecksDefined": false
+  },
+  "temporaryBridge": {
+    "used": false,
+    "exitOwner": "required-if-used",
+    "retirementCondition": "required-if-used"
+  },
+  "gates": [
+    "schema-reviewed",
+    "target-readiness-pass",
+    "backup-evidence-approved",
+    "human-approves-migration",
+    "operator-applies-migration",
+    "post-migration-checks-pass",
+    "recovery-path-retained"
+  ]
+}

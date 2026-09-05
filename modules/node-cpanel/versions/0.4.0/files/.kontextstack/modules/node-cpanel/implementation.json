@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "node-cpanel",
+    "version": "0.4.0"
+  },
+  "requires": [],
+  "optional": [
+    "domain-cpanel@>=0.2.0",
+    "static-site-cpanel@>=0.2.0"
+  ],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "docs/adaptive-handoff/06_NODEJS_BACKEND_ON_CPANEL.md",
+      "integrity": "sha256-2aeceaf2f61b06e51a6db0719a1ea6bb135b4c2553657b0ba16e4e0d0f1c7ff8",
+      "state": "working-tree"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/stacks/node-static-mysql-cpanel/files/start.cjs",
+      "integrity": "sha256-511ab84c3d4c7e6185ac113cad468d456edbaeb90c6bb872898ea0b35bfe41e4",
+      "state": "committed"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/stacks/node-static-mysql-cpanel/files/src/server/index.js",
+      "integrity": "sha256-05daf39984faa2dea15c54f237eeaf026695af205309d3f0f7a1ca520a87c645",
+      "state": "committed"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/stacks/node-static-mysql-cpanel/files/test/health.test.js",
+      "integrity": "sha256-960baee59059499ac5b8c87f07d74768f2ec60899bab5eb3ac4831c2559349da",
+      "state": "committed"
+    },
+    {
+      "repository": "https://github.com/dondsp/contextstack",
+      "revision": "9f2a29c4e56c72ef40c21eba58c98b8c6843f31b",
+      "path": "presets/stacks/node-static-mysql-cpanel/files/test/route-security-smoke.test.js",
+      "integrity": "sha256-8659b5e93ef07144652ca22499d53a40c7cccedd266e69fe4a1ab4b285b6c514",
+      "state": "committed"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "runtime",
+      "prompt": "Inspect tested Node major, lockfile, canonical server source, built entrypoint, build and startup.",
+      "required": true
+    },
+    {
+      "id": "hosting",
+      "prompt": "Inspect public/private roots, hostname, injected-port contract and provider runtime controls.",
+      "required": true
+    },
+    {
+      "id": "routes",
+      "prompt": "Inspect health/readiness, APIs, static output, errors, proxy, cookies, logging and restart.",
+      "required": true
+    },
+    {
+      "id": "recovery",
+      "prompt": "Inspect previous artifact, dependencies and runtime rollback owner.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "adaptation",
+      "question": "Which runtime adaptation is appropriate?",
+      "options": [
+        "existing-framework",
+        "greenfield-node-http"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "proxy",
+      "question": "What proxy trust is proven?",
+      "options": [
+        "disabled",
+        "separately-reviewed-framework-adapter"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "data",
+      "question": "Does this runtime require durable storage or identity?",
+      "options": [
+        "neither",
+        "storage-only",
+        "storage-and-identity"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "runtime",
+      "projectPath": "src/server/runtime.mjs",
+      "description": "Adapt minimal runtime behavior in the canonical server.",
+      "templates": [
+        ".kontextstack/modules/node-cpanel/kit/templates/runtime.mjs",
+        ".kontextstack/modules/node-cpanel/kit/snippets/framework-adaptation.md"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "startup",
+      "projectPath": "start.cjs",
+      "description": "Adapt a CommonJS shim only when required by the actual host.",
+      "templates": [
+        ".kontextstack/modules/node-cpanel/kit/templates/start.cjs"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "environment",
+      "projectPath": "docs/hosting/RUNTIME_ENVIRONMENT.json",
+      "description": "Record names and safe startup requirements, never values.",
+      "templates": [
+        ".kontextstack/modules/node-cpanel/kit/templates/environment-names.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "artifact",
+      "projectPath": "docs/releases/RUNTIME_ARTIFACT.json",
+      "description": "Record exact runtime artifact and recovery reference.",
+      "templates": [
+        ".kontextstack/modules/node-cpanel/kit/templates/runtime-artifact.json"
+      ],
+      "mode": "adapt-after-inspection"
+    },
+    {
+      "id": "checks",
+      "projectPath": "test/runtime.test.mjs",
+      "description": "Adapt route/startup tests and browser checks.",
+      "templates": [
+        ".kontextstack/modules/node-cpanel/kit/checks/runtime.test.mjs",
+        ".kontextstack/modules/node-cpanel/kit/checks/browser.md"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "application",
+      "target": "<PRIVATE_APPLICATION_ROOT> at <APPROVED_HOSTNAME>",
+      "effect": "Create/edit only the approved Node application, runtime and startup binding.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "application",
+      "verification": "Verify exact artifact, public health/readiness, routes and redacted logs.",
+      "rollback": "Restore previous approved artifact/settings and repeat the prior baseline."
+    },
+    {
+      "id": "environment",
+      "target": "<APPROVED_APPLICATION> environment store",
+      "effect": "Set reviewed environment names/values through the approved provider store.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "environment",
+      "verification": "Verify exact artifact, public health/readiness, routes and redacted logs.",
+      "rollback": "Restore previous approved artifact/settings and repeat the prior baseline."
+    },
+    {
+      "id": "restart",
+      "target": "<APPROVED_APPLICATION>",
+      "effect": "Install reviewed production dependencies and restart the selected application.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "restart",
+      "verification": "Verify exact artifact, public health/readiness, routes and redacted logs.",
+      "rollback": "Restore previous approved artifact/settings and repeat the prior baseline."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "application",
+      "scope": "Scoped application action at the exact approved provider application.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "environment",
+      "scope": "Scoped environment action at the exact approved provider application.",
+      "authority": "separate-explicit-approval"
+    },
+    {
+      "id": "restart",
+      "scope": "Scoped restart action at the exact approved provider application.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "runtime",
+      "kind": "command",
+      "instruction": "Run adapted runtime tests and exact startup artifact on an injected local port.",
+      "expected": "One server; health/readiness and API/static/error boundaries pass.",
+      "authority": "local-review"
+    },
+    {
+      "id": "browser",
+      "kind": "browser",
+      "instruction": "Run the local browser procedure for real routes/assets and repeat on the approved host.",
+      "expected": "Intended UI with no unexpected console/network errors.",
+      "authority": "local-review"
+    },
+    {
+      "id": "hosted",
+      "kind": "provider",
+      "instruction": "Compare host runtime, root, startup, proxy behavior, logs and recovery after approved restart.",
+      "expected": "Actual application matches approved artifact and recoverable baseline.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "runtime",
+      "layer": "runtime",
+      "instruction": "Restore prior artifact, reviewed dependencies and host settings after explicit recovery approval.",
+      "verification": "Repeat prior health/readiness, route, asset, error and browser baseline.",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "local",
+      "criterion": "Exact runtime artifact passes local startup, route and browser checks.",
+      "evidence": [
+        "runtime",
+        "browser"
+      ],
+      "owner": "project-owner"
+    },
+    {
+      "id": "hosted",
+      "criterion": "Owner accepts verified host configuration and runtime recovery readiness.",
+      "evidence": [
+        "hosted"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

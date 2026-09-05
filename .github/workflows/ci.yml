@@ -23,5 +23,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Install local Apache fixture runtime
         run: sudo apt-get update && sudo apt-get install -y apache2
+      - name: Install disposable MySQL fixture runtime
+        run: sudo apt-get install -y mysql-server
       - run: npm test
       - run: npm run audit:source

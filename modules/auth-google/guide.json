@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "kontextstack-guide/v1",
+  "module": {
+    "name": "auth-google",
+    "version": "0.5.0"
+  },
+  "package": {
+    "name": "kontextstack",
+    "version": "0.6.0-alpha.2"
+  },
+  "title": "Add optional Google identity",
+  "summary": "Add optional Google identity with source-traced implementation, verification and recovery.",
+  "durationMinutes": {
+    "min": 30,
+    "max": 120
+  },
+  "maturity": [
+    2,
+    3
+  ],
+  "prerequisites": [
+    "auth-local@>=0.5.0"
+  ],
+  "questions": [
+    {
+      "id": "signup",
+      "prompt": "May a verified provider identity create a new user?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "closed",
+          "open-user-role-only"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    },
+    {
+      "id": "linking",
+      "prompt": "How are existing accounts linked?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "explicit-recent-local-session-only",
+          "disabled"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    },
+    {
+      "id": "domain",
+      "prompt": "Is a hosted-domain restriction required?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "none",
+          "exact-verified-hd-claim"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    }
+  ],
+  "stages": [
+    {
+      "id": "goal",
+      "title": "Confirm the goal",
+      "kind": "inspect",
+      "approval": "none",
+      "instructions": [
+        "Read the capability boundary and exclude unneeded services."
+      ],
+      "completionEvidence": [
+        "Recorded selected goal and exclusions."
+      ]
+    },
+    {
+      "id": "inspect",
+      "title": "Inspect the actual project",
+      "kind": "inspect",
+      "approval": "none",
+      "instructions": [
+        "Collect required project evidence without revealing values."
+      ],
+      "completionEvidence": [
+        "Confirmed facts and missing evidence."
+      ]
+    },
+    {
+      "id": "findings",
+      "title": "Review findings",
+      "kind": "decide",
+      "approval": "none",
+      "instructions": [
+        "Separate facts, gaps, conflicts and recommendation conditions."
+      ],
+      "completionEvidence": [
+        "Reviewed evidence and invalidation conditions."
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Choose architecture",
+      "kind": "decide",
+      "approval": "none",
+      "instructions": [
+        "Record owner choices from the module decision contract."
+      ],
+      "completionEvidence": [
+        "Project-owned decision references."
+      ]
+    },
+    {
+      "id": "install",
+      "title": "Install the kit",
+      "kind": "install",
+      "approval": "exact-preview",
+      "instructions": [
+        "Inspect, preview, approve exact identifier, apply and verify."
+      ],
+      "completionEvidence": [
+        "Local module verification result."
+      ]
+    },
+    {
+      "id": "implement",
+      "title": "Continue with Codex",
+      "kind": "implement",
+      "approval": "none",
+      "instructions": [
+        "Read CODEX_PROMPT.md and adapt reviewed references."
+      ],
+      "completionEvidence": [
+        "Project changes and local check results."
+      ]
+    },
+    {
+      "id": "local",
+      "title": "Verify locally",
+      "kind": "verify-local",
+      "approval": "none",
+      "instructions": [
+        "Execute the project's reviewed checks and inspect the artifact."
+      ],
+      "completionEvidence": [
+        "Non-secret local results or explicit gaps."
+      ]
+    },
+    {
+      "id": "prepare-provider",
+      "title": "Prepare the provider",
+      "kind": "provider",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Record exact target, owner, effect, expected result, recovery and approval."
+      ],
+      "completionEvidence": [
+        "Explicit scoped approval or deferred provider work."
+      ]
+    },
+    {
+      "id": "provider",
+      "title": "Apply the approved external change",
+      "kind": "provider",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Use PROVIDER_SETUP.md only within current explicit authority."
+      ],
+      "completionEvidence": [
+        "Sanitized provider outcome and verification."
+      ]
+    },
+    {
+      "id": "accept",
+      "title": "Verify and accept",
+      "kind": "accept",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Verify production and rollback readiness; request owner acceptance."
+      ],
+      "completionEvidence": [
+        "Observed results and explicit owner decision."
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "inspect",
+      "stage": "install",
+      "text": "kontextstack modules inspect --module auth-google --version 0.5.0 --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    },
+    {
+      "id": "preview",
+      "stage": "install",
+      "text": "kontextstack modules preview --module auth-google --version 0.5.0 --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    },
+    {
+      "id": "apply",
+      "stage": "install",
+      "text": "kontextstack modules apply --module auth-google --version 0.5.0 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>",
+        "<PREVIEW_ID>"
+      ]
+    },
+    {
+      "id": "verify",
+      "stage": "install",
+      "text": "kontextstack modules verify --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    }
+  ],
+  "documents": {
+    "start": "docs/kontextstack/modules/auth-google/START_HERE.md",
+    "implementation": "docs/kontextstack/modules/auth-google/IMPLEMENTATION.md",
+    "provider": "docs/kontextstack/modules/auth-google/PROVIDER_SETUP.md",
+    "verification": "docs/kontextstack/modules/auth-google/VERIFICATION.md",
+    "rollback": "docs/kontextstack/modules/auth-google/ROLLBACK.md",
+    "codex": "docs/kontextstack/modules/auth-google/CODEX_PROMPT.md"
+  },
+  "completion": {
+    "evidencePolicy": "non-secret-or-explicit-waiver",
+    "states": [
+      "installed",
+      "implemented",
+      "locally-verified",
+      "provider-configured",
+      "deployed",
+      "migrated",
+      "production-verified",
+      "owner-accepted"
+    ],
+    "progressGrantsAuthority": false
+  },
+  "redaction": {
+    "policy": "never-print-or-copy-values",
+    "prohibited": [
+      "tokens",
+      "passwords",
+      "env-values",
+      "private-keys",
+      "customer-data",
+      "production-rows",
+      "unreviewed-screenshots"
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "commit": "0a62317c176de98193f67a4c1df5267db020525b",
+    "implementationIntegrity": "sha256-0ec4b323f6aba5496563dc78b0486df29c114e6075b45dcb06e544625290e74d",
+    "integrity": "sha256-c1b347a99352a74f2e60859a3d578216361162cf239bd6e6880e10e5447215d6"
+  }
+}

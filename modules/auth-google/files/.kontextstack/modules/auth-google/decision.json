@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "status": "unreviewed",
+  "choices": {
+    "signup": null,
+    "linking": null,
+    "domain": null
+  },
+  "authority": "none"
+}

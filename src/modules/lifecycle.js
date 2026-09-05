@@ -147,6 +147,15 @@ export async function createModulePlan({ projectPath, name, version = null, cach
       if (range && !satisfiesRange(record.version, range)) conflicts.push(`Required module version is incompatible: ${dependency}.`);
     }
   }
+  // An optional capability may be absent. If selected, its installed version
+  // must still satisfy the kit's adapter contract.
+  for (const dependency of manifest.optionalDependencies) {
+    const record = installed.find((entry) => entry.name === dependencyName(dependency));
+    const range = dependency.slice(dependencyName(dependency).length + 1);
+    if (record && range && !satisfiesRange(record.version, range)) {
+      conflicts.push(`Optional module version is incompatible: ${dependency}.`);
+    }
+  }
   for (const conflictName of manifest.conflicts) {
     if (installedNames.has(dependencyName(conflictName))) conflicts.push(`Conflicting module is installed: ${conflictName}.`);
   }

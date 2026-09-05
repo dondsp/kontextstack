@@ -1,0 +1,5 @@
+# Provider procedure and approval
+
+Inspect the application environment and proxy topology without reading secret values. Record exact application, HTTPS origin, durable storage and session/cookie policy. Obtain approval before configuration/restart. The private bootstrap runs only after approved schema verification, accepts identity/password through hidden interactive prompts, and requires the exact create-first-administrator confirmation. No password in arguments, environment variables, chat, Git or CI. Verify normal-user and administrator journeys privately. Revocation and recovery require explicit target/account scope; retain only synthetic or redacted evidence.
+
+Stop before the external action. Record target, owner, effect, expected result, verification and rollback. Provider labels require inspection against current official documentation. Paste non-secret results only; remove tokens, passwords, environment values, private keys, customer data and production rows. Review screenshots before retaining them.
