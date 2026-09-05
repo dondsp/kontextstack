@@ -3,6 +3,12 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.1.0-alpha.3 — 2026-09-05
+
+- Publish the first installable npm distribution as `@dondsp/kontextstack`.
+- Add public npm installation, version-check and explicit update guidance.
+- Preserve the alpha.2 Handoff Pack v2 implementation unchanged.
+
 ## 0.1.0-alpha.2 — 2026-09-05
 
 - Add Handoff Pack v2 while retaining v1 compatibility.
