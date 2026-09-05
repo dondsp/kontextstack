@@ -1,0 +1,82 @@
+{
+  "schema": "https://contextkraft.com/schemas/handoff/v2",
+  "schemaVersion": "2.0.0",
+  "artifactType": "handoff-pack",
+  "artifactId": "handoff-chatgpt-sites-001",
+  "projectId": "academy-example-001",
+  "createdAt": "2026-08-31T00:00:00.000Z",
+  "createdBy": {
+    "kind": "contextkraft",
+    "name": "ContextKraft export"
+  },
+  "sources": [
+    {
+      "kind": "contextkraft-guide-session",
+      "sourceTrack": "chatgpt-sites",
+      "reviewedByUser": true
+    }
+  ],
+  "freshness": {
+    "observedAt": "2026-08-31T00:00:00.000Z"
+  },
+  "contentHash": "sha256-1378696601d2414145b12f5535ea10424315121b1322d60a98bf956ee1910359",
+  "project": {
+    "name": "Academy Example",
+    "repository": "example/academy-platform",
+    "expectedBranch": "main",
+    "localPath": ""
+  },
+  "classification": {
+    "sourceTrack": "chatgpt-sites",
+    "maturity": 2,
+    "capabilities": ["authentication", "email", "mysql", "public-registration"]
+  },
+  "architecture": {
+    "decisionStatus": "approved",
+    "repositoryStrategy": "reuse-existing",
+    "releaseUnit": "unified",
+    "canonicalRepository": "example/academy-platform",
+    "relatedRepositories": [
+      {
+        "repository": "example/academy-site-history",
+        "status": "rollback-evidence",
+        "responsibility": "Retained historical public-site source; not an active release target."
+      }
+    ],
+    "sharedCapabilities": ["authentication", "customer-journey", "email", "mysql", "release-workflow"],
+    "systemsOfRecord": ["Registration and account records use the platform-owned MySQL service."],
+    "separationJustification": "The public and authenticated surfaces are one repository and release unit because they share data and customer journeys.",
+    "temporaryBridges": [],
+    "reopenTriggers": [
+      "A new surface needs an independently owned release lifecycle.",
+      "Security, compliance, ownership, or scaling evidence justifies separation."
+    ],
+    "decisionRecord": "docs/decisions/0001-repository-and-release-boundary.md"
+  },
+  "goal": {
+    "statement": "Continue the unified project from the canonical repository.",
+    "outcomes": ["Codex reads the approved repository and release boundary before proposing changes."],
+    "acceptance": ["Generated handoff records identify the canonical repository and rollback-only source."]
+  },
+  "authority": {
+    "projectInstructions": ["AGENTS.md"],
+    "projectRecords": ["README.md", "docs/decisions/0001-repository-and-release-boundary.md"],
+    "decisions": ["Keep public and authenticated routes in one active repository and release unit."]
+  },
+  "constraints": {
+    "prohibitedActions": ["deploy", "commit", "push", "change DNS", "run production migrations"],
+    "secretPolicy": "never-print-or-copy-values",
+    "productionAuthority": "separate-explicit-approval"
+  },
+  "reconciliation": {
+    "confirmed": ["The canonical repository owns the complete current customer journey."],
+    "drift": [],
+    "conflicts": [],
+    "unknowns": []
+  },
+  "modules": {
+    "allowedCategories": ["handoff"],
+    "recommended": ["handoff-core"],
+    "excluded": ["hosting", "runtime", "storage", "identity", "delivery"]
+  }
+}

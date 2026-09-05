@@ -31,7 +31,11 @@
       "required": ["artifactId", "contentHash"],
       "properties": {
         "artifactId": { "type": "string" },
-        "contentHash": { "type": "string" }
+        "contentHash": { "type": "string" },
+        "schema": { "type": "string" },
+        "schemaVersion": { "type": "string" },
+        "sourceTrack": { "type": "string" },
+        "architecture": { "type": "object" }
       }
     },
     "createdAt": { "type": "string", "format": "date-time" }
