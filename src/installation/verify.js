@@ -102,7 +102,7 @@ export async function verifyInstallation({ mode = "simple", rootDir = ROOT_DIR }
   ));
 
   const packageResult = await loadJsonCheck(path.join(rootDir, path.relative(ROOT_DIR, PACKAGE_PATH)), (value) => (
-    value.name === "@dondsp/kontextstack" &&
+    value.name === "kontextstack" &&
     parseGitHubRepository(value.repository?.url) === CANONICAL_REPOSITORY
   ));
   checks.push(check(

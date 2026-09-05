@@ -3,9 +3,19 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.1.0-alpha.4 — 2026-09-05
+
+- Publish the first npm distribution under the available public package name
+  `kontextstack`.
+- Replace the unavailable `@dondsp` npm scope in install, version-check, update,
+  and `npx` examples.
+- Keep the package repository linked to the canonical
+  `dondsp/kontextstack` GitHub project.
+
 ## 0.1.0-alpha.3 — 2026-09-05
 
-- Publish the first installable npm distribution as `@dondsp/kontextstack`.
+- Prepare npm package metadata for `@dondsp/kontextstack`; the registry upload
+  was superseded by alpha.4 because the `@dondsp` npm scope does not exist.
 - Add public npm installation, version-check and explicit update guidance.
 - Preserve the alpha.2 Handoff Pack v2 implementation unchanged.
 
