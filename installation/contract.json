@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "name": "KontextStack clone-first installation contract",
+  "name": "KontextStack installation contract",
   "canonicalSource": "https://github.com/dondsp/kontextstack",
   "cloneUrl": "https://github.com/dondsp/kontextstack.git",
   "minimumNodeMajor": 20,

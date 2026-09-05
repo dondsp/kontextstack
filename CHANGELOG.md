@@ -3,6 +3,15 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.5.1 — 2026-09-05
+
+- Rename the machine-readable installation contract so it reflects the
+  recommended public npm path as well as the full source-clone path.
+- Replace generic module-lifecycle examples with released bundled-module names
+  and versions.
+- Clarify that fingerprint and import are advanced steps for separately
+  reviewed external bundles, not prerequisites for bundled release modules.
+
 ## 0.5.0 — 2026-09-05
 
 - Add stable `github-cpanel-deploy` and `production-operations` planning

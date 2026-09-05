@@ -3,49 +3,41 @@
 KontextStack separates core updates from project module updates. Neither path
 runs automatically.
 
-## 1. Inspect the installation
+## 1. Choose a bundled release module
 
-From the local KontextStack clone:
+The public npm package and source clone include the approved release modules.
+List them before choosing one:
 
 ```bash
-node bin/kontextstack.js modules available
-node bin/kontextstack.js modules installed --project /path/to/project
+kontextstack modules available
+kontextstack modules installed --project /path/to/project
 ```
 
 `modules available` combines the versioned bundled registry with valid modules
 in the local filesystem cache. `modules installed` reads only the selected
 project's `.kontextstack/modules.lock.json`.
 
-## 2. Import a new local module bundle
+The v0.5 release line bundles these optional planning modules:
 
-KontextStack does not contact a remote module registry. Bundled release modules
-are available immediately. To use a separately reviewed portable module,
-download or copy its directory from a trusted canonical release, then
-fingerprint it:
+| Module | Version |
+| --- | --- |
+| `domain-cpanel` | `0.2.0` |
+| `static-site-cpanel` | `0.2.0` |
+| `node-cpanel` | `0.3.0` |
+| `mysql-storage` | `0.4.0` |
+| `auth-local` | `0.4.0` |
+| `auth-google` | `0.4.0` |
+| `github-cpanel-deploy` | `0.5.0` |
+| `production-operations` | `0.5.0` |
 
-```bash
-node bin/kontextstack.js modules fingerprint --from /path/to/module-bundle
-```
+## 2. Inspect compatibility and permissions
 
-Compare the printed integrity with the release record. Then import it:
-
-```bash
-node bin/kontextstack.js modules import --from /path/to/module-bundle
-```
-
-The default cache is `~/.kontextstack/module-cache/v1`. Tests and managed
-workflows can pass `--cache /explicit/path`. Import is idempotent for identical
-content and refuses the same name/version when the content differs.
-
-A local integrity match proves that content did not change after its recorded
-fingerprint. It does not by itself prove who published the original directory;
-obtain bundles and release fingerprints from the canonical repository.
-
-## 3. Inspect compatibility and permissions
+Use the exact selected name and version. For example:
 
 ```bash
-node bin/kontextstack.js modules inspect \
-  --module domain-guide \
+kontextstack modules inspect \
+  --module domain-cpanel \
+  --version 0.2.0 \
   --project /path/to/project
 ```
 
@@ -59,26 +51,26 @@ commands. They may write only inside their own project-owned namespaces:
 docs/kontextstack/modules/<module-name>/
 ```
 
-## 4. Preview before writing
+## 3. Preview before writing
 
 ```bash
-node bin/kontextstack.js modules preview \
+kontextstack modules preview \
   --project /path/to/project \
-  --module domain-guide \
-  --version 1.0.0
+  --module domain-cpanel \
+  --version 0.2.0
 ```
 
 The project must already contain a valid handoff-created module lock and have a
 clean Git baseline. Preview is deterministic and read-only. Every target is
 classified as `add`, `preserve`, `update`, `conflict` or `block`.
 
-## 5. Apply the exact preview
+## 4. Apply the exact preview
 
 ```bash
-node bin/kontextstack.js modules apply \
+kontextstack modules apply \
   --project /path/to/project \
-  --module domain-guide \
-  --version 1.0.0 \
+  --module domain-cpanel \
+  --version 0.2.0 \
   --approve sha256-<preview-id>
 ```
 
@@ -87,15 +79,40 @@ updates the project lock with exact core/module source, version, integrity,
 preview and per-file integrity. KontextStack prints suggested Git commands but
 does not commit or push the project.
 
-## 6. Verify the installed files
+## 5. Verify the installed files
 
 ```bash
-node bin/kontextstack.js modules verify --project /path/to/project
+kontextstack modules verify --project /path/to/project
 ```
 
 Exact locked integrities detect missing or customized module files. Legacy
 handoff-core records without per-file integrity remain verifiable through their
 canonical provenance markers.
+
+## Advanced: import a separately reviewed bundle
+
+KontextStack does not contact a remote module registry. Bundled release modules
+are available immediately and do not need to be imported. Only when using a
+separately reviewed portable module should you download or copy its directory
+from a trusted source and fingerprint it:
+
+```bash
+kontextstack modules fingerprint --from /path/to/module-bundle
+```
+
+Compare the printed integrity with the release record. Then import it:
+
+```bash
+kontextstack modules import --from /path/to/module-bundle
+```
+
+The default cache is `~/.kontextstack/module-cache/v1`. Tests and managed
+workflows can pass `--cache /explicit/path`. Import is idempotent for identical
+content and refuses the same name/version when the content differs.
+
+A local integrity match proves that content did not change after its recorded
+fingerprint. It does not by itself prove who published the original directory;
+obtain bundles and release fingerprints from the canonical repository.
 
 ## Safe upgrades
 
