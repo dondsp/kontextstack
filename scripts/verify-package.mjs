@@ -21,13 +21,14 @@ assert.ok(cli(["modules", "available"]).modules.length >= 9);
 const project = await makeCleanProject();
 try {
   await mkdir(path.join(project, ".kontextstack"));
+  await writeJson(path.join(project, "package.json"), { name: "package-smoke-fixture", private: true, type: "module" });
   await writeJson(path.join(project, ".kontextstack/modules.lock.json"), {
     schemaVersion: "1.0.0",
     core: { version: about.version, source: "https://github.com/dondsp/kontextstack", commit: null },
     modules: []
   });
   commitAll(project);
-  for (const name of ["domain-cpanel", "static-site-cpanel"]) {
+  for (const name of ["domain-cpanel", "static-site-cpanel", "node-cpanel"]) {
     const args = ["--module", name, "--project", project];
     assert.equal(cli(["modules", "inspect", ...args]).module.guide.package.version, about.version);
     const preview = cli(["modules", "preview", ...args]);

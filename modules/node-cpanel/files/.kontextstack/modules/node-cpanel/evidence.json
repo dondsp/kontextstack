@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "kontextstack-evidence/v1",
+  "module": {
+    "name": "node-cpanel",
+    "version": "0.4.0"
+  },
+  "policy": "non-secret-only",
+  "facts": [
+    {
+      "id": "runtime",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "hosting",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "routes",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "recovery",
+      "status": "missing",
+      "reference": null
+    }
+  ],
+  "states": {
+    "installed": false,
+    "implemented": false,
+    "locally-verified": false,
+    "provider-configured": false,
+    "deployed": false,
+    "migrated": false,
+    "production-verified": false,
+    "owner-accepted": false
+  },
+  "waivers": []
+}

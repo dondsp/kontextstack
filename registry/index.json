@@ -72,10 +72,18 @@
         {
           "version": "0.3.0",
           "coreCompatibility": ">=0.3.0 <0.6.0",
-          "manifestPath": "modules/node-cpanel/module.json",
+          "manifestPath": "modules/node-cpanel/versions/0.3.0/module.json",
           "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.4.0",
+          "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+          "manifestPath": "modules/node-cpanel/module.json",
+          "integrity": "sha256-d9ce255b20e461f4d79886dfe859c2e4e0396168a6f35a1fc373cf2f1cbdf840",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     },

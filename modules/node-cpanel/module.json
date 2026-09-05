@@ -1,39 +1,143 @@
 {
   "schemaVersion": "1.0.0",
   "name": "node-cpanel",
-  "displayName": "cPanel Node.js Runtime",
-  "version": "0.3.0",
-  "description": "Runtime, entrypoint, environment-name, reverse-routing, restart, health-check, and rollback planning for Node.js applications on cPanel.",
+  "displayName": "Add or adapt a cPanel Node runtime",
+  "version": "0.4.0",
+  "description": "Source-traced Node startup, routing, environment, provider and recovery implementation kit.",
   "category": "runtime",
-  "maturity": [1, 2, 3],
-  "projectTypes": ["web-app", "service"],
-  "coreCompatibility": ">=0.3.0 <0.6.0",
+  "maturity": [
+    1,
+    2,
+    3
+  ],
+  "projectTypes": [
+    "web-app",
+    "service"
+  ],
+  "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/node-cpanel/v0.3.0",
+    "ref": "module/node-cpanel/v0.4.0",
     "path": "modules/node-cpanel",
-    "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3"
+    "integrity": "sha256-d9ce255b20e461f4d79886dfe859c2e4e0396168a6f35a1fc373cf2f1cbdf840"
   },
   "dependencies": [],
-  "optionalDependencies": ["domain-cpanel@>=0.2.0", "static-site-cpanel@>=0.2.0"],
+  "optionalDependencies": [
+    "domain-cpanel@>=0.2.0",
+    "static-site-cpanel@>=0.2.0"
+  ],
   "conflicts": [],
-  "capabilities": ["docs", "templates", "validation"],
+  "capabilities": [
+    "docs",
+    "templates",
+    "validation"
+  ],
   "permissions": {
     "network": false,
     "commands": [],
     "writePatterns": [
+      ".kontextstack/modules/node-cpanel/decision.json",
+      ".kontextstack/modules/node-cpanel/evidence.json",
+      ".kontextstack/modules/node-cpanel/implementation.json",
+      ".kontextstack/modules/node-cpanel/kit/checks/browser.md",
+      ".kontextstack/modules/node-cpanel/kit/checks/runtime.test.mjs",
+      ".kontextstack/modules/node-cpanel/kit/fixtures/public/index.html",
+      ".kontextstack/modules/node-cpanel/kit/fixtures/public/site.css",
+      ".kontextstack/modules/node-cpanel/kit/snippets/framework-adaptation.md",
+      ".kontextstack/modules/node-cpanel/kit/templates/environment-names.json",
+      ".kontextstack/modules/node-cpanel/kit/templates/runtime-artifact.json",
+      ".kontextstack/modules/node-cpanel/kit/templates/runtime.mjs",
+      ".kontextstack/modules/node-cpanel/kit/templates/start.cjs",
       ".kontextstack/modules/node-cpanel/runtime.json",
-      "docs/kontextstack/modules/node-cpanel/RUNBOOK.md"
+      "docs/kontextstack/modules/node-cpanel/CODEX_PROMPT.md",
+      "docs/kontextstack/modules/node-cpanel/IMPLEMENTATION.md",
+      "docs/kontextstack/modules/node-cpanel/PROVIDER_SETUP.md",
+      "docs/kontextstack/modules/node-cpanel/ROLLBACK.md",
+      "docs/kontextstack/modules/node-cpanel/RUNBOOK.md",
+      "docs/kontextstack/modules/node-cpanel/START_HERE.md",
+      "docs/kontextstack/modules/node-cpanel/VERIFICATION.md"
     ]
   },
   "files": [
+    {
+      "path": ".kontextstack/modules/node-cpanel/decision.json",
+      "source": "files/.kontextstack/modules/node-cpanel/decision.json"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/evidence.json",
+      "source": "files/.kontextstack/modules/node-cpanel/evidence.json"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/implementation.json",
+      "source": "files/.kontextstack/modules/node-cpanel/implementation.json"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/checks/browser.md",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/checks/browser.md"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/checks/runtime.test.mjs",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/checks/runtime.test.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/fixtures/public/index.html",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/fixtures/public/index.html"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/fixtures/public/site.css",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/fixtures/public/site.css"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/snippets/framework-adaptation.md",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/snippets/framework-adaptation.md"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/templates/environment-names.json",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/templates/environment-names.json"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/templates/runtime-artifact.json",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/templates/runtime-artifact.json"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/templates/runtime.mjs",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/templates/runtime.mjs"
+    },
+    {
+      "path": ".kontextstack/modules/node-cpanel/kit/templates/start.cjs",
+      "source": "files/.kontextstack/modules/node-cpanel/kit/templates/start.cjs"
+    },
     {
       "path": ".kontextstack/modules/node-cpanel/runtime.json",
       "source": "files/.kontextstack/modules/node-cpanel/runtime.json"
     },
     {
+      "path": "docs/kontextstack/modules/node-cpanel/CODEX_PROMPT.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/CODEX_PROMPT.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/IMPLEMENTATION.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/IMPLEMENTATION.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/PROVIDER_SETUP.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/PROVIDER_SETUP.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/ROLLBACK.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/ROLLBACK.md"
+    },
+    {
       "path": "docs/kontextstack/modules/node-cpanel/RUNBOOK.md",
       "source": "files/docs/kontextstack/modules/node-cpanel/RUNBOOK.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/START_HERE.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/START_HERE.md"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/VERIFICATION.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/VERIFICATION.md"
     }
   ],
   "validations": [
@@ -50,7 +154,14 @@
     }
   ],
   "upgrade": {
-    "from": [],
+    "from": [
+      "0.3.0"
+    ],
     "strategy": "preview-required"
+  },
+  "contracts": {
+    "schemaVersion": "kontextstack-kit/v1",
+    "implementation": ".kontextstack/modules/node-cpanel/implementation.json",
+    "guide": "guide.json"
   }
 }
