@@ -1,6 +1,7 @@
 # Implementation kits v1
 
-Status: v0.6 candidate contract layer, not an npm release or provider approval.
+Status: v0.6 alpha contract layer. See the versioned release record for published
+scope; this contract grants no provider or production authority.
 
 Portable modules still install files only into their own namespaces. Core does
 not execute templates, checks, guide commands, migrations, workflows or provider
@@ -46,8 +47,9 @@ tarball bind the eventual released output separately.
 ## Compatibility and upgrades
 
 Kit modules must exclude core 0.5.1 because that core cannot validate these
-contracts. The first candidate core is 0.6.0-alpha.1. The package is intentionally
-unpublished until the full release gates and owner approval.
+contracts. The first evaluation core is 0.6.0-alpha.1, released separately from
+stable latest. Its approved scope covers Phases 0–3 only. Full v0.6 release gates
+remain outstanding; the alpha must not be presented as stable or complete.
 
 Old module locks and planning bundles remain readable. New kit versions must
 declare upgrade.from. Additive kit files preview as additions; unchanged decision
