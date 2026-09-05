@@ -14,8 +14,9 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.1.0-alpha.4` local foundation. Do not use it to make production,
-> DNS, database, authentication, deployment, Git, or account changes.
+> Status: `0.2.0` stable local planning foundation. It generates reviewable
+> domain and static-publication records; it does not perform production, DNS,
+> cPanel, deployment, Git, or account changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
 lists the complete order from installation and mandatory Current-State capture
@@ -89,7 +90,7 @@ node bin/kontextstack.js doctor
 
 ## npm installation
 
-Install the public alpha globally:
+Install the public package globally:
 
 ```bash
 npm install --global kontextstack@latest
@@ -100,10 +101,10 @@ kontextstack install contract --mode simple
 Run an exact version without keeping a global installation:
 
 ```bash
-npx kontextstack@0.1.0-alpha.4 doctor
+npx kontextstack@0.2.0 doctor
 ```
 
-No hosted KontextStack account is required. The alpha uses Node.js 20 or newer
+No hosted KontextStack or npm account is required. KontextStack uses Node.js 20 or newer
 and only Node.js built-ins.
 
 Use `--mode simple` for a small or early-stage project. Use `--mode mature` for
@@ -171,16 +172,23 @@ Git commands for the user to review.
 | `modules verify --project <directory>` | Verify installed module provenance and files | No |
 | `update guide --mode <simple\|mature>` | Print a source-traced, fast-forward-only core update guide | No |
 
-## Module roadmap
+## Bundled modules
 
-The alpha bundles only `handoff-core`. Later releases can add domain, static
-hosting, Node.js/cPanel, MySQL, authentication, GitHub deployment, and operations
-modules after their individual safety and compatibility gates pass.
+Version 0.2 bundles `handoff-core`, `domain-cpanel`, and
+`static-site-cpanel`. The hosting modules generate project-owned plans and
+runbooks while leaving registrar, DNS, cPanel, certificate, upload, and
+production authority with the human operator.
+
+```bash
+kontextstack modules available
+kontextstack modules inspect --module domain-cpanel --project /path/to/project
+kontextstack modules inspect --module static-site-cpanel --project /path/to/project
+```
 
 Module discovery does not authorize module execution or installation. Every
 module follows inspect → preview → approval → apply → verify.
 
-The alpha can import reviewed portable modules from the local filesystem. It
+KontextStack can import reviewed portable modules from the local filesystem. It
 does not contact a remote registry. Portable modules cannot use the network or
 execute commands and may write only within their own project-owned documentation
 and metadata namespaces. See the [module lifecycle guide](docs/guide/MODULE_LIFECYCLE.md).

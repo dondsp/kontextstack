@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "domain-cpanel",
+  "displayName": "cPanel Domain Planning",
+  "version": "0.2.0",
+  "description": "Approval-gated domain, subdomain, redirect, certificate, verification, and rollback planning for cPanel hosting.",
+  "category": "hosting",
+  "maturity": [1, 2, 3],
+  "projectTypes": ["website", "web-app", "service", "unknown"],
+  "coreCompatibility": ">=0.2.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/domain-cpanel/v0.2.0",
+    "path": "modules/domain-cpanel",
+    "integrity": "sha256-72e541c8ccb49ca77aad948a9d921630533982a51eda2aa533b04c3a3d569c2a"
+  },
+  "dependencies": [],
+  "optionalDependencies": [],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/domain-cpanel/plan.json",
+      "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/domain-cpanel/plan.json",
+      "source": "files/.kontextstack/modules/domain-cpanel/plan.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/domain-cpanel/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "domain-plan-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/domain-cpanel/plan.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/domain-cpanel/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

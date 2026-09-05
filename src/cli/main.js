@@ -244,7 +244,7 @@ export async function main(argv = process.argv.slice(2)) {
   }
 
   if (command === "modules" && subcommand === "refresh") {
-    throw new Error("Remote registry refresh is not available in 0.1.0-alpha.1; the bundled registry remains active.");
+    throw new Error("Remote registry refresh is not available; the versioned bundled registry remains active.");
   }
 
   if (command === "update" && subcommand === "guide") {

@@ -19,9 +19,9 @@ not mean the capability is already available.
   overwriting project customizations.
 - Generate a source-traced, fast-forward-only core update guide.
 
-## v0.2 — Domain and static publication
+## v0.2 — Domain and static publication — released
 
-Planned modules: `domain-cpanel` and `static-site-cpanel`. They will generate
+Modules: `domain-cpanel` and `static-site-cpanel`. They generate
 tailored domain, subdomain, add-on domain, redirect, certificate, `.htaccess`,
 static deployment, verification, and rollback guidance. They will not log in to
 registrars or cPanel or change DNS directly.

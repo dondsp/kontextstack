@@ -24,7 +24,7 @@ const findings = [];
 
 async function scan(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) continue;
+    if (ignoredDirectories.has(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     const relative = path.relative(root, absolute);
     const details = await lstat(absolute);

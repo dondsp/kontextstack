@@ -15,8 +15,9 @@ Before proposing a module, define:
 - add, update and removal ownership rules;
 - immutable archive integrity and canonical source.
 
-The alpha repository bundles only `handoff-core`. Later roadmap modules must be
-added individually through review and compatibility fixtures.
+The registry bundles `handoff-core` plus independently reviewed roadmap
+modules. Every later module must still be added individually through review,
+fingerprint verification, and compatibility fixtures.
 
 ## Portable filesystem bundle
 

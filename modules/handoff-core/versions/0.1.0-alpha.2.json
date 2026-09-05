@@ -2,17 +2,17 @@
   "schemaVersion": "1.0.0",
   "name": "handoff-core",
   "displayName": "Handoff Core",
-  "version": "0.2.0",
+  "version": "0.1.0-alpha.2",
   "description": "Project-owned handoff, continuation and provenance records.",
   "category": "handoff",
   "maturity": [0, 1, 2, 3],
   "projectTypes": ["website", "web-app", "service", "unknown"],
-  "coreCompatibility": ">=0.2.0 <0.6.0",
+  "coreCompatibility": ">=0.1.0-alpha.2 <0.2.0",
   "source": {
     "repository": "https://github.com/dondsp/kontextstack",
-    "ref": "module/handoff-core/v0.2.0",
+    "ref": "module/handoff-core/v0.1.0-alpha.2",
     "path": "modules/handoff-core",
-    "integrity": "sha256-d3ff54deb1ebe440090d97541a460f5bbf3bd1c3fc6f6236cb5f4f8861ab25c8"
+    "integrity": "sha256-649151039e9aba50fbe942b790a74a011ed76751ab05275c124ddaef0cc665c5"
   },
   "dependencies": [],
   "optionalDependencies": [],
@@ -42,7 +42,7 @@
     { "id": "canonical-source-present", "kind": "contains", "value": "https://github.com/dondsp/kontextstack" }
   ],
   "upgrade": {
-    "from": ["0.1.0-alpha.2"],
+    "from": ["0.1.0-alpha.1"],
     "strategy": "preview-required"
   }
 }

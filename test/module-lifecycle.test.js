@@ -31,7 +31,7 @@ async function makeBundle({ version, content, upgradeFrom = [] }) {
     category: "hosting",
     maturity: [0, 1, 2, 3],
     projectTypes: ["website", "web-app", "service", "unknown"],
-    coreCompatibility: ">=0.1.0-alpha.1 <0.2.0",
+    coreCompatibility: ">=0.1.0-alpha.1 <0.6.0",
     source: {
       repository: "https://github.com/dondsp/kontextstack",
       ref: `module/domain-guide/v${version}`,
@@ -167,6 +167,30 @@ test("module preview, approved apply, lock update and verification are determini
   const installed = await listInstalledModules(project);
   assert.equal(installed.modules[0].name, "domain-guide");
   assert.equal(installed.modules[0].exactFileIntegrity, true);
+});
+
+test("bundled roadmap modules are directly previewable and approval-gated", async (t) => {
+  const project = await makeCleanProject();
+  t.after(() => rm(project, { recursive: true, force: true }));
+  await initializeModuleLock(project);
+
+  const plan = await createModulePlan({ projectPath: project, name: "domain-cpanel" });
+  assert.equal(plan.status, "ready");
+  assert.equal(plan.module.portable, true);
+  assert.deepEqual(plan.actions.map((entry) => entry.action), ["add", "add"]);
+  await assert.rejects(
+    applyModulePlan({ projectPath: project, name: "domain-cpanel", approval: "sha256-wrong" }),
+    /exactly match/
+  );
+
+  const applied = await applyModulePlan({
+    projectPath: project,
+    name: "domain-cpanel",
+    approval: plan.previewId
+  });
+  assert.equal(applied.added.length, 2);
+  const verification = await verifyProjectModules(project);
+  assert.equal(verification.valid, true);
 });
 
 test("declared upgrades update untouched files and block customized files", async (t) => {

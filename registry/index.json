@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-08-15T00:00:00.000Z",
+  "generatedAt": "2026-09-05T00:00:00.000Z",
   "canonicalSource": "https://github.com/dondsp/kontextstack",
   "modules": [
     {
@@ -9,10 +9,44 @@
         {
           "version": "0.1.0-alpha.2",
           "coreCompatibility": ">=0.1.0-alpha.2 <0.2.0",
-          "manifestPath": "modules/handoff-core/module.json",
+          "manifestPath": "modules/handoff-core/versions/0.1.0-alpha.2.json",
           "integrity": "sha256-649151039e9aba50fbe942b790a74a011ed76751ab05275c124ddaef0cc665c5",
           "publishedAt": "2026-08-31T00:00:00.000Z",
           "status": "alpha"
+        },
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/handoff-core/module.json",
+          "integrity": "sha256-d3ff54deb1ebe440090d97541a460f5bbf3bd1c3fc6f6236cb5f4f8861ab25c8",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "domain-cpanel",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/domain-cpanel/module.json",
+          "integrity": "sha256-72e541c8ccb49ca77aad948a9d921630533982a51eda2aa533b04c3a3d569c2a",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "static-site-cpanel",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/static-site-cpanel/module.json",
+          "integrity": "sha256-c5086577757d471f30cbfa93a6a6ff4742ffef9d4d4b7cf48e5e6e9dcc0c9ea5",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
         }
       ]
     }
