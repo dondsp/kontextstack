@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "node-cpanel",
+  "moduleVersion": "0.3.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "runtime": {
+    "nodeMajor": "record-supported-major",
+    "applicationRoot": "record-private-relative-path",
+    "entrypoint": "record-built-server-entrypoint",
+    "startupCommand": "record-project-owned-command",
+    "healthPath": "/api/health",
+    "publicOrigin": "record-approved-origin"
+  },
+  "environmentContract": {
+    "requiredNames": [],
+    "optionalNames": [],
+    "valuesStoredOutsideRepository": true,
+    "productionValuesRecordedHere": false
+  },
+  "routing": {
+    "publicDirectory": "record-if-static-assets-exist",
+    "applicationProxyReviewed": false,
+    "spaFallbackReviewed": false
+  },
+  "gates": [
+    "runtime-supported",
+    "entrypoint-built",
+    "environment-names-reviewed",
+    "operator-configures-cpanel",
+    "operator-restarts-process",
+    "health-check-passes",
+    "owner-accepts-release"
+  ],
+  "rollback": {
+    "previousArtifactRecorded": false,
+    "previousRuntimeSettingsRecorded": false,
+    "restartProcedureReviewed": false
+  }
+}

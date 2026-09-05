@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "github-cpanel-deploy",
+  "displayName": "GitHub to cPanel Deployment Plan",
+  "version": "0.5.0",
+  "description": "Approval-gated GitHub Actions artifact, environment-name, scoped cPanel delivery, smoke-check, and rollback planning.",
+  "category": "delivery",
+  "maturity": [2, 3],
+  "projectTypes": ["website", "web-app", "service"],
+  "coreCompatibility": ">=0.5.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/github-cpanel-deploy/v0.5.0",
+    "path": "modules/github-cpanel-deploy",
+    "integrity": "sha256-b3e4b9bc208badf8ad9bde535bcc8edd2942e4f7c638c1d7c31c5fc026543ef6"
+  },
+  "dependencies": [],
+  "optionalDependencies": ["static-site-cpanel@>=0.2.0", "node-cpanel@>=0.3.0", "mysql-storage@>=0.4.0"],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/github-cpanel-deploy/delivery.json",
+      "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/github-cpanel-deploy/delivery.json",
+      "source": "files/.kontextstack/modules/github-cpanel-deploy/delivery.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "delivery-contract-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/github-cpanel-deploy/delivery.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/github-cpanel-deploy/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

@@ -18,8 +18,10 @@ project's `.kontextstack/modules.lock.json`.
 
 ## 2. Import a new local module bundle
 
-KontextStack v0.1 does not contact a remote module registry. Download or copy a
-reviewed module directory from a trusted canonical release, then fingerprint it:
+KontextStack does not contact a remote module registry. Bundled release modules
+are available immediately. To use a separately reviewed portable module,
+download or copy its directory from a trusted canonical release, then
+fingerprint it:
 
 ```bash
 node bin/kontextstack.js modules fingerprint --from /path/to/module-bundle
@@ -49,7 +51,7 @@ node bin/kontextstack.js modules inspect \
 
 Inspection reports the exact version, source, integrity, core compatibility,
 project types, dependencies, conflicts, permissions and declared files.
-Portable v0.1 modules must remain filesystem-only: no network access and no
+Portable modules must remain filesystem-only: no network access and no
 commands. They may write only inside their own project-owned namespaces:
 
 ```text

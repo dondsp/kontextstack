@@ -3,6 +3,48 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.5.0 — 2026-09-05
+
+- Add stable `github-cpanel-deploy` and `production-operations` planning
+  modules.
+- Define protected-environment, pinned-action, least-privilege, deterministic
+  artifact, scoped delivery, dependency-manifest, smoke, and rollback gates.
+- Add health, monitoring, backup, restore-exercise, incident, evidence, and
+  explicit owner-acceptance records.
+- Keep workflow triggering, host access, uploads, restarts, migrations,
+  monitoring access, recovery, and production acceptance outside KontextStack.
+
+## 0.4.0 — 2026-09-05
+
+- Add stable `mysql-storage`, `auth-local`, and optional `auth-google` planning
+  modules.
+- Define ordered checksum-bound migrations, target readiness, backup and
+  recovery evidence, production separation, and temporary-bridge retirement.
+- Define deny-by-default local accounts, sessions, CSRF, RBAC, audit, recovery,
+  and closed-registration acceptance gates.
+- Separate minimum Google identity consent from optional Workspace access and
+  require explicit account-linking, scope, storage, revocation, and enablement
+  decisions.
+
+## 0.3.0 — 2026-09-05
+
+- Add the stable `node-cpanel` runtime planning module.
+- Record Node.js version, private application root, built entrypoint, startup,
+  environment-name, routing, health, restart, and rollback contracts.
+- Keep cPanel access, runtime configuration, environment values, dependency
+  installation, process restart, and production acceptance outside KontextStack.
+
+## 0.2.0 — 2026-09-05
+
+- Add stable, source-traceable `domain-cpanel` and `static-site-cpanel`
+  planning modules.
+- Generate only project-owned contracts and runbooks; registrar, DNS, cPanel,
+  certificate, upload, and production actions remain human-controlled.
+- Add explicit current-state evidence, scoped-target, verification, rollback,
+  and acceptance gates for domain and static publication work.
+- Promote `handoff-core` to 0.2.0 compatibility while preserving the immutable
+  alpha.2 manifest in the bundled registry.
+
 ## 0.1.0-alpha.4 — 2026-09-05
 
 - Publish the first npm distribution under the available public package name

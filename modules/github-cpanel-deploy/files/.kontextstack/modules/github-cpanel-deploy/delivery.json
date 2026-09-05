@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "github-cpanel-deploy",
+  "moduleVersion": "0.5.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "sourceControl": {
+    "releaseBranch": "record-approved-branch",
+    "protectedEnvironment": "record-approved-environment",
+    "requiredChecks": [],
+    "productionApprovalRequired": true
+  },
+  "artifact": {
+    "buildCommand": "record-project-owned-command",
+    "allowlist": [],
+    "digestRecorded": true,
+    "dependencyManifestGate": true
+  },
+  "delivery": {
+    "transport": "record-reviewed-transport",
+    "remoteDirectory": "record-scoped-directory",
+    "environmentNames": [],
+    "valuesStoredInGit": false,
+    "actionsPinnedToImmutableRevisions": true,
+    "automaticRemoteDeletion": false
+  },
+  "productionState": {
+    "committed": false,
+    "pushed": false,
+    "verified": false,
+    "deployed": false,
+    "migrated": false,
+    "released": false,
+    "accepted": false
+  },
+  "gates": [
+    "workflow-reviewed",
+    "environment-protected",
+    "delivery-account-scoped",
+    "artifact-verified",
+    "dependency-change-reviewed",
+    "human-approves-production",
+    "smoke-checks-pass",
+    "rollback-ready",
+    "owner-accepts-release"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "domain-cpanel",
+  "moduleVersion": "0.2.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "topology": {
+    "currentProvider": "record-before-change",
+    "intendedHostname": "record-before-change",
+    "routeType": "choose-domain-subdomain-addon-or-redirect",
+    "targetAccount": "record-non-secret-identifier",
+    "documentRoot": "record-approved-relative-path"
+  },
+  "evidence": {
+    "currentDnsSnapshotRecorded": false,
+    "ownershipConfirmed": false,
+    "certificatePlanReviewed": false,
+    "rollbackOwnerNamed": false
+  },
+  "gates": [
+    "human-approves-topology",
+    "human-controls-provider-session",
+    "human-approves-dns-change",
+    "human-verifies-certificate",
+    "human-accepts-production-result"
+  ],
+  "prohibitedAutomation": [
+    "registrar-login",
+    "dns-write",
+    "cpanel-login",
+    "certificate-issuance",
+    "production-redirect"
+  ],
+  "rollback": {
+    "previousRecordsRecorded": false,
+    "restoreProcedureReviewed": false,
+    "verificationOwnerNamed": false
+  }
+}

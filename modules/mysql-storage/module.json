@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "mysql-storage",
+  "displayName": "MySQL Storage Foundation",
+  "version": "0.4.0",
+  "description": "Ordered migration, target-readiness, ownership, backup, recovery, and temporary-bridge planning for MySQL storage.",
+  "category": "storage",
+  "maturity": [2, 3],
+  "projectTypes": ["web-app", "service"],
+  "coreCompatibility": ">=0.4.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/mysql-storage/v0.4.0",
+    "path": "modules/mysql-storage",
+    "integrity": "sha256-6cd6890cd7c217ce9094d99131589e1157b16fc7a2f1dedfd2b3d7e79356ed37"
+  },
+  "dependencies": [],
+  "optionalDependencies": ["node-cpanel@>=0.3.0"],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/mysql-storage/storage.json",
+      "docs/kontextstack/modules/mysql-storage/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/mysql-storage/storage.json",
+      "source": "files/.kontextstack/modules/mysql-storage/storage.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/mysql-storage/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/mysql-storage/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "storage-contract-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/mysql-storage/storage.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/mysql-storage/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

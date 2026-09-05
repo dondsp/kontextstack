@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "production-operations",
+  "moduleVersion": "0.5.0",
+  "source": "https://github.com/dondsp/kontextstack",
+  "status": "draft",
+  "ownership": {
+    "releaseOwner": "record-before-release",
+    "monitoringOwner": "record-before-release",
+    "incidentOwner": "record-before-release",
+    "backupOwner": "record-before-release",
+    "acceptanceOwner": "record-before-release"
+  },
+  "health": {
+    "publicChecks": [],
+    "applicationChecks": [],
+    "dependencyChecks": [],
+    "sensitiveDataExcluded": true
+  },
+  "observability": {
+    "signals": [],
+    "thresholds": [],
+    "notificationDestinations": [],
+    "retentionReviewed": false
+  },
+  "continuity": {
+    "backupScheduleReviewed": false,
+    "restoreExerciseRecorded": false,
+    "artifactRollbackTested": false,
+    "incidentProcedureReviewed": false
+  },
+  "acceptance": {
+    "technicalVerifierNamed": false,
+    "productOwnerNamed": false,
+    "observationWindow": "record-before-release",
+    "knownRisks": []
+  },
+  "gates": [
+    "owners-named",
+    "health-contract-approved",
+    "monitoring-active",
+    "backup-evidence-current",
+    "restore-exercise-current",
+    "rollback-tested",
+    "incident-path-reviewed",
+    "owner-accepts-production"
+  ]
+}

@@ -8,16 +8,16 @@ update step only when the core or a compatible module changes.
 
 | Order | Where | Guide or action | Outcome |
 | --- | --- | --- | --- |
-| 1 | ContextKraft public guide | [Star, watch releases, and install KontextStack](INSTALLATION.md) | The public project is supported, release notifications are enabled, and the canonical `dondsp/kontextstack` repository is cloned, source-verified and tested locally. |
+| 1 | ContextKraft public guide | [Install and verify KontextStack](INSTALLATION.md) | The public npm CLI or canonical source clone is installed, source-verified, tested, and connected to an explicit update path. |
 | 2 | ContextKraft application | Select the project origin and memory | Choose an owned ContextKraft project or create owner-scoped memory for a project started in ChatGPT Sites, AI Studio or elsewhere. |
 | 3 | ContextKraft application | Approve the repository and release boundary | Decide whether to reuse an existing repository, create a genuinely standalone one, preserve independently owned repositories, or document a temporary split before GitHub publication. |
 | 4 | Actual canonical project repository | Generate the Current-State ContextPack | A coding agent inspects the approved repository read-only and records customer journeys, related repositories, releases, systems of record, bridges and current implementation. |
 | 5 | ContextKraft application | Review adaptive recommendations | ContextKraft suggests complexity, semantic hostnames, Node.js values and relevant next guides from approved evidence; the user approves or overrides them. |
 | 6 | ContextKraft application | Define and export the handoff | Repository identity, the approved architecture boundary, the next bounded goal, acceptance evidence and prohibited actions become Handoff Pack v2. |
-| 7 | Local KontextStack clone | Validate, inspect and preview | The pack and target repository are checked without writing project files. |
-| 8 | Local KontextStack clone | Apply and verify the exact preview | Only the reviewed project-owned handoff records are written; KontextStack never commits or pushes the project. |
+| 7 | KontextStack CLI or source clone | Validate, inspect and preview | The pack and target repository are checked without writing project files. |
+| 8 | KontextStack CLI or source clone | Apply and verify the exact preview | Only the reviewed project-owned handoff records are written; KontextStack never commits or pushes the project. |
 | 9 | Actual project repository | Continue in Codex | A new task starts in the project folder with the reviewed handoff context and repository as source of truth. |
-| 10 | Local KontextStack clone | [Update core or modules](MODULE_LIFECYCLE.md) | Incoming changes are inspected, previewed and verified while canonical source traceability is preserved. |
+| 10 | KontextStack CLI or source clone | [Update core or modules](MODULE_LIFECYCLE.md) | Incoming changes are inspected, previewed and verified while canonical source traceability is preserved. |
 
 The public sequence is also available at
 <https://contextkraft.com/guide>. Project-memory steps require the signed-in
@@ -46,11 +46,11 @@ this dependency order:
 4. authentication; and
 5. GitHub Actions auto-deployment.
 
-These are release-gated modules, not bundled alpha capabilities. A project may
-not need every step. ContextKraft should recommend them only when the approved
-Current-State evidence and user-supplied hosting facts justify them. No
-recommendation authorizes DNS, hosting, database, authentication, deployment,
-Git, account or production changes.
+Versions 0.2 through 0.5 bundle these capabilities as filesystem-only planning
+modules. A project may not need every step. ContextKraft should recommend them
+only when the approved Current-State evidence and user-supplied hosting facts
+justify them. No recommendation or applied module authorizes DNS, hosting,
+database, authentication, deployment, Git, account or production changes.
 
 ## Source and ownership
 

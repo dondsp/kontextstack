@@ -22,7 +22,7 @@ export async function listAvailableModules({ cacheDir = DEFAULT_MODULE_CACHE, in
         source: manifest.source.repository,
         integrity: version.integrity,
         bundled: true,
-        portable: false,
+        portable: manifest.files.every((file) => typeof file.source === "string"),
         ...(includeLocations ? { manifestPath: path.join(ROOT_DIR, version.manifestPath) } : {})
       });
     }
@@ -53,7 +53,11 @@ export async function resolveModule({ name, version = null, cacheDir = DEFAULT_M
   const selected = candidates[0];
   if (!selected) throw new Error(`No compatible module found for ${name}${version ? `@${version}` : ""}.`);
 
-  if (selected.portable) return loadPortableBundle(selected.root);
+  if (selected.portable) {
+    const bundleRoot = selected.root ?? path.dirname(selected.manifestPath);
+    const bundle = await loadPortableBundle(bundleRoot);
+    return { ...bundle, bundled: selected.bundled === true };
+  }
   const manifest = await readJson(selected.manifestPath);
   return {
     root: path.dirname(selected.manifestPath),

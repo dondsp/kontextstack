@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-08-15T00:00:00.000Z",
+  "generatedAt": "2026-09-05T00:00:00.000Z",
   "canonicalSource": "https://github.com/dondsp/kontextstack",
   "modules": [
     {
@@ -9,10 +9,122 @@
         {
           "version": "0.1.0-alpha.2",
           "coreCompatibility": ">=0.1.0-alpha.2 <0.2.0",
-          "manifestPath": "modules/handoff-core/module.json",
+          "manifestPath": "modules/handoff-core/versions/0.1.0-alpha.2.json",
           "integrity": "sha256-649151039e9aba50fbe942b790a74a011ed76751ab05275c124ddaef0cc665c5",
           "publishedAt": "2026-08-31T00:00:00.000Z",
           "status": "alpha"
+        },
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/handoff-core/module.json",
+          "integrity": "sha256-d3ff54deb1ebe440090d97541a460f5bbf3bd1c3fc6f6236cb5f4f8861ab25c8",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "domain-cpanel",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/domain-cpanel/module.json",
+          "integrity": "sha256-72e541c8ccb49ca77aad948a9d921630533982a51eda2aa533b04c3a3d569c2a",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "static-site-cpanel",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "coreCompatibility": ">=0.2.0 <0.6.0",
+          "manifestPath": "modules/static-site-cpanel/module.json",
+          "integrity": "sha256-c5086577757d471f30cbfa93a6a6ff4742ffef9d4d4b7cf48e5e6e9dcc0c9ea5",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "node-cpanel",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "coreCompatibility": ">=0.3.0 <0.6.0",
+          "manifestPath": "modules/node-cpanel/module.json",
+          "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "mysql-storage",
+      "versions": [
+        {
+          "version": "0.4.0",
+          "coreCompatibility": ">=0.4.0 <0.6.0",
+          "manifestPath": "modules/mysql-storage/module.json",
+          "integrity": "sha256-6cd6890cd7c217ce9094d99131589e1157b16fc7a2f1dedfd2b3d7e79356ed37",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "auth-local",
+      "versions": [
+        {
+          "version": "0.4.0",
+          "coreCompatibility": ">=0.4.0 <0.6.0",
+          "manifestPath": "modules/auth-local/module.json",
+          "integrity": "sha256-09b56e3686b7f2f48821ac9c3b54900d32858d52a3e51fea364aabdfeb81ddd8",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "auth-google",
+      "versions": [
+        {
+          "version": "0.4.0",
+          "coreCompatibility": ">=0.4.0 <0.6.0",
+          "manifestPath": "modules/auth-google/module.json",
+          "integrity": "sha256-4566b6567fe98d1235efcd4b1324ee9ed4db65b3ebec8fbae71b2a01d02767ed",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "github-cpanel-deploy",
+      "versions": [
+        {
+          "version": "0.5.0",
+          "coreCompatibility": ">=0.5.0 <0.6.0",
+          "manifestPath": "modules/github-cpanel-deploy/module.json",
+          "integrity": "sha256-b3e4b9bc208badf8ad9bde535bcc8edd2942e4f7c638c1d7c31c5fc026543ef6",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
+    },
+    {
+      "name": "production-operations",
+      "versions": [
+        {
+          "version": "0.5.0",
+          "coreCompatibility": ">=0.5.0 <0.6.0",
+          "manifestPath": "modules/production-operations/module.json",
+          "integrity": "sha256-ca12fd407bd5c8d0fa11f4af7766a3fafdf6b2be892e3973e091ae3ba7f30d1d",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
         }
       ]
     }

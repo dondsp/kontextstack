@@ -19,24 +19,24 @@ not mean the capability is already available.
   overwriting project customizations.
 - Generate a source-traced, fast-forward-only core update guide.
 
-## v0.2 — Domain and static publication
+## v0.2 — Domain and static publication — released
 
-Planned modules: `domain-cpanel` and `static-site-cpanel`. They will generate
+Modules: `domain-cpanel` and `static-site-cpanel`. They generate
 tailored domain, subdomain, add-on domain, redirect, certificate, `.htaccess`,
 static deployment, verification, and rollback guidance. They will not log in to
 registrars or cPanel or change DNS directly.
 
-## v0.3 — Node.js and cPanel runtime
+## v0.3 — Node.js and cPanel runtime — released
 
-Planned module: `node-cpanel`. It will cover cPanel Application Manager setup,
+Module: `node-cpanel`. It covers cPanel Application Manager setup,
 runtime versions, entrypoints, environment-name contracts, reverse routing,
 process restart, health checks, and rollback without managing production
 credentials.
 
-## v0.4 — Database and authentication foundations
+## v0.4 — Database and authentication foundations — released
 
-Planned modules include MySQL storage, local authentication, and optional Google
-authentication. Each will be opt-in and gated by security, migration, session,
+Modules include MySQL storage, local authentication, and optional Google
+authentication. Each is opt-in and gated by security, migration, session,
 CSRF, RBAC, backup, and recovery acceptance criteria.
 
 The first schema must establish the intended operator interface: ordered and
@@ -44,9 +44,9 @@ checksum-bound migrations, explicit target/readiness checks, backup and
 recovery evidence, and a production path separate from GitHub Actions. A
 temporary database or cross-application bridge must have an exit owner.
 
-## v0.5 — GitHub deployment and operations
+## v0.5 — GitHub deployment and operations — released
 
-Planned modules cover GitHub Actions artifact deployment, environment/secret
+Modules cover GitHub Actions artifact deployment, environment/secret
 name contracts, cPanel delivery, rollback, backups, monitoring, and production
 acceptance. KontextStack itself will not deploy automatically.
 
