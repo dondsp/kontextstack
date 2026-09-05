@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "kontextstack-decisions/v1",
+  "module": {
+    "name": "node-cpanel",
+    "version": "0.4.0"
+  },
+  "status": "unconfirmed",
+  "decisions": [
+    {
+      "id": "adaptation",
+      "answer": null,
+      "ownerApproval": null
+    },
+    {
+      "id": "proxy",
+      "answer": null,
+      "ownerApproval": null
+    },
+    {
+      "id": "data",
+      "answer": null,
+      "ownerApproval": null
+    }
+  ],
+  "legacyRecord": "runtime.json"
+}

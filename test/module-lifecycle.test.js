@@ -177,7 +177,8 @@ test("bundled roadmap modules are directly previewable and approval-gated", asyn
   const plan = await createModulePlan({ projectPath: project, name: "domain-cpanel" });
   assert.equal(plan.status, "ready");
   assert.equal(plan.module.portable, true);
-  assert.deepEqual(plan.actions.map((entry) => entry.action), ["add", "add"]);
+  assert.ok(plan.actions.length > 2);
+  assert.ok(plan.actions.every((entry) => entry.action === "add"));
   await assert.rejects(
     applyModulePlan({ projectPath: project, name: "domain-cpanel", approval: "sha256-wrong" }),
     /exactly match/
@@ -188,7 +189,7 @@ test("bundled roadmap modules are directly previewable and approval-gated", asyn
     name: "domain-cpanel",
     approval: plan.previewId
   });
-  assert.equal(applied.added.length, 2);
+  assert.equal(applied.added.length, plan.actions.length);
   const verification = await verifyProjectModules(project);
   assert.equal(verification.valid, true);
 });

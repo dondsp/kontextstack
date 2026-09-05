@@ -14,10 +14,12 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.5.1` stable local planning foundation. It generates reviewable
-> hosting, runtime, storage, identity, deployment, and operations records; it
-> does not perform production, provider, database, deployment, Git, or account
-> changes.
+> Status: `0.6.0-alpha.1` evaluation prerelease, available through npm's `next`
+> channel. It adds validated implementation kits for domain, static hosting and
+> Node runtime work. MySQL, authentication, deployment and operations modules
+> still provide planning records. Stable npm `latest` remains `0.5.1`.
+> KontextStack does not perform production, provider, database, deployment, Git,
+> or account changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
 lists the complete order from installation and mandatory Current-State capture
@@ -90,6 +92,18 @@ node bin/kontextstack.js doctor
 ```
 
 ## npm installation
+
+For the implementation-kit evaluation prerelease, choose it explicitly:
+
+```bash
+npm install --global kontextstack@0.6.0-alpha.1
+kontextstack doctor
+```
+
+The `next` channel is for evaluation; `latest` remains the stable planning
+foundation. See [prerelease scope and evidence](docs/releases/0.6.0-alpha.1.md).
+The remaining v0.6 capability ports and ContextKraft guide activation are not
+included. Existing customized records still produce upgrade conflicts.
 
 Install the public package globally:
 
@@ -175,12 +189,14 @@ Git commands for the user to review.
 
 ## Bundled modules
 
-Version 0.5 bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`,
+This prerelease bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`,
 `node-cpanel`, `mysql-storage`, `auth-local`, optional `auth-google`,
 `github-cpanel-deploy`, and `production-operations`. The modules generate
 project-owned plans and runbooks while leaving provider, hosting, database,
 identity, credential, migration, workflow, recovery, and production authority
-with the human operator.
+with the human operator. Domain/static 0.3.0 and Node 0.4.0 additionally install
+implementation contracts, Codex briefs, templates, checks and recovery guidance.
+Their prior planning-only versions remain available with original fingerprints.
 
 ```bash
 kontextstack modules available

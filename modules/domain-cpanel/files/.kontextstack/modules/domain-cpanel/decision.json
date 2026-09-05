@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "kontextstack-decisions/v1",
+  "module": {
+    "name": "domain-cpanel",
+    "version": "0.3.0"
+  },
+  "status": "unconfirmed",
+  "decisions": [
+    {
+      "id": "canonical-host",
+      "answer": null,
+      "ownerApproval": null
+    },
+    {
+      "id": "dns-owner",
+      "answer": null,
+      "ownerApproval": null
+    },
+    {
+      "id": "routing-owner",
+      "answer": null,
+      "ownerApproval": null
+    }
+  ],
+  "legacyRecord": "plan.json"
+}

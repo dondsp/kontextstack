@@ -24,6 +24,9 @@ export async function makeCleanProject() {
   git(projectRoot, ["init", "-b", "main"]);
   git(projectRoot, ["config", "user.name", "KontextStack Test"]);
   git(projectRoot, ["config", "user.email", "test@example.invalid"]);
+  // A disposable fixture must not start Git maintenance that races cleanup.
+  git(projectRoot, ["config", "gc.auto", "0"]);
+  git(projectRoot, ["config", "maintenance.auto", "false"]);
   git(projectRoot, ["add", "index.html", "README.md"]);
   git(projectRoot, ["commit", "-m", "test: initialize fixture"]);
   git(projectRoot, ["remote", "add", "origin", "https://github.com/example/example-project.git"]);

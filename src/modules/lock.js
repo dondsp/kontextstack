@@ -49,6 +49,8 @@ export function installedModules(lock) {
       version: record.version,
       source: record.source,
       integrity: record.integrity,
+      sourceCommit: record.sourceCommit ?? null,
+      history: record.history ?? [],
       appliedFromPreview: record.appliedFromPreview ?? null,
       files,
       exactFileIntegrity: files.length > 0 && files.every((file) => Boolean(file.integrity))

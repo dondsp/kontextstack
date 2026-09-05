@@ -5,6 +5,7 @@ import { integrity, stableStringify } from "../core/json.js";
 import { assertNoSecretValues } from "../core/safety.js";
 import { validateRelativeTarget } from "../core/paths.js";
 import { satisfiesRange } from "../core/semver.js";
+import { assertContractPath, assertKitContent, validateModuleContracts } from "./contracts.js";
 
 const NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
@@ -54,6 +55,14 @@ function validatePortableEntry(manifest, entry) {
   }
   const target = validateRelativeTarget(entry.path);
   const source = validateRelativeTarget(entry.source);
+  assertContractPath(entry.path);
+  assertContractPath(entry.source);
+  for (const segment of target.split("/")) {
+    if ((/^\.env(?:\.|$)/i.test(segment) && segment !== ".env.example") ||
+        /^(?:uploads|dumps|id_rsa)$|\.(?:pem|key)$/i.test(segment)) {
+      throw new Error("Module target uses a protected filename.");
+    }
+  }
   if (!portableRoots(manifest.name).some((root) => target.startsWith(root))) {
     throw new Error(`Portable module target is outside its owned namespace: ${target}.`);
   }
@@ -85,6 +94,7 @@ async function readPortableFile(bundleRoot, source) {
   if (content.includes("\0")) throw new Error(`Binary module sources are not supported: ${source}.`);
   try {
     assertNoSecretValues({ moduleFile: content });
+    assertKitContent(content);
   } catch {
     throw new Error(`Module source contains a protected secret-like value: ${source}.`);
   }
@@ -92,8 +102,10 @@ async function readPortableFile(bundleRoot, source) {
 }
 
 export async function loadPortableBundle(bundleRoot, { verifyIntegrity = true } = {}) {
-  const manifestPath = path.join(bundleRoot, "module.json");
-  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  let manifest;
+  try { manifest = JSON.parse(await readPortableFile(bundleRoot, "module.json")); }
+  catch { throw new Error("Module manifest is unreadable, unsafe, or contains a protected value."); }
+  assertNoSecretValues(manifest);
   assertManifestShape(manifest);
 
   const seenTargets = new Set();
@@ -110,17 +122,24 @@ export async function loadPortableBundle(bundleRoot, { verifyIntegrity = true } 
     throw new Error("Every writePattern must correspond to exactly one portable module file.");
   }
 
+  let guideContent = null;
+  try { guideContent = await readPortableFile(bundleRoot, "guide.json"); }
+  catch (error) { if (error.code !== "ENOENT") throw error; }
+  const contracts = validateModuleContracts({ manifest, files, guideContent });
+  const metadataFiles = guideContent === null ? [] : [{ source: "guide.json", content: guideContent, integrity: integrity(guideContent) }];
+
   const manifestForHash = structuredClone(manifest);
   delete manifestForHash.source.integrity;
   const computedIntegrity = integrity(stableStringify({
     manifest: manifestForHash,
-    files: files.map((file) => ({ source: file.source, target: file.target, integrity: file.integrity }))
+    files: files.map((file) => ({ source: file.source, target: file.target, integrity: file.integrity })),
+    ...(contracts ? { contracts: metadataFiles.map(({ source, integrity }) => ({ source, integrity })) } : {})
   }));
   if (verifyIntegrity && manifest.source.integrity !== computedIntegrity) {
     throw new Error(`Module integrity mismatch for ${manifest.name}@${manifest.version}.`);
   }
 
-  return { root: bundleRoot, manifest, files, computedIntegrity, portable: true };
+  return { root: bundleRoot, manifest, files, metadataFiles, contracts, computedIntegrity, portable: true };
 }
 
 export async function fingerprintPortableBundle(bundleRoot) {

@@ -3,6 +3,21 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.6.0-alpha.1 — 2026-09-05
+
+Evaluation prerelease on npm's `next` channel; stable `latest` remains 0.5.1.
+This is the Phase 0–3 slice of the v0.6 initiative, not its final release.
+
+- Add strict, integrity-bound implementation and guide contracts and inspection.
+- Enforce dependency version ranges and retain prior module lock provenance.
+- Port domain/static 0.3.0 and Node 0.4.0 implementation kits, including inert
+  templates, checks, provider approval procedures, rollback and Codex briefs.
+- Retain immutable planning-only bundle versions and preview-required upgrades.
+- Add Apache routing, artifact refusal, generated runtime, startup/shutdown,
+  compatibility, integrity and customization tests.
+- Keep MySQL/authentication, deployment/operations, ContextKraft activation and
+  full end-to-end release scenarios outstanding.
+
 ## 0.5.1 — 2026-09-05
 
 - Rename the machine-readable installation contract so it reflects the

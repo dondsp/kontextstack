@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "kontextstack-evidence/v1",
+  "module": {
+    "name": "static-site-cpanel",
+    "version": "0.3.0"
+  },
+  "policy": "non-secret-only",
+  "facts": [
+    {
+      "id": "build",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "routes",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "forms",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "target",
+      "status": "missing",
+      "reference": null
+    }
+  ],
+  "states": {
+    "installed": false,
+    "implemented": false,
+    "locally-verified": false,
+    "provider-configured": false,
+    "deployed": false,
+    "migrated": false,
+    "production-verified": false,
+    "owner-accepted": false
+  },
+  "waivers": []
+}

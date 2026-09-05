@@ -25,6 +25,16 @@
     "upgrade"
   ],
   "properties": {
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "implementation", "guide"],
+      "properties": {
+        "schemaVersion": { "const": "kontextstack-kit/v1" },
+        "implementation": { "type": "string", "pattern": "^\\.kontextstack/modules/[a-z0-9-]+/implementation\\.json$" },
+        "guide": { "const": "guide.json" }
+      }
+    },
     "schemaVersion": { "const": "1.0.0" },
     "name": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "displayName": { "type": "string", "minLength": 1 },

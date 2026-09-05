@@ -1,0 +1,8 @@
+# Reference for an approved alias host at a domain-root static site.
+# Replace both placeholders. ALIAS_HOST_REGEX must be anchored and dots escaped.
+# Start with temporary 302; use 301 only after owner acceptance of permanence.
+# Preserve host-managed challenge paths; do not paste over provider rules.
+RewriteEngine On
+RewriteRule ^[.]well-known/acme-challenge/ - [L]
+RewriteCond %{HTTP_HOST} ^<ALIAS_HOST_REGEX>$ [NC]
+RewriteRule ^ https://<CANONICAL_HOST>%{REQUEST_URI} [R=302,L]

@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dondsp/kontextstack/schemas/module/implementation-v1.json",
+  "title": "KontextStack implementation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "module",
+    "requires",
+    "optional",
+    "sources",
+    "projectEvidence",
+    "decisions",
+    "projectChanges",
+    "externalActions",
+    "approvalGates",
+    "checks",
+    "rollback",
+    "acceptance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "kontextstack-implementation/v1"
+    },
+    "module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+        }
+      }
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "optional": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository",
+          "revision",
+          "path",
+          "integrity",
+          "state"
+        ],
+        "properties": {
+          "repository": {
+            "enum": [
+              "https://github.com/dondsp/kontextstack",
+              "https://github.com/dondsp/contextstack"
+            ]
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "integrity": {
+            "type": "string",
+            "pattern": "^sha256-[a-f0-9]{64}$"
+          },
+          "state": {
+            "enum": [
+              "committed",
+              "working-tree"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "projectEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt",
+          "required"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "question",
+          "options",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "owner": {
+            "const": "project-owner"
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "projectChanges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description",
+          "projectPath",
+          "templates",
+          "mode"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "projectPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "templates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "mode": {
+            "const": "adapt-after-inspection"
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "externalActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "target",
+          "effect",
+          "owner",
+          "surface",
+          "approvalGate",
+          "verification",
+          "rollback"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "const": "project-owner"
+          },
+          "surface": {
+            "enum": [
+              "browser",
+              "computer-use",
+              "provider",
+              "production"
+            ]
+          },
+          "approvalGate": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "verification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rollback": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "approvalGates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scope",
+          "authority"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "const": "separate-explicit-approval"
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "instruction",
+          "expected",
+          "authority"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "kind": {
+            "enum": [
+              "command",
+              "browser",
+              "provider",
+              "security",
+              "integrity"
+            ]
+          },
+          "instruction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "enum": [
+              "local-review",
+              "separate-explicit-approval"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "layer",
+          "instruction",
+          "verification",
+          "authority"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "layer": {
+            "enum": [
+              "files",
+              "runtime",
+              "dns",
+              "database",
+              "identity",
+              "release"
+            ]
+          },
+          "instruction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "enum": [
+              "local-review",
+              "separate-explicit-approval"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "acceptance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "criterion",
+          "evidence",
+          "owner"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "criterion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "owner": {
+            "const": "project-owner"
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {}
+}

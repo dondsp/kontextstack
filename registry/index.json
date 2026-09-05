@@ -30,10 +30,18 @@
         {
           "version": "0.2.0",
           "coreCompatibility": ">=0.2.0 <0.6.0",
-          "manifestPath": "modules/domain-cpanel/module.json",
+          "manifestPath": "modules/domain-cpanel/versions/0.2.0/module.json",
           "integrity": "sha256-72e541c8ccb49ca77aad948a9d921630533982a51eda2aa533b04c3a3d569c2a",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.3.0",
+          "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+          "manifestPath": "modules/domain-cpanel/module.json",
+          "integrity": "sha256-a853be515102e76a4a43ad01c39eecf4853a3fd60b405040dceae841f2edf2d2",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     },
@@ -43,10 +51,18 @@
         {
           "version": "0.2.0",
           "coreCompatibility": ">=0.2.0 <0.6.0",
-          "manifestPath": "modules/static-site-cpanel/module.json",
+          "manifestPath": "modules/static-site-cpanel/versions/0.2.0/module.json",
           "integrity": "sha256-c5086577757d471f30cbfa93a6a6ff4742ffef9d4d4b7cf48e5e6e9dcc0c9ea5",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.3.0",
+          "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+          "manifestPath": "modules/static-site-cpanel/module.json",
+          "integrity": "sha256-77bba80ad4ea0bce1be60d70519a07f704cfa0973d75b73f87fa3770e77deb04",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     },
@@ -56,10 +72,18 @@
         {
           "version": "0.3.0",
           "coreCompatibility": ">=0.3.0 <0.6.0",
-          "manifestPath": "modules/node-cpanel/module.json",
+          "manifestPath": "modules/node-cpanel/versions/0.3.0/module.json",
           "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3",
           "publishedAt": "2026-09-05T00:00:00.000Z",
           "status": "stable"
+        },
+        {
+          "version": "0.4.0",
+          "coreCompatibility": ">=0.6.0-alpha.1 <0.7.0",
+          "manifestPath": "modules/node-cpanel/module.json",
+          "integrity": "sha256-d9ce255b20e461f4d79886dfe859c2e4e0396168a6f35a1fc373cf2f1cbdf840",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "alpha"
         }
       ]
     },

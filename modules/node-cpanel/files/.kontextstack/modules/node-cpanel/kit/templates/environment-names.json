@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "kontextstack-runtime-environment/v1",
+  "names": [
+    { "name": "NODE_ENV", "required": true, "description": "production on the reviewed host; test for disposable fixtures" },
+    { "name": "PORT", "required": true, "description": "host-injected numeric port; do not override the host binding" },
+    { "name": "API_HOST", "required": false, "description": "reviewed bind IP; loopback by default" },
+    { "name": "SERVICE_NAME", "required": true, "description": "non-secret public service identifier" },
+    { "name": "APP_BASE_URL", "required": true, "description": "exact approved origin; HTTPS in production" },
+    { "name": "TRUST_PROXY", "required": false, "description": "false unless a separately reviewed framework adapter replaces this reference" }
+  ],
+  "valuesStored": false,
+  "providerApprovalRequired": true
+}

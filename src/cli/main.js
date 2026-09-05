@@ -105,7 +105,9 @@ async function doctor() {
     await pathCheck("legacy handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v1.json")),
     await pathCheck("current handoff schema", path.join(ROOT_DIR, "schemas", "handoff", "v2.json")),
     await pathCheck("installation schema", path.join(ROOT_DIR, "schemas", "installation", "v1.json")),
-    await pathCheck("module lock schema", path.join(ROOT_DIR, "schemas", "module", "lock-v1.json"))
+    await pathCheck("module lock schema", path.join(ROOT_DIR, "schemas", "module", "lock-v1.json")),
+    await pathCheck("implementation schema", path.join(ROOT_DIR, "schemas", "module", "implementation-v1.json")),
+    await pathCheck("guide schema", path.join(ROOT_DIR, "schemas", "module", "guide-v1.json"))
   ];
   const registry = await listAvailableModules();
   checks.push({

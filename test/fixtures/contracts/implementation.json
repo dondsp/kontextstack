@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "kontextstack-implementation/v1",
+  "module": {
+    "name": "fixture-kit",
+    "version": "1.1.0"
+  },
+  "requires": [],
+  "optional": [],
+  "sources": [
+    {
+      "repository": "https://github.com/dondsp/kontextstack",
+      "revision": "39430323984eb08f0e708873c5d4f43a065c2933",
+      "path": "docs/architecture/MODULES_AND_UPDATES.md",
+      "integrity": "sha256-1111111111111111111111111111111111111111111111111111111111111111",
+      "state": "committed"
+    }
+  ],
+  "projectEvidence": [
+    {
+      "id": "routing",
+      "prompt": "Inspect the actual route model.",
+      "required": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "canonical-host",
+      "question": "Which approved hostname is canonical?",
+      "options": [
+        "<CANONICAL_HOST>"
+      ],
+      "owner": "project-owner"
+    }
+  ],
+  "projectChanges": [
+    {
+      "id": "routing",
+      "description": "Adapt routing after inspecting current behavior.",
+      "projectPath": "public/.htaccess",
+      "templates": [
+        ".kontextstack/modules/fixture-kit/kit/templates/redirect.htaccess"
+      ],
+      "mode": "adapt-after-inspection"
+    }
+  ],
+  "externalActions": [
+    {
+      "id": "dns",
+      "target": "<HOSTNAME>",
+      "effect": "Update only the approved mapping.",
+      "owner": "project-owner",
+      "surface": "browser",
+      "approvalGate": "dns",
+      "verification": "Inspect approved resolution.",
+      "rollback": "Restore prior mapping."
+    }
+  ],
+  "approvalGates": [
+    {
+      "id": "dns",
+      "scope": "Scoped DNS change",
+      "authority": "separate-explicit-approval"
+    }
+  ],
+  "checks": [
+    {
+      "id": "routing",
+      "kind": "integrity",
+      "instruction": "Inspect the adapted routing file.",
+      "expected": "No unresolved inputs.",
+      "authority": "local-review"
+    }
+  ],
+  "rollback": [
+    {
+      "id": "routing",
+      "layer": "files",
+      "instruction": "Restore the previous routing file.",
+      "verification": "Repeat route checks.",
+      "authority": "local-review"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "routing",
+      "criterion": "Owner accepts verified routing.",
+      "evidence": [
+        "routing"
+      ],
+      "owner": "project-owner"
+    }
+  ]
+}

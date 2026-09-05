@@ -18,6 +18,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
+      - name: Install local Apache fixture runtime
+        run: sudo apt-get update && sudo apt-get install -y apache2
       - run: npm test
       - run: npm run audit:source
       - name: Inspect package contents without publishing

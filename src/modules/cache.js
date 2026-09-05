@@ -49,7 +49,7 @@ export async function importPortableModule({ sourcePath, cacheDir = DEFAULT_MODU
       flag: "wx",
       mode: 0o644
     });
-    for (const file of bundle.files) {
+    for (const file of [...bundle.files, ...bundle.metadataFiles]) {
       const target = path.join(temporary, file.source);
       await mkdir(path.dirname(target), { recursive: true });
       await writeFile(target, file.content, { encoding: "utf8", flag: "wx", mode: 0o644 });

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "node-cpanel",
+  "displayName": "cPanel Node.js Runtime",
+  "version": "0.3.0",
+  "description": "Runtime, entrypoint, environment-name, reverse-routing, restart, health-check, and rollback planning for Node.js applications on cPanel.",
+  "category": "runtime",
+  "maturity": [1, 2, 3],
+  "projectTypes": ["web-app", "service"],
+  "coreCompatibility": ">=0.3.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/node-cpanel/v0.3.0",
+    "path": "modules/node-cpanel",
+    "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3"
+  },
+  "dependencies": [],
+  "optionalDependencies": ["domain-cpanel@>=0.2.0", "static-site-cpanel@>=0.2.0"],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/node-cpanel/runtime.json",
+      "docs/kontextstack/modules/node-cpanel/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/node-cpanel/runtime.json",
+      "source": "files/.kontextstack/modules/node-cpanel/runtime.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/node-cpanel/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/node-cpanel/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "runtime-contract-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/node-cpanel/runtime.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/node-cpanel/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

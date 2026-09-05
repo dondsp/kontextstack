@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "kontextstack-evidence/v1",
+  "module": {
+    "name": "domain-cpanel",
+    "version": "0.3.0"
+  },
+  "policy": "non-secret-only",
+  "facts": [
+    {
+      "id": "hostnames",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "dns",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "roots",
+      "status": "missing",
+      "reference": null
+    },
+    {
+      "id": "tls-routing",
+      "status": "missing",
+      "reference": null
+    }
+  ],
+  "states": {
+    "installed": false,
+    "implemented": false,
+    "locally-verified": false,
+    "provider-configured": false,
+    "deployed": false,
+    "migrated": false,
+    "production-verified": false,
+    "owner-accepted": false
+  },
+  "waivers": []
+}

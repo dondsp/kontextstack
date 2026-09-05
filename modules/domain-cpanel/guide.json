@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "kontextstack-guide/v1",
+  "module": {
+    "name": "domain-cpanel",
+    "version": "0.3.0"
+  },
+  "package": {
+    "name": "kontextstack",
+    "version": "0.6.0-alpha.1"
+  },
+  "title": "Connect a domain or subdomain",
+  "summary": "Source-traced hostname, DNS, certificate, routing and recovery implementation kit.",
+  "durationMinutes": {
+    "min": 30,
+    "max": 120
+  },
+  "maturity": [
+    1,
+    2,
+    3
+  ],
+  "prerequisites": [],
+  "questions": [
+    {
+      "id": "canonical-host",
+      "prompt": "Which hostname is canonical?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "apex",
+          "www",
+          "application-subdomain"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    },
+    {
+      "id": "dns-owner",
+      "prompt": "Where will authoritative DNS remain?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "existing-zone",
+          "explicitly-approved-zone-move"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    },
+    {
+      "id": "routing-owner",
+      "prompt": "Which layer owns canonical redirects?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "provider",
+          "apache",
+          "runtime",
+          "cdn"
+        ]
+      },
+      "evidencePolicy": "non-secret-only"
+    }
+  ],
+  "stages": [
+    {
+      "id": "goal",
+      "title": "Confirm the goal",
+      "kind": "inspect",
+      "approval": "none",
+      "instructions": [
+        "Read the capability boundary and exclude unneeded services."
+      ],
+      "completionEvidence": [
+        "Recorded selected goal and exclusions."
+      ]
+    },
+    {
+      "id": "inspect",
+      "title": "Inspect the actual project",
+      "kind": "inspect",
+      "approval": "none",
+      "instructions": [
+        "Collect required project evidence without revealing values."
+      ],
+      "completionEvidence": [
+        "Confirmed facts and missing evidence."
+      ]
+    },
+    {
+      "id": "findings",
+      "title": "Review findings",
+      "kind": "decide",
+      "approval": "none",
+      "instructions": [
+        "Separate facts, gaps, conflicts and recommendation conditions."
+      ],
+      "completionEvidence": [
+        "Reviewed evidence and invalidation conditions."
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Choose architecture",
+      "kind": "decide",
+      "approval": "none",
+      "instructions": [
+        "Record owner choices from the module decision contract."
+      ],
+      "completionEvidence": [
+        "Project-owned decision references."
+      ]
+    },
+    {
+      "id": "install",
+      "title": "Install the kit",
+      "kind": "install",
+      "approval": "exact-preview",
+      "instructions": [
+        "Inspect, preview, approve exact identifier, apply and verify."
+      ],
+      "completionEvidence": [
+        "Local module verification result."
+      ]
+    },
+    {
+      "id": "implement",
+      "title": "Continue with Codex",
+      "kind": "implement",
+      "approval": "none",
+      "instructions": [
+        "Read CODEX_PROMPT.md and adapt reviewed references."
+      ],
+      "completionEvidence": [
+        "Project changes and local check results."
+      ]
+    },
+    {
+      "id": "local",
+      "title": "Verify locally",
+      "kind": "verify-local",
+      "approval": "none",
+      "instructions": [
+        "Execute the project's reviewed checks and inspect the artifact."
+      ],
+      "completionEvidence": [
+        "Non-secret local results or explicit gaps."
+      ]
+    },
+    {
+      "id": "prepare-provider",
+      "title": "Prepare the provider",
+      "kind": "provider",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Record exact target, owner, effect, expected result, recovery and approval."
+      ],
+      "completionEvidence": [
+        "Explicit scoped approval or deferred provider work."
+      ]
+    },
+    {
+      "id": "provider",
+      "title": "Apply the approved external change",
+      "kind": "provider",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Use PROVIDER_SETUP.md only within current explicit authority."
+      ],
+      "completionEvidence": [
+        "Sanitized provider outcome and verification."
+      ]
+    },
+    {
+      "id": "accept",
+      "title": "Verify and accept",
+      "kind": "accept",
+      "approval": "separate-explicit-approval",
+      "instructions": [
+        "Verify production and rollback readiness; request owner acceptance."
+      ],
+      "completionEvidence": [
+        "Observed results and explicit owner decision."
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "inspect",
+      "stage": "install",
+      "text": "kontextstack modules inspect --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    },
+    {
+      "id": "preview",
+      "stage": "install",
+      "text": "kontextstack modules preview --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    },
+    {
+      "id": "apply",
+      "stage": "install",
+      "text": "kontextstack modules apply --module domain-cpanel --version 0.3.0 --project <PROJECT_PATH> --approve <PREVIEW_ID>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>",
+        "<PREVIEW_ID>"
+      ]
+    },
+    {
+      "id": "verify",
+      "stage": "install",
+      "text": "kontextstack modules verify --project <PROJECT_PATH>",
+      "execution": "copy-only",
+      "placeholders": [
+        "<PROJECT_PATH>"
+      ]
+    }
+  ],
+  "documents": {
+    "start": "docs/kontextstack/modules/domain-cpanel/START_HERE.md",
+    "implementation": "docs/kontextstack/modules/domain-cpanel/IMPLEMENTATION.md",
+    "provider": "docs/kontextstack/modules/domain-cpanel/PROVIDER_SETUP.md",
+    "verification": "docs/kontextstack/modules/domain-cpanel/VERIFICATION.md",
+    "rollback": "docs/kontextstack/modules/domain-cpanel/ROLLBACK.md",
+    "codex": "docs/kontextstack/modules/domain-cpanel/CODEX_PROMPT.md"
+  },
+  "completion": {
+    "evidencePolicy": "non-secret-or-explicit-waiver",
+    "states": [
+      "installed",
+      "implemented",
+      "locally-verified",
+      "provider-configured",
+      "deployed",
+      "migrated",
+      "production-verified",
+      "owner-accepted"
+    ],
+    "progressGrantsAuthority": false
+  },
+  "redaction": {
+    "policy": "never-print-or-copy-values",
+    "prohibited": [
+      "tokens",
+      "passwords",
+      "env-values",
+      "private-keys",
+      "customer-data",
+      "production-rows",
+      "unreviewed-screenshots"
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "commit": "9146d8ee01153754eb7aa4eff8180e10bcd48425",
+    "implementationIntegrity": "sha256-8534aaaad4df93ed614304d1cf191056266f2c0fd9f5595496d4436df283928e",
+    "integrity": "sha256-183772c5aa25c76e153c42a7a0a6deb08a42dde3ae0358d4d723fbe76cc19c08"
+  }
+}

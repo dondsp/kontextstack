@@ -1,0 +1,13 @@
+# Domain-root SPA only; adapt after checking the actual route model.
+Options -Indexes
+DirectoryIndex index.html
+RewriteEngine On
+RewriteRule ^[.]well-known/acme-challenge/ - [L]
+# API must not become an HTML 200 on a static marketing site.
+RewriteRule ^api(?:/|$) - [R=404,L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# Missing asset-like requests fail instead of silently serving HTML.
+RewriteRule (?:^|/)[^/]*[.][^/]+$ - [R=404,L]
+RewriteRule ^ index.html [L]
