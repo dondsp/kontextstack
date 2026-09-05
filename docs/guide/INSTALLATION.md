@@ -2,11 +2,12 @@
 
 This is step 1 in the pinned [Start Here sequence](START_HERE.md).
 
-KontextStack uses one clone-first installation with two verification profiles.
-The selected profile changes the depth of readiness checks, not ownership of
-the user's project and not KontextStack's authority.
+KontextStack supports a public npm installation and a full source clone. npm is
+the direct path for normal use. Clone the source when you need contributor
+history or the extended repository-verification profile. Neither path changes
+ownership of the user's project or KontextStack's authority.
 
-## Before cloning: star and watch releases
+## Optional GitHub release notifications
 
 Open <https://github.com/dondsp/kontextstack> while signed in to GitHub:
 
@@ -15,11 +16,31 @@ Open <https://github.com/dondsp/kontextstack> while signed in to GitHub:
    selection.
 
 Starring helps discovery but does not guarantee update notifications. Watching
-releases is the GitHub notification path for published versions. Clone the
-repository for normal use. Fork it only when you intend to contribute or
-maintain an independent variant.
+releases is the GitHub notification path for published versions. These actions
+require a GitHub account, but installing the public npm package does not. Clone
+or fork the repository only when you need the source or intend to contribute.
 
-## Official installation
+## Recommended npm installation
+
+No npm account is required to install the public package:
+
+```bash
+node --version
+npm install --global kontextstack@latest
+kontextstack about
+kontextstack doctor
+```
+
+Compare the installed and public versions before applying an update:
+
+```bash
+npm list --global kontextstack --depth=0
+npm view kontextstack version
+npm install --global kontextstack@latest
+kontextstack doctor
+```
+
+## Full source installation
 
 Run these commands from the parent directory where you keep local tools:
 
@@ -45,9 +66,11 @@ node bin/kontextstack.js install verify --mode mature
 node bin/kontextstack.js doctor
 ```
 
-Both modes install the same safe handoff core. Mature mode additionally checks
-that the clone contains the operational, security, CI, release and module-
-authoring records needed for controlled evolution.
+Both modes verify the same source distribution. Mature mode additionally checks
+that the clone contains the operational, security, CI, release and
+module-authoring records needed for controlled evolution. The deep
+`install verify` command requires a Git clone; npm users use `about` and
+`doctor`.
 
 ## Choosing a mode
 
@@ -94,6 +117,7 @@ with the version of KontextStack that the user actually cloned.
 
 ## What verification does not do
 
-Installation verification does not install global packages, write project
-files, edit Git remotes, fetch updates, commit, push, deploy, change DNS, access
-databases, configure authentication or contact an external service.
+Installation verification does not write project files, edit Git remotes,
+fetch updates, commit, push, deploy, change DNS, access databases, configure
+authentication, or contact an external service. The explicit npm install or
+update command changes only the user's global npm installation.

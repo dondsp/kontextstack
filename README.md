@@ -14,9 +14,10 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.4.0` stable local planning foundation. It generates reviewable
-> hosting, runtime, storage, and authentication records; it does not perform
-> production, provider, database, deployment, Git, or account changes.
+> Status: `0.5.0` stable local planning foundation. It generates reviewable
+> hosting, runtime, storage, identity, deployment, and operations records; it
+> does not perform production, provider, database, deployment, Git, or account
+> changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
 lists the complete order from installation and mandatory Current-State capture
@@ -70,8 +71,8 @@ kontextstack doctor
 - Inspection and preview are read-only.
 - Apply requires the exact preview ID and stays within the selected project.
 - Modules are independently versioned and source-traceable.
-- Existing installations can discover later compatible modules through an
-  explicit registry refresh; core is never silently upgraded.
+- Each package release carries its exact compatible module registry; core and
+  modules are never silently upgraded.
 - Generated records point back to the canonical source and exact versions.
 - Builder origin and repository architecture remain separate decisions. Handoff
   Pack v2 requires an approved repository/release boundary and reopening
@@ -101,7 +102,7 @@ kontextstack install contract --mode simple
 Run an exact version without keeping a global installation:
 
 ```bash
-npx kontextstack@0.4.0 doctor
+npx kontextstack@0.5.0 doctor
 ```
 
 No hosted KontextStack or npm account is required. KontextStack uses Node.js 20 or newer
@@ -174,10 +175,11 @@ Git commands for the user to review.
 
 ## Bundled modules
 
-Version 0.4 bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`,
-`node-cpanel`, `mysql-storage`, `auth-local`, and optional `auth-google`. The
-modules generate project-owned plans and runbooks while leaving provider,
-hosting, database, identity, credential, migration, and production authority
+Version 0.5 bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`,
+`node-cpanel`, `mysql-storage`, `auth-local`, optional `auth-google`,
+`github-cpanel-deploy`, and `production-operations`. The modules generate
+project-owned plans and runbooks while leaving provider, hosting, database,
+identity, credential, migration, workflow, recovery, and production authority
 with the human operator.
 
 ```bash
@@ -188,6 +190,8 @@ kontextstack modules inspect --module node-cpanel --project /path/to/project
 kontextstack modules inspect --module mysql-storage --project /path/to/project
 kontextstack modules inspect --module auth-local --project /path/to/project
 kontextstack modules inspect --module auth-google --project /path/to/project
+kontextstack modules inspect --module github-cpanel-deploy --project /path/to/project
+kontextstack modules inspect --module production-operations --project /path/to/project
 ```
 
 Module discovery does not authorize module execution or installation. Every

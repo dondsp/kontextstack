@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "production-operations",
+  "displayName": "Production Operations Plan",
+  "version": "0.5.0",
+  "description": "Health, monitoring, backup, recovery, incident, rollback, evidence, and production acceptance planning.",
+  "category": "operations",
+  "maturity": [2, 3],
+  "projectTypes": ["website", "web-app", "service"],
+  "coreCompatibility": ">=0.5.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/production-operations/v0.5.0",
+    "path": "modules/production-operations",
+    "integrity": "sha256-ca12fd407bd5c8d0fa11f4af7766a3fafdf6b2be892e3973e091ae3ba7f30d1d"
+  },
+  "dependencies": [],
+  "optionalDependencies": ["github-cpanel-deploy@>=0.5.0", "mysql-storage@>=0.4.0", "node-cpanel@>=0.3.0"],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/production-operations/operations.json",
+      "docs/kontextstack/modules/production-operations/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/production-operations/operations.json",
+      "source": "files/.kontextstack/modules/production-operations/operations.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/production-operations/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/production-operations/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "operations-contract-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/production-operations/operations.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/production-operations/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

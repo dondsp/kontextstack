@@ -22,6 +22,8 @@ test("the bundled registry exposes source-traceable release modules", async (t) 
   assert.ok(names.has("mysql-storage"));
   assert.ok(names.has("auth-local"));
   assert.ok(names.has("auth-google"));
+  assert.ok(names.has("github-cpanel-deploy"));
+  assert.ok(names.has("production-operations"));
   for (const entry of registry.modules) {
     assert.equal(entry.source, "https://github.com/dondsp/kontextstack");
     assert.match(entry.integrity, /^sha256-[a-f0-9]{64}$/);

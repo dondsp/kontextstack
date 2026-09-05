@@ -44,9 +44,9 @@ checksum-bound migrations, explicit target/readiness checks, backup and
 recovery evidence, and a production path separate from GitHub Actions. A
 temporary database or cross-application bridge must have an exit owner.
 
-## v0.5 — GitHub deployment and operations
+## v0.5 — GitHub deployment and operations — released
 
-Planned modules cover GitHub Actions artifact deployment, environment/secret
+Modules cover GitHub Actions artifact deployment, environment/secret
 name contracts, cPanel delivery, rollback, backups, monitoring, and production
 acceptance. KontextStack itself will not deploy automatically.
 

@@ -3,6 +3,17 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.5.0 — 2026-09-05
+
+- Add stable `github-cpanel-deploy` and `production-operations` planning
+  modules.
+- Define protected-environment, pinned-action, least-privilege, deterministic
+  artifact, scoped delivery, dependency-manifest, smoke, and rollback gates.
+- Add health, monitoring, backup, restore-exercise, incident, evidence, and
+  explicit owner-acceptance records.
+- Keep workflow triggering, host access, uploads, restarts, migrations,
+  monitoring access, recovery, and production acceptance outside KontextStack.
+
 ## 0.4.0 — 2026-09-05
 
 - Add stable `mysql-storage`, `auth-local`, and optional `auth-google` planning

@@ -1,8 +1,7 @@
 # Handoff Core
 
-`handoff-core` is the only bundled KontextStack v0.1 module. It adds the
-smallest project-owned foundation needed to continue a ContextKraft handoff in
-Codex while keeping the target repository authoritative.
+`handoff-core` adds the smallest project-owned foundation needed to continue a
+ContextKraft handoff in Codex while keeping the target repository authoritative.
 
 With Handoff Pack v2, the generated records also preserve the approved builder
 origin, canonical repository, release unit, related-repository status,
@@ -21,5 +20,5 @@ It does not change application source, dependencies, Git state, infrastructure,
 accounts, credentials, deployments, DNS, databases, or authentication.
 
 Existing paths are preserved when their generated content matches. Any other
-existing content is reported as a conflict; alpha apply has no force-overwrite
+existing content is reported as a conflict; apply has no force-overwrite
 mode for those records.
