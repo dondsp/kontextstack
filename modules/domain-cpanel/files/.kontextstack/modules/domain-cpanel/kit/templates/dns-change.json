@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "kontextstack-dns-change/v1",
+  "target": "<HOSTNAME>",
+  "recordType": "<RECORD_TYPE>",
+  "authoritativeZone": "<ZONE_OWNER>",
+  "previousValue": "<PREVIOUS_PUBLIC_VALUE>",
+  "intendedValue": "<APPROVED_PUBLIC_VALUE>",
+  "previousTtlSeconds": null,
+  "observationWindow": "<CACHE_OBSERVATION_WINDOW>",
+  "owner": "<OWNER_ROLE>",
+  "approvalReference": null,
+  "applied": false,
+  "verification": [],
+  "rollback": {
+    "restore": "<PREVIOUS_PUBLIC_VALUE>",
+    "authority": "separate-explicit-approval",
+    "verification": "Query authoritative DNS and independent recursive resolvers; account for cached TTL."
+  }
+}

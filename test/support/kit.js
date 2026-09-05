@@ -20,6 +20,7 @@ export async function makeKit() {
     source: { repository: "https://github.com/dondsp/kontextstack", ref: "module/fixture-kit/v1.1.0", path: "modules/fixture-kit", integrity: "sha256-" + "0".repeat(64) },
     contracts: { schemaVersion: "kontextstack-kit/v1", implementation: ".kontextstack/modules/fixture-kit/implementation.json", guide: "guide.json" },
     files: [], permissions: { network: false, commands: [], writePatterns: [] },
+    maturity: [1, 2, 3],
     upgrade: { from: ["1.0.0"], strategy: "preview-required" }
   });
   const content = new Map([

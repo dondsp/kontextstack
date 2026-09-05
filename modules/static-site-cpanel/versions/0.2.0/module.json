@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "static-site-cpanel",
+  "displayName": "cPanel Static Site Publication",
+  "version": "0.2.0",
+  "description": "Artifact, scoped upload, routing, verification, and rollback planning for static sites on cPanel.",
+  "category": "delivery",
+  "maturity": [0, 1, 2, 3],
+  "projectTypes": ["website", "web-app"],
+  "coreCompatibility": ">=0.2.0 <0.6.0",
+  "source": {
+    "repository": "https://github.com/dondsp/kontextstack",
+    "ref": "module/static-site-cpanel/v0.2.0",
+    "path": "modules/static-site-cpanel",
+    "integrity": "sha256-c5086577757d471f30cbfa93a6a6ff4742ffef9d4d4b7cf48e5e6e9dcc0c9ea5"
+  },
+  "dependencies": [],
+  "optionalDependencies": ["domain-cpanel@>=0.2.0"],
+  "conflicts": [],
+  "capabilities": ["docs", "templates", "validation"],
+  "permissions": {
+    "network": false,
+    "commands": [],
+    "writePatterns": [
+      ".kontextstack/modules/static-site-cpanel/release.json",
+      "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md"
+    ]
+  },
+  "files": [
+    {
+      "path": ".kontextstack/modules/static-site-cpanel/release.json",
+      "source": "files/.kontextstack/modules/static-site-cpanel/release.json"
+    },
+    {
+      "path": "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md",
+      "source": "files/docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md"
+    }
+  ],
+  "validations": [
+    {
+      "id": "static-release-readable",
+      "kind": "json-readable",
+      "path": ".kontextstack/modules/static-site-cpanel/release.json"
+    },
+    {
+      "id": "canonical-source-present",
+      "kind": "contains",
+      "path": "docs/kontextstack/modules/static-site-cpanel/RUNBOOK.md",
+      "value": "https://github.com/dondsp/kontextstack"
+    }
+  ],
+  "upgrade": {
+    "from": [],
+    "strategy": "preview-required"
+  }
+}

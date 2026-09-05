@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "kontextstack-decisions/v1",
+  "module": {
+    "name": "static-site-cpanel",
+    "version": "0.3.0"
+  },
+  "status": "unconfirmed",
+  "decisions": [
+    {
+      "id": "route-model",
+      "answer": null,
+      "ownerApproval": null
+    },
+    {
+      "id": "form-model",
+      "answer": null,
+      "ownerApproval": null
+    }
+  ],
+  "legacyRecord": "release.json"
+}

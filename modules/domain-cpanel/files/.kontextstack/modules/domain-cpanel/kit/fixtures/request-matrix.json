@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "kontextstack-routing-fixture/v1",
+  "cases": [
+    {
+      "request": "http://alias.example.invalid/deep/path?q=1",
+      "expectedLocation": "https://site.example.invalid/deep/path?q=1",
+      "status": 302
+    },
+    {
+      "request": "https://site.example.invalid/",
+      "status": 200
+    },
+    {
+      "request": "https://alias.example.invalid/.well-known/acme-challenge/probe",
+      "status": 200
+    }
+  ],
+  "note": "Synthetic local assertions; no public DNS, TLS issuance or production acceptance."
+}

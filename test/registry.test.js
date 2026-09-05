@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -35,9 +35,11 @@ test("every bundled portable module matches its registry fingerprint and filesys
   t.after(() => rm(emptyCache, { recursive: true, force: true }));
   const registry = await listAvailableModules({ cacheDir: emptyCache, includeLocations: true });
   const portable = registry.modules.filter((entry) => entry.name !== "handoff-core");
+  const packageVersion = JSON.parse(await readFile(path.join(root, "package.json"))).version;
   for (const entry of portable) {
-    const bundle = await loadPortableBundle(path.join(root, "modules", entry.name));
+    const bundle = await loadPortableBundle(path.dirname(entry.manifestPath));
     assert.equal(bundle.computedIntegrity, entry.integrity);
+    if (bundle.contracts) assert.equal(bundle.contracts.guide.package.version, packageVersion, "Guide snapshot must match the selected package release");
     assert.equal(bundle.manifest.permissions.network, false);
     assert.deepEqual(bundle.manifest.permissions.commands, []);
     assert.ok(bundle.files.every((file) => (

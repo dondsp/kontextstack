@@ -1,0 +1,7 @@
+# Direct TLS termination only. Do not trust arbitrary forwarded headers.
+# Use only when this file owns HTTPS and all requested names have valid TLS.
+# If provider/CDN owns HTTPS, omit this snippet and verify that owner's behavior.
+RewriteEngine On
+RewriteRule ^[.]well-known/acme-challenge/ - [L]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://<CANONICAL_HOST>%{REQUEST_URI} [R=302,L]
