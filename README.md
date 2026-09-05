@@ -15,8 +15,9 @@ This repository is a clean-room successor to the private experimental
 core instead of publishing every mature internal module at once.
 
 > Status: this branch prepares the unpublished `0.6.0-alpha.2` candidate with
-> implementation kits for all eight modules. ContextKraft integration and final
-> composition/release gates remain in progress. The published evaluation version
+> implementation kits for all eight modules. Local composition checks and the
+> ContextKraft guide candidate are implemented; publication and live guide
+> activation still require owner approval. The published evaluation version
 > is `0.6.0-alpha.1` on npm's `next` channel; stable `latest` remains `0.5.1`.
 > KontextStack does not perform production, provider, database, deployment, Git,
 > or account changes.

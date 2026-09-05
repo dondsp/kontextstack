@@ -15,8 +15,10 @@ independent semantic versions.
 - Preserve immutable previous bundles and refuse upgrades over customized files.
 - Keep templates inert until Codex adapts them in the project. No provider,
   production, database, authentication or deployment action runs in the toolkit.
-- ContextKraft integration and the final composition/release gates remain in
-  progress. This candidate has not been published to npm.
+- Add installed Node + MySQL + local auth + signed Google composition through
+  one explicitly adapted HTTP listener, plus the supported selection matrix.
+- Prepare ContextKraft's versioned guide integration in its own reviewed branch.
+  This candidate has not been published to npm or activated in live guides.
 
 ## 0.6.0-alpha.1 — 2026-09-05
 
