@@ -3,6 +3,14 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.3.0 — 2026-09-05
+
+- Add the stable `node-cpanel` runtime planning module.
+- Record Node.js version, private application root, built entrypoint, startup,
+  environment-name, routing, health, restart, and rollback contracts.
+- Keep cPanel access, runtime configuration, environment values, dependency
+  installation, process restart, and production acceptance outside KontextStack.
+
 ## 0.2.0 — 2026-09-05
 
 - Add stable, source-traceable `domain-cpanel` and `static-site-cpanel`

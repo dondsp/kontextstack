@@ -49,6 +49,19 @@
           "status": "stable"
         }
       ]
+    },
+    {
+      "name": "node-cpanel",
+      "versions": [
+        {
+          "version": "0.3.0",
+          "coreCompatibility": ">=0.3.0 <0.6.0",
+          "manifestPath": "modules/node-cpanel/module.json",
+          "integrity": "sha256-477e2570f60c6649da03a1364498d76418a69b311c3d87d0ffccad64425ac6a3",
+          "publishedAt": "2026-09-05T00:00:00.000Z",
+          "status": "stable"
+        }
+      ]
     }
   ]
 }

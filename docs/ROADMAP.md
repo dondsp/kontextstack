@@ -26,9 +26,9 @@ tailored domain, subdomain, add-on domain, redirect, certificate, `.htaccess`,
 static deployment, verification, and rollback guidance. They will not log in to
 registrars or cPanel or change DNS directly.
 
-## v0.3 — Node.js and cPanel runtime
+## v0.3 — Node.js and cPanel runtime — released
 
-Planned module: `node-cpanel`. It will cover cPanel Application Manager setup,
+Module: `node-cpanel`. It covers cPanel Application Manager setup,
 runtime versions, entrypoints, environment-name contracts, reverse routing,
 process restart, health checks, and rollback without managing production
 credentials.

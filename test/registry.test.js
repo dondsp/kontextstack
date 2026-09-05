@@ -18,6 +18,7 @@ test("the bundled registry exposes source-traceable release modules", async (t) 
   assert.ok(names.has("handoff-core"));
   assert.ok(names.has("domain-cpanel"));
   assert.ok(names.has("static-site-cpanel"));
+  assert.ok(names.has("node-cpanel"));
   for (const entry of registry.modules) {
     assert.equal(entry.source, "https://github.com/dondsp/kontextstack");
     assert.match(entry.integrity, /^sha256-[a-f0-9]{64}$/);
