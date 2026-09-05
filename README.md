@@ -14,9 +14,9 @@ This repository is a clean-room successor to the private experimental
 `dondsp/contextstack` repository. It intentionally starts with a small handoff
 core instead of publishing every mature internal module at once.
 
-> Status: `0.3.0` stable local planning foundation. It generates reviewable
-> domain, static-publication, and Node.js/cPanel runtime records; it does not
-> perform production, DNS, cPanel, deployment, Git, or account changes.
+> Status: `0.4.0` stable local planning foundation. It generates reviewable
+> hosting, runtime, storage, and authentication records; it does not perform
+> production, provider, database, deployment, Git, or account changes.
 
 Start with the pinned [KontextStack sequence](docs/guide/START_HERE.md). It
 lists the complete order from installation and mandatory Current-State capture
@@ -101,7 +101,7 @@ kontextstack install contract --mode simple
 Run an exact version without keeping a global installation:
 
 ```bash
-npx kontextstack@0.3.0 doctor
+npx kontextstack@0.4.0 doctor
 ```
 
 No hosted KontextStack or npm account is required. KontextStack uses Node.js 20 or newer
@@ -174,16 +174,20 @@ Git commands for the user to review.
 
 ## Bundled modules
 
-Version 0.3 bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`, and
-`node-cpanel`. The modules generate project-owned plans and runbooks while
-leaving registrar, DNS, cPanel, certificate, upload, runtime configuration,
-restart, and production authority with the human operator.
+Version 0.4 bundles `handoff-core`, `domain-cpanel`, `static-site-cpanel`,
+`node-cpanel`, `mysql-storage`, `auth-local`, and optional `auth-google`. The
+modules generate project-owned plans and runbooks while leaving provider,
+hosting, database, identity, credential, migration, and production authority
+with the human operator.
 
 ```bash
 kontextstack modules available
 kontextstack modules inspect --module domain-cpanel --project /path/to/project
 kontextstack modules inspect --module static-site-cpanel --project /path/to/project
 kontextstack modules inspect --module node-cpanel --project /path/to/project
+kontextstack modules inspect --module mysql-storage --project /path/to/project
+kontextstack modules inspect --module auth-local --project /path/to/project
+kontextstack modules inspect --module auth-google --project /path/to/project
 ```
 
 Module discovery does not authorize module execution or installation. Every

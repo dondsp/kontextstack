@@ -19,6 +19,9 @@ test("the bundled registry exposes source-traceable release modules", async (t) 
   assert.ok(names.has("domain-cpanel"));
   assert.ok(names.has("static-site-cpanel"));
   assert.ok(names.has("node-cpanel"));
+  assert.ok(names.has("mysql-storage"));
+  assert.ok(names.has("auth-local"));
+  assert.ok(names.has("auth-google"));
   for (const entry of registry.modules) {
     assert.equal(entry.source, "https://github.com/dondsp/kontextstack");
     assert.match(entry.integrity, /^sha256-[a-f0-9]{64}$/);
@@ -40,4 +43,9 @@ test("every bundled portable module matches its registry fingerprint and filesys
       file.target.startsWith(`docs/kontextstack/modules/${entry.name}/`)
     )));
   }
+
+  const localAuth = await loadPortableBundle(path.join(root, "modules", "auth-local"));
+  const googleAuth = await loadPortableBundle(path.join(root, "modules", "auth-google"));
+  assert.deepEqual(localAuth.manifest.dependencies, ["mysql-storage@>=0.4.0"]);
+  assert.deepEqual(googleAuth.manifest.dependencies, ["auth-local@>=0.4.0"]);
 });

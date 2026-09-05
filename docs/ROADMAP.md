@@ -33,10 +33,10 @@ runtime versions, entrypoints, environment-name contracts, reverse routing,
 process restart, health checks, and rollback without managing production
 credentials.
 
-## v0.4 — Database and authentication foundations
+## v0.4 — Database and authentication foundations — released
 
-Planned modules include MySQL storage, local authentication, and optional Google
-authentication. Each will be opt-in and gated by security, migration, session,
+Modules include MySQL storage, local authentication, and optional Google
+authentication. Each is opt-in and gated by security, migration, session,
 CSRF, RBAC, backup, and recovery acceptance criteria.
 
 The first schema must establish the intended operator interface: ordered and

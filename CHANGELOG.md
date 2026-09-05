@@ -3,6 +3,18 @@
 All notable changes are recorded here. KontextStack core and modules use
 independent semantic versions.
 
+## 0.4.0 — 2026-09-05
+
+- Add stable `mysql-storage`, `auth-local`, and optional `auth-google` planning
+  modules.
+- Define ordered checksum-bound migrations, target readiness, backup and
+  recovery evidence, production separation, and temporary-bridge retirement.
+- Define deny-by-default local accounts, sessions, CSRF, RBAC, audit, recovery,
+  and closed-registration acceptance gates.
+- Separate minimum Google identity consent from optional Workspace access and
+  require explicit account-linking, scope, storage, revocation, and enablement
+  decisions.
+
 ## 0.3.0 — 2026-09-05
 
 - Add the stable `node-cpanel` runtime planning module.
